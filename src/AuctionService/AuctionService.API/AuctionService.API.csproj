@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>389295a0-84d6-43a4-91f2-85edea3d75bb</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="5.32.0" />
+    <PackageReference Include="FastEndpoints.Security" Version="5.32.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Carsties.ServiceDefaults\Carsties.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Auction.Application\Auction.Application.csproj" />
+    <ProjectReference Include="..\Auction.Contract\Auction.Contract.csproj" />
+    <ProjectReference Include="..\Auction.Infrastructure\Auction.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
