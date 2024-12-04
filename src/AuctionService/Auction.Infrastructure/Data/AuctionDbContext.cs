@@ -1,4 +1,6 @@
 ﻿using Auction.Domain.Items;
+using Auction.Infrastructure.Auctions;
+using Auction.Infrastructure.Items;
 using Auction.Infrastructure.Middleware;
 using Carsties.Core;
 using Carsties.Core.Interfaces;
@@ -13,8 +15,8 @@ public sealed class AuctionDbContext : DbContext
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IPublisher _publisher;
 
-    public DbSet<Domain.Auctions.Auction> Auctions { get; init; } = null!;
-    public DbSet<Item> Items { get; init; } = null!;
+    public DbSet<Domain.Auctions.AuctionEntity> Auctions { get; init; }
+    public DbSet<ItemEntity> Items { get; init; }
 
     public AuctionDbContext(DbContextOptions<AuctionDbContext> options,
         IHttpContextAccessor httpContextAccessor,
@@ -42,8 +44,9 @@ public sealed class AuctionDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuctionDbContext).Assembly);
-        modelBuilder.Entity<Domain.Auctions.Auction>()
+        modelBuilder.ApplyConfiguration(new AuctionEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemEntityConfiguration());
+        modelBuilder.Entity<Domain.Auctions.AuctionEntity>()
             .HasData(SeedData.GenerateAuctions());
 
         base.OnModelCreating(modelBuilder);

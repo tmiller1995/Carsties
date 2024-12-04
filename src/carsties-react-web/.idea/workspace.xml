@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ee32a8e-5dcb-4c5a-84f8-7749afea47d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+    <list default="true" id="8ee32a8e-5dcb-4c5a-84f8-7749afea47d1" name="Changes" comment="Initial Next.js Commit">
+      <change afterPath="$PROJECT_DIR$/../AuctionService/Auction.Application/Auctions/Get/GetAuctionByIdQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AuctionService/Auction.Application/Auctions/Get/GetAuctionByIdQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Auction.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Auction.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Delete/DeleteAuctionEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Delete/DeleteAuctionEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionByIdEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionByIdEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionsEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionsEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Update/UpdateAuctionEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Update/UpdateAuctionEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Carsties.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Carsties.AppHost/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Carsties.AppHost/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Carsties.AppHost/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,26 +48,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Dockerfile.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/skinn/.deno/bin/deno.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Debug",
-    "settings.editor.selected.configurable": "settings.sync",
-    "ts.external.directory.path": "D:\\GitHub\\Carsties\\src\\carsties-react-web\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/skinn/.deno/bin/deno.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Debug&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\GitHub\\Carsties\\src\\carsties-react-web\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
@@ -99,11 +110,26 @@
       <option name="presentableId" value="Default" />
       <updated>1733087399271</updated>
       <workItem from="1733087400263" duration="2328000" />
-      <workItem from="1733092254152" duration="3211000" />
+      <workItem from="1733092254152" duration="3924000" />
+      <workItem from="1733274432296" duration="547000" />
+      <workItem from="1733275328539" duration="376000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Next.js Commit">
+      <option name="closed" value="true" />
+      <created>1733190272363</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733190272363</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Next.js Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Next.js Commit" />
   </component>
 </project>

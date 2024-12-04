@@ -1,6 +1,5 @@
 using Auction.Application;
 using Auction.Infrastructure;
-using Auction.Infrastructure.Data;
 using Auction.Infrastructure.Middleware;
 using AuctionService.API;
 using Carsties.ServiceDefaults;

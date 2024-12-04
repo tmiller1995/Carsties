@@ -6,28 +6,28 @@ namespace AuctionService.API.Auctions.Mapper;
 
 public static class AuctionMapper
 {
-    public static AuctionDto ToAuctionDto(this Auction.Domain.Auctions.Auction auction)
+    public static AuctionDto ToAuctionDto(this AuctionEntity auctionEntity)
     {
         return new AuctionDto
         {
-            Id = auction.Id,
-            Seller = auction.Seller,
-            Winner = auction.Winner,
-            SoldAmount = auction.SoldAmount,
-            CurrentHighBid = auction.CurrentHighBid,
-            CreatedAt = auction.CreatedAt,
-            UpdatedAt = auction.UpdatedAt,
-            AuctionEnd = auction.AuctionEnd,
-            Status = auction.Status.ToString(),
-            Make = auction.Item.Make,
-            Model = auction.Item.Model,
-            Year = auction.Item.Year
+            Id = auctionEntity.Id,
+            Seller = auctionEntity.Seller,
+            Winner = auctionEntity.Winner,
+            SoldAmount = auctionEntity.SoldAmount,
+            CurrentHighBid = auctionEntity.CurrentHighBid,
+            CreatedAt = auctionEntity.CreatedAt,
+            UpdatedAt = auctionEntity.UpdatedAt,
+            AuctionEnd = auctionEntity.AuctionEnd,
+            Status = auctionEntity.Status.ToString(),
+            Make = auctionEntity.ItemEntity.Make,
+            Model = auctionEntity.ItemEntity.Model,
+            Year = auctionEntity.ItemEntity.Year
         };
     }
 
-    public static Auction.Domain.Auctions.Auction ToAuction(this AuctionDto auctionDto)
+    public static AuctionEntity ToAuction(this AuctionDto auctionDto)
     {
-        var auction = new Auction.Domain.Auctions.Auction(auctionDto.ReservePrice,
+        var auction = new AuctionEntity(auctionDto.ReservePrice,
             auctionDto.Seller,
             auctionDto.Winner,
             auctionDto.SoldAmount,
@@ -38,7 +38,7 @@ public static class AuctionMapper
             Enum.Parse<Status>(auctionDto.Status),
             auctionDto.Id)
         {
-            Item = new Item(auctionDto.Make,
+            ItemEntity = new ItemEntity(auctionDto.Make,
                 auctionDto.Model,
                 auctionDto.Year,
                 auctionDto.Color,
@@ -49,9 +49,9 @@ public static class AuctionMapper
         return auction;
     }
 
-    public static Auction.Domain.Auctions.Auction ToAuction(this CreateAuctionDto createAuctionDto, string seller)
+    public static AuctionEntity ToAuction(this CreateAuctionDto createAuctionDto, string seller)
     {
-        return new Auction.Domain.Auctions.Auction(createAuctionDto.ReservePrice,
+        return new AuctionEntity(createAuctionDto.ReservePrice,
             seller,
             winner: null,
             soldAmount: null,
@@ -61,7 +61,7 @@ public static class AuctionMapper
             createAuctionDto.AuctionEnd,
             Status.Live)
         {
-            Item = new Item(createAuctionDto.Make,
+            ItemEntity = new ItemEntity(createAuctionDto.Make,
                 createAuctionDto.Model,
                 createAuctionDto.Year,
                 createAuctionDto.Color,

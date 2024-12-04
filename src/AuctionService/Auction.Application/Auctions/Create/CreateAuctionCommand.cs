@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Auction.Application.Auctions.Create;
 
-public record CreateAuctionCommand : IRequest<ErrorOr<Domain.Auctions.Auction>>
+public record CreateAuctionCommand : IRequest<ErrorOr<Domain.Auctions.AuctionEntity>>
 {
-    public Domain.Auctions.Auction AuctionToCreate { get; init; } = null!;
+    public Domain.Auctions.AuctionEntity AuctionEntityToCreate { get; init; } = null!;
 }

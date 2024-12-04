@@ -1,12 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Auction.Domain.Items;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auction.Infrastructure.Auctions;
 
-public sealed class AuctionEntityConfiguration : IEntityTypeConfiguration<Domain.Auctions.Auction>
+public sealed class AuctionEntityConfiguration : IEntityTypeConfiguration<Domain.Auctions.AuctionEntity>
 {
-    public void Configure(EntityTypeBuilder<Domain.Auctions.Auction> builder)
+    public void Configure(EntityTypeBuilder<Domain.Auctions.AuctionEntity> builder)
     {
+        builder.ToTable("auctions");
+
         builder.HasKey(a => a.Id);
         builder.Property(a => a.Id)
             .ValueGeneratedNever();
@@ -25,5 +28,8 @@ public sealed class AuctionEntityConfiguration : IEntityTypeConfiguration<Domain
 
         builder.Property(a => a.Status)
             .IsRequired();
+
+        builder.HasOne<ItemEntity>(a => a.ItemEntity)
+            .WithOne(i => i.AuctionEntity);
     }
 }

@@ -2,7 +2,7 @@
 
 public interface IAuctionsRepository
 {
-    Task<List<Domain.Auctions.Auction>> GetAuctionsAsync(CancellationToken cancellationToken = default);
-    Task<Domain.Auctions.Auction?> GetAuctionByIdAsync(Guid auctionId, CancellationToken cancellationToken = default);
-    Task<Domain.Auctions.Auction?> CreateAuctionAsync(Domain.Auctions.Auction auction, CancellationToken cancellationToken = default);
+    Task<List<Domain.Auctions.AuctionEntity>> GetAuctionsAsync(CancellationToken cancellationToken = default);
+    Task<Domain.Auctions.AuctionEntity?> GetAuctionByIdAsync(Guid auctionId, CancellationToken cancellationToken = default);
+    Task<Domain.Auctions.AuctionEntity?> CreateAuctionAsync(Domain.Auctions.AuctionEntity auctionToCreate, CancellationToken cancellationToken = default);
 }

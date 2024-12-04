@@ -1,12 +1,13 @@
-﻿using Auction.Domain.Items;
+﻿using Auction.Domain.Auctions;
+using Auction.Domain.Items;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auction.Infrastructure.Items;
 
-public sealed class ItemEntityConfiguration : IEntityTypeConfiguration<Item>
+public sealed class ItemEntityConfiguration : IEntityTypeConfiguration<ItemEntity>
 {
-    public void Configure(EntityTypeBuilder<Item> builder)
+    public void Configure(EntityTypeBuilder<ItemEntity> builder)
     {
         builder.HasKey(i => i.Id);
         builder.Property(i => i.Id)
@@ -32,5 +33,8 @@ public sealed class ItemEntityConfiguration : IEntityTypeConfiguration<Item>
 
         builder.Property(i => i.ImageUrl)
             .HasMaxLength(500);
+
+        builder.HasOne<AuctionEntity>(i => i.AuctionEntity)
+            .WithOne(a => a.ItemEntity);
     }
 }

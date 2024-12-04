@@ -23,7 +23,7 @@ public sealed class CreateAuctionEndpoint : Endpoint<CreateAuctionDto>
     public override async Task HandleAsync(CreateAuctionDto req, CancellationToken ct)
     {
         var auctionToCreate = req.ToAuction(User.Identity?.Name!);
-        var createdAuction = await _sender.Send(new CreateAuctionCommand { AuctionToCreate = auctionToCreate }, ct);
+        var createdAuction = await _sender.Send(new CreateAuctionCommand { AuctionEntityToCreate = auctionToCreate }, ct);
 
         if (createdAuction.IsError)
         {

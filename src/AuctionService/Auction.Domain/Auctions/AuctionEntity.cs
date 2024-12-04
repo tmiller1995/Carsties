@@ -3,24 +3,24 @@ using Carsties.Core;
 
 namespace Auction.Domain.Auctions;
 
-public sealed class Auction : Entity
+public sealed class AuctionEntity : Entity
 {
-    public decimal ReservePrice { get; }
-    public string Seller { get; }
-    public string? Winner { get; }
-    public decimal? SoldAmount { get; }
-    public decimal? CurrentHighBid { get; }
-    public DateTime CreatedAt { get; }
-    public DateTime UpdatedAt { get; }
-    public DateTime AuctionEnd { get; }
-    public Status Status { get; }
-    public Item Item { get; set; }
+    public decimal ReservePrice { get; private init; }
+    public string Seller { get; private init; }
+    public string? Winner { get; private init; }
+    public decimal? SoldAmount { get; private init; }
+    public decimal? CurrentHighBid { get; private init; }
+    public DateTime CreatedAt { get; private init; }
+    public DateTime UpdatedAt { get; private init; }
+    public DateTime AuctionEnd { get; private init; }
+    public Status Status { get; private init; }
+    public ItemEntity ItemEntity { get; init; } = default!;
 
-    private Auction()
+    private AuctionEntity()
     {
     }
 
-    public Auction(decimal reservePrice,
+    public AuctionEntity(decimal reservePrice,
         string seller,
         string? winner,
         decimal? soldAmount,
