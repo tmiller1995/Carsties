@@ -6,7 +6,7 @@ namespace Auction.Domain.Auctions;
 public sealed class AuctionEntity : Entity
 {
     public decimal ReservePrice { get; private init; }
-    public string Seller { get; private init; }
+    public string Seller { get; private init; } = string.Empty;
     public string? Winner { get; private init; }
     public decimal? SoldAmount { get; private init; }
     public decimal? CurrentHighBid { get; private init; }
@@ -14,9 +14,9 @@ public sealed class AuctionEntity : Entity
     public DateTime UpdatedAt { get; private init; }
     public DateTime AuctionEnd { get; private init; }
     public Status Status { get; private init; }
-    public ItemEntity ItemEntity { get; init; } = default!;
+    public ItemEntity ItemEntity { get; init; } = null!;
 
-    private AuctionEntity()
+    public AuctionEntity()
     {
     }
 
@@ -36,9 +36,9 @@ public sealed class AuctionEntity : Entity
         Winner = winner;
         SoldAmount = soldAmount;
         CurrentHighBid = currentHighBid;
-        CreatedAt = createdAt;
-        UpdatedAt = updatedAt;
-        AuctionEnd = auctionEnd;
+        CreatedAt = DateTime.SpecifyKind(createdAt, DateTimeKind.Utc);
+        UpdatedAt = DateTime.SpecifyKind(updatedAt, DateTimeKind.Utc);
+        AuctionEnd = DateTime.SpecifyKind(auctionEnd, DateTimeKind.Utc);
         Status = status;
     }
 }

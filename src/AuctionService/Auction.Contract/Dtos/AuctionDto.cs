@@ -14,7 +14,7 @@ public record AuctionDto
     public string Color { get; init; } = string.Empty;
     public int Mileage { get; init; }
     public string ImageUrl { get; init; } = string.Empty;
-    public string Status { get; init; }
+    public string Status { get; init; } = string.Empty;
     public decimal ReservePrice { get; init; }
     public decimal? SoldAmount { get; init; }
     public decimal? CurrentHighBid { get; init; }

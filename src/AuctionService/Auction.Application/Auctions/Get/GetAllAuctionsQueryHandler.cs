@@ -1,10 +1,11 @@
 ﻿using Auction.Application.Interfaces;
+using Auction.Domain.Auctions;
 using ErrorOr;
 using MediatR;
 
 namespace Auction.Application.Auctions.Get;
 
-public sealed class GetAllAuctionsQueryHandler : IRequestHandler<GetAllAuctionsQuery, ErrorOr<List<Domain.Auctions.AuctionEntity>>>
+public sealed class GetAllAuctionsQueryHandler : IRequestHandler<GetAllAuctionsQuery, ErrorOr<List<AuctionEntity>>>
 {
     private readonly IAuctionsRepository _auctionsRepository;
 
@@ -13,7 +14,7 @@ public sealed class GetAllAuctionsQueryHandler : IRequestHandler<GetAllAuctionsQ
         _auctionsRepository = auctionsRepository;
     }
 
-    public async Task<ErrorOr<List<Domain.Auctions.AuctionEntity>>> Handle(GetAllAuctionsQuery request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<List<AuctionEntity>>> Handle(GetAllAuctionsQuery request, CancellationToken cancellationToken)
     {
         var auctions = await _auctionsRepository.GetAuctionsAsync(cancellationToken);
         if (auctions.Count == 0)

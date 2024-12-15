@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ee32a8e-5dcb-4c5a-84f8-7749afea47d1" name="Changes" comment="Initial Next.js Commit">
-      <change afterPath="$PROJECT_DIR$/../AuctionService/Auction.Application/Auctions/Get/GetAuctionByIdQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AuctionService/Auction.Application/Auctions/Get/GetAuctionByIdQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Contract/Dtos/AuctionDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Contract/Dtos/AuctionDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Domain/Auctions/AuctionEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Domain/Auctions/AuctionEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Domain/Items/ItemEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Domain/Items/ItemEntity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Auction.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Auction.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Auctions/AuctionEntityConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Auctions/AuctionEntityConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Data/AuctionDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Data/AuctionDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/DependencyInjection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Delete/DeleteAuctionEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Delete/DeleteAuctionEndpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionByIdEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionByIdEndpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionsEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Get/GetAuctionsEndpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Update/UpdateAuctionEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Auctions/Update/UpdateAuctionEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Items/ItemEntityConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/Auction.Infrastructure/Items/ItemEntityConfiguration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Carsties.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Carsties.AppHost/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Carsties.AppHost/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Carsties.AppHost/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuctionService/AuctionService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../AuctionService/AuctionService.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Carsties.ServiceDefaults/Carsties.ServiceDefaults.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Carsties.ServiceDefaults/Carsties.ServiceDefaults.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -21,7 +21,11 @@ public static class AuctionMapper
             Status = auctionEntity.Status.ToString(),
             Make = auctionEntity.ItemEntity.Make,
             Model = auctionEntity.ItemEntity.Model,
-            Year = auctionEntity.ItemEntity.Year
+            Year = auctionEntity.ItemEntity.Year,
+            Color = auctionEntity.ItemEntity.Color,
+            Mileage = auctionEntity.ItemEntity.Mileage,
+            ImageUrl = auctionEntity.ItemEntity.ImageUrl,
+            ReservePrice = auctionEntity.ReservePrice
         };
     }
 
@@ -56,9 +60,9 @@ public static class AuctionMapper
             winner: null,
             soldAmount: null,
             currentHighBid: null,
-            createdAt: DateTime.UtcNow,
-            updatedAt: DateTime.UtcNow,
-            createAuctionDto.AuctionEnd,
+            createdAt: DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+            updatedAt: DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
+            DateTime.SpecifyKind(createAuctionDto.AuctionEnd, DateTimeKind.Utc),
             Status.Live)
         {
             ItemEntity = new ItemEntity(createAuctionDto.Make,

@@ -1,5 +1,6 @@
 ﻿using Auction.Application.Auctions.Create;
 using Auction.Contract.Dtos;
+using AuctionService.API.Auctions.Get;
 using AuctionService.API.Auctions.Mapper;
 using FastEndpoints;
 using MediatR;
@@ -17,12 +18,13 @@ public sealed class CreateAuctionEndpoint : Endpoint<CreateAuctionDto>
 
     public override void Configure()
     {
+        AllowAnonymous();
         Post("/api/auctions");
     }
 
     public override async Task HandleAsync(CreateAuctionDto req, CancellationToken ct)
     {
-        var auctionToCreate = req.ToAuction(User.Identity?.Name!);
+        var auctionToCreate = req.ToAuction(User.Identity?.Name ?? "test");
         var createdAuction = await _sender.Send(new CreateAuctionCommand { AuctionEntityToCreate = auctionToCreate }, ct);
 
         if (createdAuction.IsError)
@@ -31,6 +33,9 @@ public sealed class CreateAuctionEndpoint : Endpoint<CreateAuctionDto>
             return;
         }
 
-        await SendOkAsync(createdAuction.Value.ToAuctionDto(), ct);
+        await SendCreatedAtAsync(endpointName: nameof(GetAuctionByIdEndpoint),
+            new { id = createdAuction.Value.Id },
+            createdAuction.Value.ToAuctionDto(),
+            cancellation: ct);
     }
 }

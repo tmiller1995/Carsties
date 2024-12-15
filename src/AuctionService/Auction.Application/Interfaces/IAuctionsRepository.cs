@@ -1,8 +1,12 @@
-﻿namespace Auction.Application.Interfaces;
+﻿using Auction.Domain.Auctions;
+using ErrorOr;
+
+namespace Auction.Application.Interfaces;
 
 public interface IAuctionsRepository
 {
-    Task<List<Domain.Auctions.AuctionEntity>> GetAuctionsAsync(CancellationToken cancellationToken = default);
-    Task<Domain.Auctions.AuctionEntity?> GetAuctionByIdAsync(Guid auctionId, CancellationToken cancellationToken = default);
-    Task<Domain.Auctions.AuctionEntity?> CreateAuctionAsync(Domain.Auctions.AuctionEntity auctionToCreate, CancellationToken cancellationToken = default);
+    Task<List<AuctionEntity>> GetAuctionsAsync(CancellationToken cancellationToken = default);
+    Task<AuctionEntity?> GetAuctionByIdAsync(Guid auctionId, CancellationToken cancellationToken = default);
+    Task<AuctionEntity?> CreateAuctionAsync(AuctionEntity auctionToCreate, CancellationToken cancellationToken = default);
+    Task<AuctionEntity> UpdateAuctionByIdAsync(AuctionEntity updatedAuction, CancellationToken cancellationToken = default);
 }

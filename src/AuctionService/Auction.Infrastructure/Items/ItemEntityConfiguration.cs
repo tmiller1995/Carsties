@@ -1,5 +1,4 @@
-﻿using Auction.Domain.Auctions;
-using Auction.Domain.Items;
+﻿using Auction.Domain.Items;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,32 +8,39 @@ public sealed class ItemEntityConfiguration : IEntityTypeConfiguration<ItemEntit
 {
     public void Configure(EntityTypeBuilder<ItemEntity> builder)
     {
-        builder.HasKey(i => i.Id);
+        builder.ToTable("items");
+
+        builder.HasKey(i => i.Id)
+            .HasName("pk_items_id");
         builder.Property(i => i.Id)
-            .ValueGeneratedNever();
+            .ValueGeneratedNever()
+            .HasColumnName("id");
 
         builder.Property(i => i.Make)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(200)
+            .HasColumnName("make");
 
         builder.Property(i => i.Model)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(200)
+            .HasColumnName("model");
 
         builder.Property(i => i.Year)
-            .IsRequired();
+            .IsRequired()
+            .HasColumnName("year");
 
         builder.Property(i => i.Color)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(200)
+            .HasColumnName("color");
 
         builder.Property(i => i.Mileage)
-            .IsRequired();
+            .IsRequired()
+            .HasColumnName("mileage");
 
         builder.Property(i => i.ImageUrl)
-            .HasMaxLength(500);
-
-        builder.HasOne<AuctionEntity>(i => i.AuctionEntity)
-            .WithOne(a => a.ItemEntity);
+            .HasMaxLength(500)
+            .HasColumnName("image_url");
     }
 }

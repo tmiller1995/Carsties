@@ -1,9 +1,10 @@
-﻿using ErrorOr;
+﻿using Auction.Domain.Auctions;
+using ErrorOr;
 using MediatR;
 
 namespace Auction.Application.Auctions.Create;
 
-public record CreateAuctionCommand : IRequest<ErrorOr<Domain.Auctions.AuctionEntity>>
+public record CreateAuctionCommand : IRequest<ErrorOr<AuctionEntity>>
 {
-    public Domain.Auctions.AuctionEntity AuctionEntityToCreate { get; init; } = null!;
+    public AuctionEntity AuctionEntityToCreate { get; init; } = null!;
 }

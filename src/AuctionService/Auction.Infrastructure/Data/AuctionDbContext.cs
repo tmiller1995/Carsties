@@ -1,12 +1,12 @@
-﻿using Auction.Domain.Items;
-using Auction.Infrastructure.Auctions;
-using Auction.Infrastructure.Items;
+﻿using Auction.Domain.Auctions;
+using Auction.Domain.Items;
 using Auction.Infrastructure.Middleware;
 using Carsties.Core;
 using Carsties.Core.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Auction.Infrastructure.Data;
 
@@ -15,7 +15,7 @@ public sealed class AuctionDbContext : DbContext
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IPublisher _publisher;
 
-    public DbSet<Domain.Auctions.AuctionEntity> Auctions { get; init; }
+    public DbSet<AuctionEntity> Auctions { get; init; }
     public DbSet<ItemEntity> Items { get; init; }
 
     public AuctionDbContext(DbContextOptions<AuctionDbContext> options,
@@ -26,7 +26,7 @@ public sealed class AuctionDbContext : DbContext
         _publisher = publisher;
     }
 
-    public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new())
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
         var domainEvents = ChangeTracker.Entries<Entity>()
             .SelectMany(entry => entry.Entity.PopDomainEvents())
@@ -44,18 +44,23 @@ public sealed class AuctionDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new AuctionEntityConfiguration());
-        modelBuilder.ApplyConfiguration(new ItemEntityConfiguration());
-        modelBuilder.Entity<Domain.Auctions.AuctionEntity>()
-            .HasData(SeedData.GenerateAuctions());
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DependencyInjection).Assembly);
 
         base.OnModelCreating(modelBuilder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
     }
 
     private bool IsUserWaitingOnline() => _httpContextAccessor.HttpContext is not null;
 
     private async Task PublishDomainEvents(List<IDomainEvent> domainEvents)
     {
+        if (domainEvents.Count == 0)
+            return;
+
         foreach (var domainEvent in domainEvents)
         {
             await _publisher.Publish(domainEvent);
@@ -64,6 +69,9 @@ public sealed class AuctionDbContext : DbContext
 
     private void AddDomainEventsToOfflineProcessingQueue(List<IDomainEvent> domainEvents)
     {
+        if (domainEvents.Count == 0)
+            return;
+
         var domainEventsQueue = _httpContextAccessor.HttpContext!.Items.TryGetValue(EventualConsistencyMiddleware.DomainEventsKey, out var value) &&
                                 value is Queue<IDomainEvent> existingDomainEvents
             ? existingDomainEvents

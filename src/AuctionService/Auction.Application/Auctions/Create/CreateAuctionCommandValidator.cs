@@ -22,5 +22,10 @@ public sealed class CreateAuctionCommandValidator : AbstractValidator<CreateAuct
         RuleFor(c => c.AuctionEntityToCreate.ItemEntity)
             .NotNull()
             .WithMessage("Item is required.");
+
+        RuleFor(c => c.AuctionEntityToCreate.ItemEntity.Color)
+            .NotNull()
+            .NotEmpty()
+            .WithMessage("Color is required.");
     }
 }
