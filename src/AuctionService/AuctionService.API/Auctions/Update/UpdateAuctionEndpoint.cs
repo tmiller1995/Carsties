@@ -42,7 +42,7 @@ public sealed class UpdateAuctionEndpoint : Endpoint<UpdateAuctionDto>
             return;
         }
 
-        if (updatedAuction.Errors.Exists(e => e.NumericType == (int)ErrorType.NotFound))
+        if (updatedAuction.Errors.Exists(e => e.Type == ErrorType.NotFound))
         {
             await SendAsync(updatedAuction.Errors, StatusCodes.Status404NotFound, ct);
             return;

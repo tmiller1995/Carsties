@@ -9,4 +9,5 @@ public interface IAuctionsRepository
     Task<AuctionEntity?> GetAuctionByIdAsync(Guid auctionId, CancellationToken cancellationToken = default);
     Task<AuctionEntity?> CreateAuctionAsync(AuctionEntity auctionToCreate, CancellationToken cancellationToken = default);
     Task<AuctionEntity> UpdateAuctionByIdAsync(AuctionEntity updatedAuction, CancellationToken cancellationToken = default);
+    Task<bool> DeleteAuctionAsync(AuctionEntity auctionToDelete, CancellationToken cancellationToken = default);
 }

@@ -10,7 +10,7 @@ public sealed class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineB
 {
     private readonly IValidator<TRequest>? _validator;
 
-    public ValidationPipelineBehavior(IValidator<TRequest>? validator = default)
+    public ValidationPipelineBehavior(IValidator<TRequest>? validator = null)
     {
         _validator = validator;
     }
