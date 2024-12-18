@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Carsties.Core\Carsties.Core.csproj" />
+      <PackageReference Include="ErrorOr" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="ErrorOr" />
+      <ProjectReference Include="..\..\Carsties.Core\Carsties.Core.csproj" />
     </ItemGroup>
 
 </Project>

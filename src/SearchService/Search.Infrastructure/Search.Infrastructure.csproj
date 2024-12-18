@@ -11,18 +11,13 @@
       <PackageReference Include="MassTransit.RabbitMQ" />
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+      <PackageReference Include="RavenDB.Client" />
+      <PackageReference Include="RavenDB.DependencyInjection" />
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
-        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\9.0.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Auction.Application\Auction.Application.csproj" />
+      <ProjectReference Include="..\Search.Application\Search.Application.csproj" />
     </ItemGroup>
 
 </Project>

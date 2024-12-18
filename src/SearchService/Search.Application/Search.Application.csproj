@@ -7,11 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Carsties.Core\Carsties.Core.csproj" />
+      <PackageReference Include="ErrorOr" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="ErrorOr" />
+      <ProjectReference Include="..\Search.Domain\Search.Domain.csproj" />
     </ItemGroup>
 
 </Project>
