@@ -1,54 +1,26 @@
 ﻿using Carsties.Core;
 using ErrorOr;
 using MediatR;
-using Raven.Client.Documents;
-using Raven.Client.Documents.Linq;
-using Raven.Client.Documents.Session;
-using Search.Domain.Auctions;
+using Search.Application.Interfaces;
 using Search.Domain.Items;
 
 namespace Search.Application.Search;
 
 public sealed class SearchQueryHandler : IRequestHandler<SearchQuery, ErrorOr<PaginatedResponse<List<Item>>>>
 {
-    private readonly IDocumentSession _session;
+    private readonly ISearchRepository _searchRepository;
 
-    public SearchQueryHandler(IDocumentSession session)
+    public SearchQueryHandler(ISearchRepository searchRepository)
     {
-        _session = session;
+        _searchRepository = searchRepository;
     }
 
-    public Task<ErrorOr<PaginatedResponse<List<Item>>>> Handle(SearchQuery request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<PaginatedResponse<List<Item>>>> Handle(SearchQuery request, CancellationToken cancellationToken)
     {
-        var auctions = _session.Query<Auction>()
-            .Statistics(out var statistics);
+        var paginatedItems = await _searchRepository.SearchItemsAsync(request.SearchTerm, request.PageNumber, request.PageSize, cancellationToken);
+        if (paginatedItems.TotalCount == 0)
+            return Error.NotFound("Items", "No items found");
 
-        if (!string.IsNullOrWhiteSpace(request.SearchTerm))
-            auctions = auctions
-                .Search(a => a.Item.Make, request.SearchTerm)
-                .Search(a => a.Item.Model, request.SearchTerm)
-                .Search(a => a.Item.Color, request.SearchTerm);
-
-        var items = auctions
-            .Skip((request.PageNumber - 1) * request.PageSize)
-            .Take(request.PageSize)
-            .Select(a => a.Item).ToList();
-
-        if (items.Count == 0)
-        {
-            return Task.FromResult<ErrorOr<PaginatedResponse<List<Item>>>>(Error.NotFound("Items", "No items found"));
-        }
-
-        var totalResults = statistics.TotalResults;
-
-        var paginatedResponse = new PaginatedResponse<List<Item>>
-        {
-            Data = items,
-            PageNumber = request.PageNumber,
-            PageSize = request.PageSize,
-            TotalCount = totalResults
-        };
-
-        return Task.FromResult<ErrorOr<PaginatedResponse<List<Item>>>>(paginatedResponse);
+        return paginatedItems;
     }
 }
