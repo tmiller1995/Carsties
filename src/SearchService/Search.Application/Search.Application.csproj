@@ -10,6 +10,7 @@
       <PackageReference Include="ErrorOr" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+      <PackageReference Include="RavenDB.DependencyInjection" />
     </ItemGroup>
 
     <ItemGroup>
