@@ -35,12 +35,6 @@ public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<L
             return;
         }
 
-        if (errorOrItems.Errors.Exists(e => e.Type == ErrorType.NotFound))
-        {
-            await SendNotFoundAsync(ct);
-            return;
-        }
-
         await SendErrorsAsync(StatusCodes.Status400BadRequest, ct);
     }
 }

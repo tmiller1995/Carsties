@@ -1,5 +1,6 @@
 ﻿using Carsties.Core;
 using Raven.Client.Documents;
+using Raven.Client.Documents.Linq;
 using Raven.Client.Documents.Session;
 using Search.Application.Interfaces;
 using Search.Domain.Items;
@@ -30,7 +31,7 @@ public sealed class SearchRepository : ISearchRepository
         if (!string.IsNullOrWhiteSpace(auctionSearch.Winner))
         {
             var winner = auctionSearch.Winner;
-            auctions = auctions.Search(a => a.Winner, auctionSearch.Winner, options: SearchOptions.Or);
+            auctions = auctions.Search(a => a.Winner, winner, options: SearchOptions.Or);
         }
 
         if (!string.IsNullOrWhiteSpace(auctionSearch.SearchTerm))
@@ -40,6 +41,39 @@ public sealed class SearchRepository : ISearchRepository
                 .Search(a => a.Item.Make, searchTerm, options: SearchOptions.Or)
                 .Search(a => a.Item.Model, searchTerm, options: SearchOptions.Or)
                 .Search(a => a.Item.Color, searchTerm, options: SearchOptions.Or);
+        }
+
+        if (!string.IsNullOrWhiteSpace(auctionSearch.OrderBy))
+        {
+            auctions = auctionSearch.OrderBy.ToLower() switch
+            {
+                "make" => auctions.OrderBy(a => a.Item.Make),
+                "new" => auctions.OrderByDescending(a => a.CreatedAt),
+                _ => auctions.OrderBy(a => a.AuctionEnd)
+            };
+        }
+
+        if (!string.IsNullOrWhiteSpace(auctionSearch.FilterBy))
+        {
+            var dateTimeUtcNow = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
+            auctions = auctionSearch.FilterBy.ToLower() switch
+            {
+                "finished" => auctions.Where(a => a.AuctionEnd < dateTimeUtcNow),
+                "endingsoon" => auctions.Where(a => a.AuctionEnd < dateTimeUtcNow.AddHours(6) && a.AuctionEnd > dateTimeUtcNow),
+                _ => auctions.Where(a => a.AuctionEnd > dateTimeUtcNow)
+            };
+        }
+
+        if (!string.IsNullOrWhiteSpace(auctionSearch.Seller))
+        {
+            var seller = auctionSearch.Seller;
+            auctions = auctions.Search(a => a.Seller, seller, options: SearchOptions.Or);
+        }
+
+        if (!string.IsNullOrWhiteSpace(auctionSearch.Winner))
+        {
+            var winner = auctionSearch.Seller;
+            auctions = auctions.Search(a => a.Winner, winner, options: SearchOptions.Or);
         }
 
         var items = await auctions

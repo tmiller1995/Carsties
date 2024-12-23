@@ -10,20 +10,25 @@
     <!--Fluent Validation-->
     <PackageVersion Include="FluentValidation" Version="$(FluentValidationVersion)" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="$(FluentValidationVersion)" />
+
     <!--FastEndpoints-->
     <PackageVersion Include="FastEndpoints" Version="$(FastEndpointsVersion)" />
     <PackageVersion Include="FastEndpoints.Security" Version="$(FastEndpointsVersion)" />
     <PackageVersion Include="FastEndpoints.Attributes" Version="$(FastEndpointsVersion)" />
+
     <!--Microsoft Extensions-->
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftPackageVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftPackageVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(MicrosoftPackageVersion)" />
+
     <!--MassTransit-->
     <PackageVersion Include="MassTransit" Version="$(MassTransitVersion)" />
     <PackageVersion Include="MassTransit.Abstractions" Version="$(MassTransitVersion)" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="$(MassTransitVersion)" />
+
+    <!--Other Packages-->
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="Bogus" Version="35.6.1" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />

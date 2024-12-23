@@ -24,7 +24,7 @@ public sealed class AuctionService
         var auctionDtos = await JsonSerializer.DeserializeAsync<List<AuctionDto>>(await response.Content.ReadAsStreamAsync());
 
         var auctions = new List<Domain.Auctions.Auction>();
-        auctionDtos.ForEach(adto =>
+        auctionDtos?.ForEach(adto =>
         {
             var auction = new Domain.Auctions.Auction
             {
