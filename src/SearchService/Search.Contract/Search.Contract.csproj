@@ -10,8 +10,4 @@
       <PackageReference Include="FastEndpoints.Attributes" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Searches\" />
-    </ItemGroup>
-
 </Project>

@@ -1,11 +1,10 @@
-﻿using Carsties.Core;
-using Search.Domain.Items;
+﻿using Search.Domain.Items;
 
 namespace Search.Domain.Auctions;
 
-public sealed class Auction : Entity
+public sealed class Auction
 {
-    public new string Id { get; set; } = Guid.CreateVersion7().ToString();
+    public Guid ExternalId { get; set; }
     public decimal ReservePrice { get; set; }
     public string Seller { get; set; } = string.Empty;
     public string? Winner { get; set; }

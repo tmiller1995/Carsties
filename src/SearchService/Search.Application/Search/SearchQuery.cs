@@ -2,12 +2,11 @@
 using ErrorOr;
 using MediatR;
 using Search.Domain.Items;
+using Search.Domain.Searches;
 
 namespace Search.Application.Search;
 
 public readonly record struct SearchQuery : IRequest<ErrorOr<PaginatedResponse<List<Item>>>>
 {
-    public string SearchTerm { get; init; }
-    public int PageNumber { get; init; }
-    public int PageSize { get; init; }
+    public AuctionSearch AuctionSearch { get; init; }
 }

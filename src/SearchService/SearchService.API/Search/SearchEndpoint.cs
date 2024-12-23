@@ -3,11 +3,12 @@ using ErrorOr;
 using FastEndpoints;
 using MediatR;
 using Search.Application.Search;
+using Search.Contract.Searches;
 using Search.Domain.Items;
 
 namespace SearchService.API.Search;
 
-public sealed class SearchEndpoint : EndpointWithoutRequest<PaginatedResponse<List<Item>>>
+public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<List<Item>>>
 {
     private readonly ISender _sender;
 
@@ -23,14 +24,10 @@ public sealed class SearchEndpoint : EndpointWithoutRequest<PaginatedResponse<Li
         Get("/api/search");
     }
 
-    public override async Task HandleAsync(CancellationToken ct)
+    public override async Task HandleAsync(SearchRequest request, CancellationToken ct)
     {
-        var searchTerm = Query<string>("searchTerm");
-        var pageNumber = Query<int?>("pageNumber") ?? 1;
-        var pageSize = Query<int?>("pageSize") ?? 4;
-
-        var searchQuery = new SearchQuery {SearchTerm = searchTerm, PageNumber = pageNumber, PageSize = pageSize};
-        var errorOrItems = await _sender.Send(searchQuery, ct);
+        var auctionSearch = request.ToAuctionSearch();
+        var errorOrItems = await _sender.Send(new SearchQuery { AuctionSearch = auctionSearch }, ct);
 
         if (!errorOrItems.IsError)
         {

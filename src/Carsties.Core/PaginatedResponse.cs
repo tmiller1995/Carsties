@@ -2,7 +2,7 @@
 
 public sealed class PaginatedResponse<T>
 {
-    public T Data { get; init; }
+    public T Data { get; init; } = default!;
     public int PageNumber { get; init; }
     public double PageSize { get; init; }
     public double TotalCount { get; init; }
