@@ -1,10 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Polly;
 using Raven.DependencyInjection;
 using Search.Application.Interfaces;
-using Search.Infrastructure.AuctionServiceClient;
-using Search.Infrastructure.Data;
 using Search.Infrastructure.Searches;
 
 namespace Search.Infrastructure;
@@ -16,21 +14,16 @@ public static class DependencyInjection
         builder.Services.AddAuthorization();
         builder.Services.AddAuthentication().AddJwtBearer();
         builder.Services.AddHttpContextAccessor();
+        builder.Services.AddMassTransit(config =>
+        {
+            config.UsingRabbitMq((context, configurator) =>
+            {
+                configurator.ConfigureEndpoints(context);
+            });
+        });
 
         builder.Services.AddRavenDbDocStore(options => options.SectionName = "RavenDbSettings");
         builder.Services.AddRavenDbAsyncSession();
-
-        if (builder.Environment.IsDevelopment())
-        {
-            builder.Services.AddHttpClient<AuctionService>(client =>
-            {
-                var auctionServiceUrl = builder.Configuration["AuctionServiceUrl"]!;
-                client.BaseAddress = new Uri(auctionServiceUrl);
-            })
-            .AddTransientHttpErrorPolicy(policyBuilder => policyBuilder.WaitAndRetryAsync(10, i => TimeSpan.FromSeconds(i * 2)));
-
-            builder.Services.AddScoped<DataSeeder>();
-        }
 
         builder.Services.AddScoped<ISearchRepository, SearchRepository>();
 

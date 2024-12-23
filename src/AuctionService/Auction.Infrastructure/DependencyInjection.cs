@@ -1,6 +1,7 @@
 ﻿using Auction.Application.Interfaces;
 using Auction.Infrastructure.Auctions;
 using Auction.Infrastructure.Data;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,6 +16,13 @@ public static class DependencyInjection
         builder.Services.AddAuthentication().AddJwtBearer();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddNpgsql<AuctionDbContext>(builder.Configuration.GetConnectionString("AuctionDb"));
+        builder.Services.AddMassTransit(config =>
+        {
+            config.UsingRabbitMq((context, configurator) =>
+            {
+                configurator.ConfigureEndpoints(context);
+            });
+        });
 
         builder.Services.AddScoped<IAuctionsRepository, AuctionsRepository>();
 

@@ -1,9 +1,10 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
-namespace Auction.Contract.Dtos;
+namespace Carsties.Shared.MessagingContracts;
 
-public record UpdateAuctionDto
+public record AuctionUpdatedEvent
 {
+    [JsonPropertyName("id")] public Guid Id { get; init; }
     [JsonPropertyName("make")] public string? Make { get; init; }
     [JsonPropertyName("model")] public string? Model { get; init; }
     [JsonPropertyName("color")] public string? Color { get; init; }

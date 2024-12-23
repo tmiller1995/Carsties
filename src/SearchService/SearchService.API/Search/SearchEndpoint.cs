@@ -1,5 +1,4 @@
 ﻿using Carsties.Core;
-using ErrorOr;
 using FastEndpoints;
 using MediatR;
 using Search.Application.Search;

@@ -3,6 +3,7 @@ using Raven.Client.Documents;
 using Raven.Client.Documents.Linq;
 using Raven.Client.Documents.Session;
 using Search.Application.Interfaces;
+using Search.Domain.Auctions;
 using Search.Domain.Items;
 using Search.Domain.Searches;
 
@@ -19,7 +20,7 @@ public sealed class SearchRepository : ISearchRepository
 
     public async Task<PaginatedResponse<List<Item>>> SearchItemsAsync(AuctionSearch auctionSearch, CancellationToken cancellationToken = default)
     {
-        var auctions = _documentSession.Query<Domain.Auctions.Auction>()
+        var auctions = _documentSession.Query<Auction>()
             .Statistics(out var statistics);
 
         if (!string.IsNullOrWhiteSpace(auctionSearch.Seller))

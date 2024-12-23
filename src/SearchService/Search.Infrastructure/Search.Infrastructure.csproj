@@ -18,7 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\AuctionService\Auction.Contract\Auction.Contract.csproj" />
       <ProjectReference Include="..\Search.Application\Search.Application.csproj" />
     </ItemGroup>
 
