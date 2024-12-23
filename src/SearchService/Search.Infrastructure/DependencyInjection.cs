@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polly;
 using Raven.DependencyInjection;
 using Search.Application.Interfaces;
 using Search.Infrastructure.AuctionServiceClient;
@@ -25,7 +26,8 @@ public static class DependencyInjection
             {
                 var auctionServiceUrl = builder.Configuration["AuctionServiceUrl"]!;
                 client.BaseAddress = new Uri(auctionServiceUrl);
-            });
+            })
+            .AddTransientHttpErrorPolicy(policyBuilder => policyBuilder.WaitAndRetryAsync(10, i => TimeSpan.FromSeconds(i * 2)));
 
             builder.Services.AddScoped<DataSeeder>();
         }

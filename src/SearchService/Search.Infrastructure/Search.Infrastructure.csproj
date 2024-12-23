@@ -12,6 +12,7 @@
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+      <PackageReference Include="Microsoft.Extensions.Http.Polly" />
       <PackageReference Include="RavenDB.Client" />
       <PackageReference Include="RavenDB.DependencyInjection" />
     </ItemGroup>
