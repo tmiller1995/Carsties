@@ -1,5 +1,6 @@
 ﻿using Auction.Domain.Items;
 using Carsties.Core;
+using Carsties.Shared.MessagingContracts;
 
 namespace Auction.Domain.Auctions;
 
@@ -10,8 +11,8 @@ public sealed class AuctionEntity : Entity
     public string? Winner { get; private init; }
     public decimal? SoldAmount { get; private init; }
     public decimal? CurrentHighBid { get; private init; }
-    public DateTime CreatedAt { get; private init; }
-    public DateTime UpdatedAt { get; private init; }
+    public DateTime CreatedAt { get; private init; } = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
+    public DateTime UpdatedAt { get; private init; } = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
     public DateTime AuctionEnd { get; private init; }
     public Status Status { get; private init; }
     public ItemEntity ItemEntity { get; init; } = null!;
@@ -40,5 +41,30 @@ public sealed class AuctionEntity : Entity
         UpdatedAt = DateTime.SpecifyKind(updatedAt, DateTimeKind.Utc);
         AuctionEnd = DateTime.SpecifyKind(auctionEnd, DateTimeKind.Utc);
         Status = status;
+    }
+
+    public AuctionCreatedEvent AddAuctionCreatedEvent()
+    {
+        var auctionCreatedEvent = new AuctionCreatedEvent
+        {
+            Id = Id,
+            ReservePrice = ReservePrice,
+            Seller = Seller,
+            Winner = Winner,
+            SoldAmount = SoldAmount,
+            CurrentHighBid = CurrentHighBid,
+            CreatedAt = CreatedAt,
+            UpdatedAt = UpdatedAt,
+            AuctionEnd = AuctionEnd,
+            Status = Status.ToString(),
+            Make = ItemEntity.Make,
+            Model = ItemEntity.Model,
+            Year = ItemEntity.Year,
+            Color = ItemEntity.Color,
+            Mileage = ItemEntity.Mileage,
+            ImageUrl = ItemEntity.ImageUrl
+        };
+
+        return auctionCreatedEvent;
     }
 }

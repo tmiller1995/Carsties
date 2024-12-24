@@ -1,4 +1,5 @@
-﻿using Auction.Application.Interfaces;
+﻿using Auction.Application.Auctions.Create;
+using Auction.Application.Interfaces;
 using Auction.Infrastructure.Auctions;
 using Auction.Infrastructure.Data;
 using MassTransit;
@@ -18,6 +19,17 @@ public static class DependencyInjection
         builder.Services.AddNpgsql<AuctionDbContext>(builder.Configuration.GetConnectionString("AuctionDb"));
         builder.Services.AddMassTransit(config =>
         {
+            config.AddEntityFrameworkOutbox<AuctionDbContext>(options =>
+            {
+                options.QueryDelay = TimeSpan.FromSeconds(10);
+                options.UsePostgres();
+                options.UseBusOutbox();
+            });
+
+            config.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+
+            config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "auction"));
+
             config.UsingRabbitMq((context, configurator) =>
             {
                 configurator.ConfigureEndpoints(context);

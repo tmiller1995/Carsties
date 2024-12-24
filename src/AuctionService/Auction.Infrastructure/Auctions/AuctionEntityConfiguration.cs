@@ -1,12 +1,13 @@
-﻿using Auction.Domain.Items;
+﻿using Auction.Domain.Auctions;
+using Auction.Domain.Items;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auction.Infrastructure.Auctions;
 
-public sealed class AuctionEntityConfiguration : IEntityTypeConfiguration<Domain.Auctions.AuctionEntity>
+public sealed class AuctionEntityConfiguration : IEntityTypeConfiguration<AuctionEntity>
 {
-    public void Configure(EntityTypeBuilder<Domain.Auctions.AuctionEntity> builder)
+    public void Configure(EntityTypeBuilder<AuctionEntity> builder)
     {
         builder.ToTable("auctions");
 
@@ -37,12 +38,10 @@ public sealed class AuctionEntityConfiguration : IEntityTypeConfiguration<Domain
 
         builder.Property(a => a.CreatedAt)
             .IsRequired()
-            .HasDefaultValue(DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc))
             .HasColumnName("created_at");
 
         builder.Property(a => a.UpdatedAt)
             .IsRequired()
-            .HasDefaultValue(DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc))
             .HasColumnName("updated_at");
 
         builder.Property(a => a.AuctionEnd)

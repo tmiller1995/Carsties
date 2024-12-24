@@ -1,5 +1,4 @@
 ﻿using Auction.Domain.Auctions;
-using ErrorOr;
 
 namespace Auction.Application.Interfaces;
 

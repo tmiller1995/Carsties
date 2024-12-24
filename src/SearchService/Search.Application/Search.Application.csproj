@@ -9,7 +9,9 @@
     <ItemGroup>
       <PackageReference Include="ErrorOr" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+      <PackageReference Include="MassTransit.Abstractions" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+      <PackageReference Include="RavenDB.Client" />
     </ItemGroup>
 
     <ItemGroup>

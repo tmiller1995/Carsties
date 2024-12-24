@@ -1,4 +1,5 @@
 using Auction.Application;
+using Auction.Application.Interfaces;
 using Auction.Infrastructure;
 using Auction.Infrastructure.Data;
 using Auction.Infrastructure.Middleware;
@@ -21,9 +22,12 @@ if (app.Environment.IsDevelopment())
     var auctionDbContext = serviceScope.ServiceProvider.GetRequiredService<AuctionDbContext>();
     if (!auctionDbContext.Auctions.Any())
     {
+        var auctionsRepository = serviceScope.ServiceProvider.GetRequiredService<IAuctionsRepository>();
         var auctionsToSeed = SeedData.GenerateAuctions();
-        auctionDbContext.Auctions.AddRange(auctionsToSeed);
-        await auctionDbContext.SaveChangesAsync();
+        foreach (var auctionEntity in auctionsToSeed)
+        {
+            await auctionsRepository.CreateAuctionAsync(auctionEntity);
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using Auction.Application.Interfaces;
 using Auction.Domain.Auctions;
 using Auction.Infrastructure.Data;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace Auction.Infrastructure.Auctions;
@@ -8,10 +9,12 @@ namespace Auction.Infrastructure.Auctions;
 public sealed class AuctionsRepository : IAuctionsRepository
 {
     private readonly AuctionDbContext _auctionDbContext;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public AuctionsRepository(AuctionDbContext auctionDbContext)
+    public AuctionsRepository(AuctionDbContext auctionDbContext, IPublishEndpoint publishEndpoint)
     {
         _auctionDbContext = auctionDbContext;
+        _publishEndpoint = publishEndpoint;
     }
 
     public async Task<List<AuctionEntity>> GetAuctionsAsync(CancellationToken cancellationToken = default)
@@ -41,6 +44,7 @@ public sealed class AuctionsRepository : IAuctionsRepository
             return null;
 
         var auctionEntity = _auctionDbContext.Auctions.Add(auctionToCreate);
+        await _publishEndpoint.Publish(auctionToCreate.AddAuctionCreatedEvent(), cancellationToken);
         await _auctionDbContext.SaveChangesAsync(cancellationToken);
         return auctionEntity.Entity;
     }
