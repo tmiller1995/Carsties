@@ -41,7 +41,7 @@ public sealed class AuctionCreatedConsumer : IConsumer<AuctionCreatedEvent>
             }
         };
 
-        await _documentSession.StoreAsync(auction);
-        await _documentSession.SaveChangesAsync();
+        await _documentSession.StoreAsync(auction, context.CancellationToken);
+        await _documentSession.SaveChangesAsync(context.CancellationToken);
     }
 }

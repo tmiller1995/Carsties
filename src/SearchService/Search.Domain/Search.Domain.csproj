@@ -18,6 +18,8 @@
       <Compile Include="..\..\Shared\MessagingContracts\AuctionCreatedEvent.cs">
         <Link>Auctions\Events\AuctionCreatedEvent.cs</Link>
       </Compile>
+      <Compile Include="..\..\Shared\MessagingContracts\AuctionDeletedEvent.cs" Link="Auctions\Events\AuctionDeletedEvent.cs" />
+      <Compile Include="..\..\Shared\MessagingContracts\AuctionUpdatedEvent.cs" Link="Auctions\Events\AuctionUpdatedEvent.cs" />
     </ItemGroup>
 
 </Project>
