@@ -81,7 +81,7 @@ public static class SeedData
             });
 
         var auctions = auctionFaker.Generate(1_000);
-        auctions.ForEach(a => a.AddAuctionCreatedEvent());
+        auctions.ForEach(a => a.GetCreatedEvent());
 
         return auctions;
     }

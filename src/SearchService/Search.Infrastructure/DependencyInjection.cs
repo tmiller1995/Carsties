@@ -18,7 +18,9 @@ public static class DependencyInjection
         builder.Services.AddMassTransit(config =>
         {
             config.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
+
             config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "search"));
+
             config.UsingRabbitMq((context, configurator) =>
             {
                 configurator.ReceiveEndpoint("search-auction-created", endpointConfigurator =>

@@ -44,7 +44,7 @@ public sealed class AuctionsRepository : IAuctionsRepository
             return null;
 
         var auctionEntity = _auctionDbContext.Auctions.Add(auctionToCreate);
-        await _publishEndpoint.Publish(auctionToCreate.AddAuctionCreatedEvent(), cancellationToken);
+        await _publishEndpoint.Publish(auctionToCreate.GetCreatedEvent(), cancellationToken);
         await _auctionDbContext.SaveChangesAsync(cancellationToken);
         return auctionEntity.Entity;
     }
@@ -52,7 +52,7 @@ public sealed class AuctionsRepository : IAuctionsRepository
     public async Task<AuctionEntity> UpdateAuctionByIdAsync(AuctionEntity updatedAuction, CancellationToken cancellationToken = default)
     {
         var auction = _auctionDbContext.Auctions.Update(updatedAuction);
-
+        await _publishEndpoint.Publish(auction.Entity.GetUpdatedEvent(), cancellationToken);
         await _auctionDbContext.SaveChangesAsync(cancellationToken);
 
         return auction.Entity;
@@ -61,6 +61,7 @@ public sealed class AuctionsRepository : IAuctionsRepository
     public async Task<bool> DeleteAuctionAsync(AuctionEntity auctionToDelete, CancellationToken cancellationToken = default)
     {
         _auctionDbContext.Auctions.Remove(auctionToDelete);
+        await _publishEndpoint.Publish(auctionToDelete.GetDeletedEvent(), cancellationToken);
         var result = await _auctionDbContext.SaveChangesAsync(cancellationToken);
 
         return result > 0;

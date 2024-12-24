@@ -1,6 +1,7 @@
 ﻿using Auction.Domain.Items;
 using Carsties.Core;
 using Carsties.Shared.MessagingContracts;
+using System.Text.Json.Serialization;
 
 namespace Auction.Domain.Auctions;
 
@@ -43,7 +44,7 @@ public sealed class AuctionEntity : Entity
         Status = status;
     }
 
-    public AuctionCreatedEvent AddAuctionCreatedEvent()
+    public AuctionCreatedEvent GetCreatedEvent()
     {
         var auctionCreatedEvent = new AuctionCreatedEvent
         {
@@ -66,5 +67,26 @@ public sealed class AuctionEntity : Entity
         };
 
         return auctionCreatedEvent;
+    }
+
+    public AuctionUpdatedEvent GetUpdatedEvent()
+    {
+        var auctionUpdatedEvent = new AuctionUpdatedEvent
+        {
+            Id = Id,
+            Make = ItemEntity.Make,
+            Model = ItemEntity.Model,
+            Color = ItemEntity.Color,
+            Mileage = ItemEntity.Mileage,
+            Year = ItemEntity.Year
+        };
+
+        return auctionUpdatedEvent;
+    }
+
+    public AuctionDeletedEvent GetDeletedEvent()
+    {
+        var auctionDeletedEvent = new AuctionDeletedEvent { Id = Id };
+        return auctionDeletedEvent;
     }
 }
