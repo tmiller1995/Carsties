@@ -5,36 +5,61 @@ using Auction.Infrastructure.Data;
 using Auction.Infrastructure.Middleware;
 using AuctionService.API;
 using FastEndpoints;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.AddPresentation()
-    .AddApplication()
-    .AddInfrastructure();
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
 
-var app = builder.Build();
+try
+{
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog((ctx, lc) => lc
+        .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+        .Enrich.FromLogContext()
+        .ReadFrom.Configuration(ctx.Configuration));
+
+    builder.AddPresentation()
+        .AddApplication()
+        .AddInfrastructure();
+
+    var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-
-    using var serviceScope = app.Services.CreateScope();
-    var auctionDbContext = serviceScope.ServiceProvider.GetRequiredService<AuctionDbContext>();
-    if (!auctionDbContext.Auctions.Any())
+    if (app.Environment.IsDevelopment())
     {
-        var auctionsRepository = serviceScope.ServiceProvider.GetRequiredService<IAuctionsRepository>();
-        var auctionsToSeed = SeedData.GenerateAuctions();
-        foreach (var auctionEntity in auctionsToSeed)
+        app.MapOpenApi();
+
+        using var serviceScope = app.Services.CreateScope();
+        var auctionDbContext = serviceScope.ServiceProvider.GetRequiredService<AuctionDbContext>();
+        if (!auctionDbContext.Auctions.Any())
         {
-            await auctionsRepository.CreateAuctionAsync(auctionEntity);
+            Log.Information("Seeding database");
+            var auctionsRepository = serviceScope.ServiceProvider.GetRequiredService<IAuctionsRepository>();
+            var auctionsToSeed = SeedData.GenerateAuctions();
+            foreach (var auctionEntity in auctionsToSeed)
+            {
+                await auctionsRepository.CreateAuctionAsync(auctionEntity);
+            }
+            Log.Information("Seeding complete");
         }
     }
+
+    app.UseMiddleware<EventualConsistencyMiddleware>();
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.UseFastEndpoints();
+
+    app.Run();
 }
-
-app.UseMiddleware<EventualConsistencyMiddleware>();
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseFastEndpoints();
-
-app.Run();
+catch (Exception e) when (e is not HostAbortedException)
+{
+    Log.Fatal(e, "Unhandled exception");
+}
+finally
+{
+    Log.Information("Shut down complete");
+    Log.CloseAndFlush();
+}
