@@ -6,11 +6,11 @@ using Search.Domain.Auctions;
 
 namespace Search.Application.Auctions.EventConsumers;
 
-public sealed class AuctionDeletedConsumer : IConsumer<AuctionDeletedEvent>
+public sealed class AuctionDeletedEventConsumer : IConsumer<AuctionDeletedEvent>
 {
     private readonly IAsyncDocumentSession _documentSession;
 
-    public AuctionDeletedConsumer(IAsyncDocumentSession documentSession)
+    public AuctionDeletedEventConsumer(IAsyncDocumentSession documentSession)
     {
         _documentSession = documentSession;
     }

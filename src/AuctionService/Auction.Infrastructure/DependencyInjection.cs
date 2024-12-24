@@ -26,7 +26,7 @@ public static class DependencyInjection
                 options.UseBusOutbox();
             });
 
-            config.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+            config.AddConsumersFromNamespaceContaining<AuctionCreatedEventFaultConsumer>();
 
             config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "auction"));
 

@@ -17,7 +17,7 @@ public static class DependencyInjection
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddMassTransit(config =>
         {
-            config.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
+            config.AddConsumersFromNamespaceContaining<AuctionCreatedEventConsumer>();
 
             config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "search"));
 
@@ -25,9 +25,22 @@ public static class DependencyInjection
             {
                 configurator.ReceiveEndpoint("search-auction-created", endpointConfigurator =>
                 {
-                    endpointConfigurator.UseMessageRetry(r => r.Interval(2, 100));
-                    endpointConfigurator.ConfigureConsumer<AuctionCreatedConsumer>(context);
+                    endpointConfigurator.UseMessageRetry(r => r.Interval(10, 100));
+                    endpointConfigurator.ConfigureConsumer<AuctionCreatedEventConsumer>(context);
                 });
+
+                configurator.ReceiveEndpoint("search-auction-updated", endpointConfigurator =>
+                {
+                    endpointConfigurator.UseMessageRetry(r => r.Interval(10, 100));
+                    endpointConfigurator.ConfigureConsumer<AuctionUpdatedEventConsumer>(context);
+                });
+
+                configurator.ReceiveEndpoint("search-auction-deleted", endpointConfigurator =>
+                {
+                    endpointConfigurator.UseMessageRetry(r => r.Interval(10, 100));
+                    endpointConfigurator.ConfigureConsumer<AuctionDeletedEventConsumer>(context);
+                });
+
                 configurator.ConfigureEndpoints(context);
             });
         });
