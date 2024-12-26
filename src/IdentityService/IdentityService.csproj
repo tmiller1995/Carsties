@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Bogus" />
         <PackageReference Include="Duende.IdentityServer.AspNetIdentity"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Google"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />

@@ -1,48 +1,47 @@
 <Project>
-    <PropertyGroup>
-        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <MicrosoftPackageVersion>9.0.0</MicrosoftPackageVersion>
-        <FluentValidationVersion>11.11.0</FluentValidationVersion>
-        <FastEndpointsVersion>5.32.0</FastEndpointsVersion>
-        <MassTransitVersion>8.3.4</MassTransitVersion>
-        <DuendeIdentityVersion>7.0.8</DuendeIdentityVersion>
-    </PropertyGroup>
-    <ItemGroup>
-        <!--Duende-->
-        <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)"/>
-        <!--FastEndpoints-->
-        <PackageVersion Include="FastEndpoints" Version="$(FastEndpointsVersion)"/>
-        <PackageVersion Include="FastEndpoints.Security" Version="$(FastEndpointsVersion)"/>
-        <PackageVersion Include="FastEndpoints.Attributes" Version="$(FastEndpointsVersion)"/>
-        <!--Fluent Validation-->
-        <PackageVersion Include="FluentValidation" Version="$(FluentValidationVersion)"/>
-        <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="$(FluentValidationVersion)"/>
-        <!--MassTransit-->
-        <PackageVersion Include="MassTransit" Version="$(MassTransitVersion)"/>
-        <PackageVersion Include="MassTransit.Abstractions" Version="$(MassTransitVersion)"/>
-        <PackageVersion Include="MassTransit.EntityFrameworkCore" Version="$(MassTransitVersion)"/>
-        <PackageVersion Include="MassTransit.RabbitMQ" Version="$(MassTransitVersion)"/>
-        <!--Microsoft Extensions-->
-        <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageVersion>
-        <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(MicrosoftPackageVersion)"/>
-        <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="9.0.0"/>
-        <!--Other Packages-->
-        <PackageVersion Include="Bogus" Version="35.6.1"/>
-        <PackageVersion Include="ErrorOr" Version="2.0.1"/>
-        <PackageVersion Include="MediatR" Version="12.4.1"/>
-        <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2"/>
-        <PackageVersion Include="RavenDB.Client" Version="6.2.2"/>
-        <PackageVersion Include="RavenDB.DependencyInjection" Version="5.0.1"/>
-        <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0"/>
-    </ItemGroup>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <MicrosoftPackageVersion>9.0.0</MicrosoftPackageVersion>
+    <FluentValidationVersion>11.11.0</FluentValidationVersion>
+    <FastEndpointsVersion>5.32.0</FastEndpointsVersion>
+    <MassTransitVersion>8.3.4</MassTransitVersion>
+    <DuendeIdentityVersion>7.0.8</DuendeIdentityVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--Duende-->
+    <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
+    <!--FastEndpoints-->
+    <PackageVersion Include="FastEndpoints" Version="$(FastEndpointsVersion)" />
+    <PackageVersion Include="FastEndpoints.Security" Version="$(FastEndpointsVersion)" />
+    <PackageVersion Include="FastEndpoints.Attributes" Version="$(FastEndpointsVersion)" />
+    <!--Fluent Validation-->
+    <PackageVersion Include="FluentValidation" Version="$(FluentValidationVersion)" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="$(FluentValidationVersion)" />
+    <!--MassTransit-->
+    <PackageVersion Include="MassTransit" Version="$(MassTransitVersion)" />
+    <PackageVersion Include="MassTransit.Abstractions" Version="$(MassTransitVersion)" />
+    <PackageVersion Include="MassTransit.EntityFrameworkCore" Version="$(MassTransitVersion)" />
+    <PackageVersion Include="MassTransit.RabbitMQ" Version="$(MassTransitVersion)" />
+    <!--Microsoft Extensions-->
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="9.0.0" />
+    <!--Other Packages-->
+    <PackageVersion Include="ErrorOr" Version="2.0.1" />
+    <PackageVersion Include="MediatR" Version="12.4.1" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
+    <PackageVersion Include="RavenDB.Client" Version="6.2.2" />
+    <PackageVersion Include="RavenDB.DependencyInjection" Version="5.0.1" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
+  </ItemGroup>
 </Project>
