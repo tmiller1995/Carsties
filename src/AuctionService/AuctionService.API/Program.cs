@@ -46,6 +46,7 @@ try
         }
     }
 
+    app.UseSerilogRequestLogging();
     app.UseMiddleware<EventualConsistencyMiddleware>();
     app.UseHttpsRedirection();
     app.UseAuthentication();

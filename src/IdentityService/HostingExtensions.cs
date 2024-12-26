@@ -13,10 +13,10 @@ internal static class HostingExtensions
     {
         builder.Services.AddRazorPages();
 
-        builder.Services.AddNpgsql<ApplicationDbContext>(builder.Configuration.GetConnectionString("DefaultConnection"));
+        builder.Services.AddNpgsql<ApplicationUserIdentityDbContext>(builder.Configuration.GetConnectionString("IdentityDb"));
 
-        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+            .AddEntityFrameworkStores<ApplicationUserIdentityDbContext>()
             .AddDefaultTokenProviders();
 
         builder.Services
@@ -35,17 +35,17 @@ internal static class HostingExtensions
             .AddInMemoryClients(Config.Clients)
             .AddAspNetIdentity<ApplicationUser>();
 
-        builder.Services.AddAuthentication()
-            .AddGoogle(options =>
-            {
-                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-
-                // register your IdentityServer with Google at https://console.developers.google.com
-                // enable the Google+ API
-                // set the redirect URI to https://localhost:5001/signin-google
-                options.ClientId = "copy client ID from Google here";
-                options.ClientSecret = "copy client secret from Google here";
-            });
+        // builder.Services.AddAuthentication()
+        //     .AddGoogle(options =>
+        //     {
+        //         options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+        //
+        //         // register your IdentityServer with Google at https://console.developers.google.com
+        //         // enable the Google+ API
+        //         // set the redirect URI to https://localhost:5001/signin-google
+        //         options.ClientId = "copy client ID from Google here";
+        //         options.ClientSecret = "copy client secret from Google here";
+        //     });
 
         return builder.Build();
     }

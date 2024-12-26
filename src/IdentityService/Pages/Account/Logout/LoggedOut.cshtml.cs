@@ -5,7 +5,7 @@ using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityService.Pages.Logout;
+namespace IdentityService.Pages.Account.Logout;
 
 [SecurityHeaders]
 [AllowAnonymous]
@@ -13,7 +13,7 @@ public class LoggedOut : PageModel
 {
     private readonly IIdentityServerInteractionService _interactionService;
 
-    public LoggedOutViewModel View { get; set; } = default!;
+    public LoggedOutViewModel View { get; set; } = null!;
 
     public LoggedOut(IIdentityServerInteractionService interactionService)
     {

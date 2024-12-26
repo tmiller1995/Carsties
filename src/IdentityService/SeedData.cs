@@ -13,7 +13,7 @@ public class SeedData
     public static void EnsureSeedData(WebApplication app)
     {
         using var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationUserIdentityDbContext>();
         context.Database.Migrate();
 
         var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
@@ -83,6 +83,5 @@ public class SeedData
         {
             Log.Debug("bob already exists");
         }
-
     }
 }
