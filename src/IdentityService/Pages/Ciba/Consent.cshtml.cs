@@ -133,11 +133,9 @@ public class Consent : PageModel
             View = CreateConsentViewModel(request);
             return true;
         }
-        else
-        {
-            _logger.NoMatchingBackchannelLoginRequest(id);
-            return false;
-        }
+
+        _logger.NoMatchingBackchannelLoginRequest(id);
+        return false;
     }
 
     private ViewModel CreateConsentViewModel(BackchannelUserLoginRequest request)

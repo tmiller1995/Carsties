@@ -65,8 +65,8 @@ public static class SeedData
         var auctionFaker = new Faker<AuctionEntity>("en_US")
             .RuleFor(a => a.Id, f => Guid.CreateVersion7())
             .RuleFor(a => a.Status, f => f.PickRandom<Status>())
-            .RuleFor(a => a.ReservePrice, f => f.Finance.Random.Decimal(10_000m, 600_000m))
-            .RuleFor(a => a.Seller, f => f.Random.CollectionItem(UserNames))
+            .RuleFor(a => a.ReservePrice, f => f.Finance.Random.Number(10_000, 600_000))
+            .RuleFor(a => a.Seller, f => f.PickRandom<string>(UserNames))
             .RuleFor(a => a.AuctionEnd, f => DateTime.SpecifyKind(f.Date.Between(DateTime.UtcNow, DateTime.UtcNow.AddMonths(4)), DateTimeKind.Utc))
             .RuleFor(a => a.Winner, f => f.PickRandom<string>(UserNames).OrNull(f, 0.8f))
             .RuleFor(a => a.ItemEntity, f =>

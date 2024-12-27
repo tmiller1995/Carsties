@@ -32,10 +32,8 @@ public class IndexModel : PageModel
             _logger.InvalidBackchannelLoginId(id);
             return RedirectToPage("/Home/Error/Index");
         }
-        else
-        {
-            LoginRequest = result;
-        }
+
+        LoginRequest = result;
 
         return Page();
     }

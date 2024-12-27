@@ -141,11 +141,9 @@ public class Index : PageModel
             View = CreateConsentViewModel(request);
             return true;
         }
-        else
-        {
-            _logger.NoConsentMatchingRequest(returnUrl);
-            return false;
-        }
+
+        _logger.NoConsentMatchingRequest(returnUrl);
+        return false;
     }
 
     private ViewModel CreateConsentViewModel(AuthorizationRequest request)

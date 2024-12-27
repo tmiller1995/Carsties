@@ -1,0 +1,64 @@
+﻿@page
+@model IdentityService.Pages.Account.Register.Index
+
+<div class="login-page">
+
+    <partial name="_ValidationSummary"/>
+
+    <div class="row">
+
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Sign Up</h2>
+                </div>
+
+                <div class="card-body">
+                    <form asp-page="/Account/Register/Index">
+                        <input type="hidden" asp-for="Input.ReturnUrl"/>
+
+                        <div class="form-group">
+                            <label asp-for="Input.Username"></label>
+                            <input class="form-control" placeholder="Username" asp-for="Input.Username" autofocus>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Input.Email"></label>
+                            <input class="form-control" placeholder="Email" asp-for="Input.Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Input.FirstName"></label>
+                            <input class="form-control" placeholder="Email" asp-for="Input.FirstName">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Input.LastName"></label>
+                            <input class="form-control" placeholder="Email" asp-for="Input.LastName">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Input.Password"></label>
+                            <input type="password" class="form-control" placeholder="Password" asp-for="Input.Password" autocomplete="off">
+                        </div>
+
+                        <div class="pb-2 d-block">
+                            <a class="btn btn-link" asp-page="/Account/Login/Index" asp-route-returnUrl="@Model.Input.ReturnUrl">Already have an account? Login here</a>
+                        </div>
+
+                        <button class="btn btn-primary" name="Input.Button" value="register">Register</button>
+                        <button class="btn btn-secondary" name="Input.Button" value="cancel">Cancel</button>
+                    </form>
+                </div>
+
+                @if (Model.RegisterSuccess)
+                {
+                    <div class="alert alert-success mt-2">
+                        <strong>Successfully registered</strong> - You can now login
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

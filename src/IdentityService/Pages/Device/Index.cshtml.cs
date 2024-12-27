@@ -144,11 +144,9 @@ public class Index : PageModel
             View = CreateConsentViewModel(request);
             return true;
         }
-        else
-        {
-            View = new ViewModel();
-            return false;
-        }
+
+        View = new ViewModel();
+        return false;
     }
 
     private ViewModel CreateConsentViewModel(DeviceFlowAuthorizationRequest request)
