@@ -15,14 +15,20 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="..\..\Shared\MessagingContracts\AuctionCreatedEvent.cs">
+      <Compile Include="..\..\Shared\MessagingContracts\Auctions\AuctionCreatedEvent.cs">
         <Link>Auctions\Events\AuctionCreatedEvent.cs</Link>
       </Compile>
-      <Compile Include="..\..\Shared\MessagingContracts\AuctionDeletedEvent.cs">
+      <Compile Include="..\..\Shared\MessagingContracts\Auctions\AuctionDeletedEvent.cs">
         <Link>Auctions\Events\AuctionDeletedEvent.cs</Link>
       </Compile>
-      <Compile Include="..\..\Shared\MessagingContracts\AuctionUpdatedEvent.cs">
+      <Compile Include="..\..\Shared\MessagingContracts\Auctions\AuctionFinishedEvent.cs">
+        <Link>Auctions\Events\AuctionFinishedEvent.cs</Link>
+      </Compile>
+      <Compile Include="..\..\Shared\MessagingContracts\Auctions\AuctionUpdatedEvent.cs">
         <Link>Auctions\Events\AuctionUpdatedEvent.cs</Link>
+      </Compile>
+      <Compile Include="..\..\Shared\MessagingContracts\Bids\BidPlacedEvent.cs">
+        <Link>Bids\Events\BidPlacedEvent.cs</Link>
       </Compile>
     </ItemGroup>
 

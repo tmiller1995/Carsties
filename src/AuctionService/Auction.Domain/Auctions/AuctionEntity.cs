@@ -2,6 +2,7 @@
 using Carsties.Core;
 using Carsties.Shared.MessagingContracts;
 using System.Text.Json.Serialization;
+using ErrorOr;
 
 namespace Auction.Domain.Auctions;
 
@@ -9,13 +10,13 @@ public sealed class AuctionEntity : Entity
 {
     public decimal ReservePrice { get; private init; }
     public string Seller { get; private init; } = string.Empty;
-    public string? Winner { get; private init; }
-    public decimal? SoldAmount { get; private init; }
-    public decimal? CurrentHighBid { get; private init; }
+    public string? Winner { get; private set; }
+    public decimal? SoldAmount { get; private set; }
+    public decimal? CurrentHighBid { get; private set; }
     public DateTime CreatedAt { get; private init; } = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
     public DateTime UpdatedAt { get; private init; } = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
     public DateTime AuctionEnd { get; private init; }
-    public Status Status { get; private init; }
+    public Status Status { get; private set; }
     public ItemEntity ItemEntity { get; init; } = null!;
 
     public AuctionEntity()
@@ -42,6 +43,27 @@ public sealed class AuctionEntity : Entity
         UpdatedAt = DateTime.SpecifyKind(updatedAt, DateTimeKind.Utc);
         AuctionEnd = DateTime.SpecifyKind(auctionEnd, DateTimeKind.Utc);
         Status = status;
+    }
+
+    public void UpdateWinnerAndSoldAmount(string winner, decimal soldAmount)
+    {
+        Winner = winner;
+        SoldAmount = soldAmount;
+    }
+
+    public void UpdateStatus()
+    {
+        Status = SoldAmount > ReservePrice ? Status.Finished : Status.ReserveNotMet;
+    }
+
+    public ErrorOr<bool> UpdateCurrentHighBid(string bidStatus, decimal bidAmount)
+    {
+        if (CurrentHighBid.HasValue &&
+            (!string.Equals(bidStatus, "Accepted", StringComparison.OrdinalIgnoreCase) || !(bidAmount > CurrentHighBid)))
+            return Error.Validation("CurrentHighBid", "Bid amount is not higher than current high bid");
+
+        CurrentHighBid = bidAmount;
+        return true;
     }
 
     public AuctionCreatedEvent GetCreatedEvent()
