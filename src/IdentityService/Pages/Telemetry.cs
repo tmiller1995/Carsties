@@ -65,7 +65,7 @@ public static class Telemetry
         /// <summary>
         /// Meter for the IdentityServer host project
         /// </summary>
-        private static readonly Meter Meter = new Meter(ServiceName, ServiceVersion);
+        private static readonly Meter Meter = new(ServiceName, ServiceVersion);
 
         private static Counter<long> ConsentCounter = Meter.CreateCounter<long>(Counters.Consent);
 
