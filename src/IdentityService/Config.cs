@@ -21,10 +21,22 @@ public static class Config
         {
             ClientId = "bruno",
             ClientName = "Bruno",
-            AllowedScopes = new List<string> { "openid", "profile", "auctionApp" },
-            RedirectUris = { "https://localhost:7018/oauth2/callback" },
+            AllowedScopes = ["openid", "profile", "auctionApp"],
+            RedirectUris = ["https://localhost:7018/oauth2/callback"],
             ClientSecrets = [new Secret("SuperSecretDooDoo".Sha256())],
             AllowedGrantTypes = [GrantType.ResourceOwnerPassword]
+        },
+        new()
+        {
+            ClientId = "frontend",
+            ClientName = "Carsties Frontend",
+            ClientSecrets = [new Secret("SuperSecretDooDooDoo".Sha256())],
+            AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
+            RequirePkce = false,
+            RedirectUris = ["https://localhost:3000/api/auth/callback/id-server"],
+            AllowOfflineAccess = true,
+            AllowedScopes = ["openid", "profile", "auctionApp"],
+            AccessTokenLifetime = 3600 * 24 * 30
         }
     ];
 }
