@@ -16,7 +16,6 @@ public sealed class DeleteAuctionEndpoint : EndpointWithoutRequest
 
     public override void Configure()
     {
-        AllowAnonymous();
         Delete("/api/auctions/{id:guid}");
     }
 
@@ -24,7 +23,7 @@ public sealed class DeleteAuctionEndpoint : EndpointWithoutRequest
     {
         var auctionId = Route<Guid>("id");
 
-        var deletionResult = await _sender.Send(new DeleteAuctionCommand { Id = auctionId }, ct);
+        var deletionResult = await _sender.Send(new DeleteAuctionCommand { Id = auctionId, UserDeleting = User.Identity?.Name! }, ct);
 
         if (!deletionResult.IsError)
         {
@@ -35,6 +34,12 @@ public sealed class DeleteAuctionEndpoint : EndpointWithoutRequest
         if (deletionResult.Errors.Exists(e => e.Type == ErrorType.NotFound))
         {
             await SendAsync(deletionResult.Errors, StatusCodes.Status404NotFound, ct);
+            return;
+        }
+
+        if (deletionResult.Errors.Exists(e => e.Type == ErrorType.Forbidden))
+        {
+            await SendForbiddenAsync(ct);
             return;
         }
 

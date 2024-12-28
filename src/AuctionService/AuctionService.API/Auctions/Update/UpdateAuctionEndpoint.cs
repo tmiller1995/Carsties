@@ -17,7 +17,6 @@ public sealed class UpdateAuctionEndpoint : Endpoint<UpdateAuctionDto>
 
     public override void Configure()
     {
-        AllowAnonymous();
         Put("/api/auctions/{id:guid}");
     }
 

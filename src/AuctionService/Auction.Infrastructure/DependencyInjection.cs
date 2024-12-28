@@ -15,7 +15,6 @@ public static class DependencyInjection
 {
     public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder)
     {
-        builder.Services.AddAuthorization();
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -23,6 +22,7 @@ public static class DependencyInjection
                 options.TokenValidationParameters.ValidateAudience = false;
                 options.TokenValidationParameters.NameClaimType = JwtClaimTypes.PreferredUserName;
             });
+        builder.Services.AddAuthorization();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddNpgsql<AuctionDbContext>(builder.Configuration.GetConnectionString("AuctionDb"));
         builder.Services.AddMassTransit(config =>

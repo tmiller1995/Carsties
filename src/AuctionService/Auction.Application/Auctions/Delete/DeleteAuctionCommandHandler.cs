@@ -19,6 +19,9 @@ public sealed class DeleteAuctionCommandHandler : IRequestHandler<DeleteAuctionC
         if (existingAuction is null)
             return Error.NotFound($"No auction with id: {request.Id}");
 
+        if (existingAuction.Seller != request.UserDeleting)
+            return Error.Forbidden("You are not authorized to delete this auction");
+
         var deleted = await _auctionsRepository.DeleteAuctionAsync(existingAuction, cancellationToken);
         return deleted ? true : Error.Failure("Failed to delete auction");
     }

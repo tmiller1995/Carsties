@@ -1,6 +1,7 @@
 ﻿using Auction.Application.Auctions.Get;
 using Auction.Contract.Dtos;
 using AuctionService.API.Auctions.Mapper;
+using ErrorOr;
 using FastEndpoints;
 using MediatR;
 
@@ -17,8 +18,8 @@ public sealed class GetAuctionByIdEndpoint : EndpointWithoutRequest<AuctionDto>
 
     public override void Configure()
     {
-        Get("/api/auctions/{id:guid}");
         AllowAnonymous();
+        Get("/api/auctions/{id:guid}");
     }
 
     public override async Task HandleAsync(CancellationToken ct)
@@ -26,9 +27,9 @@ public sealed class GetAuctionByIdEndpoint : EndpointWithoutRequest<AuctionDto>
         var auctionIdFromRoute = Route<Guid>("id");
         var auction = await _sender.Send(new GetAuctionByIdQuery { AuctionId = auctionIdFromRoute }, ct);
 
-        if (auction.IsError)
+        if (auction.Errors.Exists(e => e.Type == ErrorType.NotFound))
         {
-            await SendErrorsAsync(StatusCodes.Status400BadRequest, ct);
+            await SendNotFoundAsync(ct);
             return;
         }
 
