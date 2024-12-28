@@ -22,6 +22,11 @@ public sealed class UpdateAuctionCommandHandler : IRequestHandler<UpdateAuctionC
             return Error.NotFound($"No auction with id: {request.Id}");
         }
 
+        if (!string.Equals(existingAuction.Seller, request.UserUpdating, StringComparison.OrdinalIgnoreCase))
+        {
+            return Error.Forbidden("You are not authorized to update this auction");
+        }
+
         existingAuction.ItemEntity.UpdateMake(request.Make);
         existingAuction.ItemEntity.UpdateModel(request.Model);
         existingAuction.ItemEntity.UpdateColor(request.Color);

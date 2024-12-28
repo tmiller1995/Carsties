@@ -18,13 +18,12 @@ public sealed class CreateAuctionEndpoint : Endpoint<CreateAuctionDto>
 
     public override void Configure()
     {
-        AllowAnonymous();
         Post("/api/auctions");
     }
 
     public override async Task HandleAsync(CreateAuctionDto req, CancellationToken ct)
     {
-        var auctionToCreate = req.ToAuction(User.Identity?.Name ?? "test");
+        var auctionToCreate = req.ToAuction(User.Identity?.Name!);
         var createdAuction = await _sender.Send(new CreateAuctionCommand { AuctionEntityToCreate = auctionToCreate }, ct);
 
         if (createdAuction.IsError)

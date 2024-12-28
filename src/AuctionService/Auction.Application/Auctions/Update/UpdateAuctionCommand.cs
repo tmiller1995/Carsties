@@ -12,4 +12,5 @@ public readonly record struct UpdateAuctionCommand : IRequest<ErrorOr<AuctionEnt
     public string? Color { get; init; }
     public int? Mileage { get; init; }
     public int? Year { get; init; }
+    public string UserUpdating { get; init; }
 }

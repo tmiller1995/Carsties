@@ -31,7 +31,8 @@ public sealed class UpdateAuctionEndpoint : Endpoint<UpdateAuctionDto>
             Model = req.Model,
             Color = req.Color,
             Mileage = req.Mileage,
-            Year = req.Year
+            Year = req.Year,
+            UserUpdating = User.Identity?.Name!
         };
 
         var updatedAuction = await _sender.Send(auctionToUpdateCommand, ct);
@@ -45,6 +46,12 @@ public sealed class UpdateAuctionEndpoint : Endpoint<UpdateAuctionDto>
         if (updatedAuction.Errors.Exists(e => e.Type == ErrorType.NotFound))
         {
             await SendAsync(updatedAuction.Errors, StatusCodes.Status404NotFound, ct);
+            return;
+        }
+
+        if (updatedAuction.Errors.Exists(e => e.Type == ErrorType.Forbidden))
+        {
+            await SendForbiddenAsync(ct);
             return;
         }
 

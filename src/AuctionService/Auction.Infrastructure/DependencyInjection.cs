@@ -2,7 +2,9 @@
 using Auction.Application.Interfaces;
 using Auction.Infrastructure.Auctions;
 using Auction.Infrastructure.Data;
+using IdentityModel;
 using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,7 +16,13 @@ public static class DependencyInjection
     public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder)
     {
         builder.Services.AddAuthorization();
-        builder.Services.AddAuthentication().AddJwtBearer();
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = builder.Configuration["IdentityService:Authority"];
+                options.TokenValidationParameters.ValidateAudience = false;
+                options.TokenValidationParameters.NameClaimType = JwtClaimTypes.PreferredUserName;
+            });
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddNpgsql<AuctionDbContext>(builder.Configuration.GetConnectionString("AuctionDb"));
         builder.Services.AddMassTransit(config =>

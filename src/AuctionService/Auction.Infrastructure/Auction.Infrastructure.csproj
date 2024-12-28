@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Bogus" />
+      <PackageReference Include="IdentityModel" />
       <PackageReference Include="MassTransit.EntityFrameworkCore" />
       <PackageReference Include="MassTransit.RabbitMQ" />
       <PackageReference Include="MediatR" />
