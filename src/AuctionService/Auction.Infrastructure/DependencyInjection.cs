@@ -1,4 +1,6 @@
-﻿using Auction.Application.Auctions.Create;
+﻿using Auction.Application.Auctions;
+using Auction.Application.Auctions.Create;
+using Auction.Application.Bids;
 using Auction.Application.Interfaces;
 using Auction.Infrastructure.Auctions;
 using Auction.Infrastructure.Data;
@@ -35,6 +37,8 @@ public static class DependencyInjection
             });
 
             config.AddConsumersFromNamespaceContaining<AuctionCreatedEventFaultConsumer>();
+            config.AddConsumersFromNamespaceContaining<AuctionFinishedEventConsumer>();
+            config.AddConsumersFromNamespaceContaining<BidPlacedEventConsumer>();
 
             config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "auction"));
 

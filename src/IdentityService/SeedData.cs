@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Bogus;
 using IdentityModel;
 using IdentityService.Data;
 using IdentityService.Models;
@@ -20,71 +21,108 @@ public class SeedData
         if (userMgr.Users.Any())
             return;
 
-        var alice = userMgr.FindByNameAsync("alice").Result;
-        if (alice == null)
+        foreach (var (user, claims) in GetUsersWithClaims())
         {
-            alice = new ApplicationUser
+            var existingUser = userMgr.FindByNameAsync(user.UserName).Result;
+            if (existingUser == null)
             {
-                UserName = "alice",
-                Email = "AliceSmith@email.com",
-                EmailConfirmed = true,
-            };
-            var result = userMgr.CreateAsync(alice, "Pass123$").Result;
-            if (!result.Succeeded)
-            {
-                throw new Exception(result.Errors.First().Description);
+                var result = userMgr.CreateAsync(user, "Pass123$").Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+
+                result = userMgr.AddClaimsAsync(user, claims).Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+
+                Log.Debug("Created {Username}", user.UserName);
             }
-
-            result = userMgr.AddClaimsAsync(alice, [
-                new Claim(JwtClaimTypes.Name, "Alice Smith"),
-                new Claim(JwtClaimTypes.GivenName, "Alice"),
-                new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                new Claim(JwtClaimTypes.WebSite, "http://alice.com")
-            ]).Result;
-            if (!result.Succeeded)
+            else
             {
-                throw new Exception(result.Errors.First().Description);
+                Log.Debug("User {Username} already exists", user.UserName);
             }
-
-            Log.Debug("alice created");
         }
-        else
-        {
-            Log.Debug("alice already exists");
-        }
+    }
 
-        var bob = userMgr.FindByNameAsync("bob").Result;
-        if (bob == null)
+    private static Dictionary<ApplicationUser, List<Claim>> GetUsersWithClaims()
+    {
+        HashSet<string> userNames =
+        [
+            "PixelPhantom",
+            "ShadowHunter88",
+            "GalacticNova",
+            "MysticFalcon",
+            "CyberWolf42",
+            "FrostedNinja",
+            "LunarEclipse",
+            "ElectricVortex",
+            "TurboTornado",
+            "CrimsonPhoenix",
+            "NeonSpecter",
+            "QuantumKnight",
+            "SilentBlaze",
+            "CosmicRaven",
+            "ThunderFury",
+            "BlazeTitan",
+            "MidnightCyclone",
+            "PhantomOrbit",
+            "FrostbiteX",
+            "VividSpectrum",
+            "TurboGamerX",
+            "GalaxyRaider",
+            "SolarFlareX",
+            "MysticHorizon",
+            "ElectricPulse",
+            "CyberGlitch",
+            "DarkMatter99",
+            "CosmicSurge",
+            "NovaBlaster",
+            "FrozenInferno",
+            "PhantomPixel",
+            "ShadowByte",
+            "TurboNova",
+            "LunarDrifter",
+            "FrostyStorm",
+            "ElectricFury",
+            "MysticRogue",
+            "CrimsonTide",
+            "ThunderNova",
+            "SolarRogue",
+            "FrostWolf",
+            "CosmicStriker",
+            "PhantomRaven",
+            "DarkNova",
+            "TurboEclipse",
+            "GalacticPulse",
+            "ShadowTitan",
+            "MidnightPulse"
+        ];
+
+        var users = new Dictionary<ApplicationUser, List<Claim>>();
+
+        foreach (var userName in userNames)
         {
-            bob = new ApplicationUser
+            var faker = new Faker();
+            var appUser = new ApplicationUser
             {
-                UserName = "bob",
-                Email = "BobSmith@email.com",
+                UserName = userName,
+                Email = faker.Internet.Email(),
                 EmailConfirmed = true
             };
-            var result = userMgr.CreateAsync(bob, "Pass123$").Result;
-            if (!result.Succeeded)
+            var appUserFullName = faker.Name.FullName();
+            var appUserFirstName = appUserFullName[..appUserFullName.IndexOf(' ')];
+            var appUserLastName = appUserFullName[(appUserFullName.IndexOf(' ') + 1)..];
+            users.Add(appUser, new List<Claim>
             {
-                throw new Exception(result.Errors.First().Description);
-            }
-
-            result = userMgr.AddClaimsAsync(bob, [
-                new Claim(JwtClaimTypes.Name, "Bob Smith"),
-                new Claim(JwtClaimTypes.GivenName, "Bob"),
-                new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
-                new Claim("location", "somewhere")
-            ]).Result;
-            if (!result.Succeeded)
-            {
-                throw new Exception(result.Errors.First().Description);
-            }
-
-            Log.Debug("bob created");
+                new(JwtClaimTypes.Name, appUserFullName),
+                new(JwtClaimTypes.GivenName, appUserFirstName),
+                new(JwtClaimTypes.FamilyName, appUserLastName)
+            });
         }
-        else
-        {
-            Log.Debug("bob already exists");
-        }
+
+        return users;
     }
 }

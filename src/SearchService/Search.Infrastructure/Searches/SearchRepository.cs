@@ -26,13 +26,13 @@ public sealed class SearchRepository : ISearchRepository
         if (!string.IsNullOrWhiteSpace(auctionSearch.Seller))
         {
             var seller = auctionSearch.Seller;
-            auctions = auctions.Search(a => a.Seller, seller, options: SearchOptions.Or);
+            auctions = auctions.Search(a => a.Seller, seller, options: SearchOptions.And);
         }
 
         if (!string.IsNullOrWhiteSpace(auctionSearch.Winner))
         {
             var winner = auctionSearch.Winner;
-            auctions = auctions.Search(a => a.Winner, winner, options: SearchOptions.Or);
+            auctions = auctions.Search(a => a.Winner, winner, options: SearchOptions.And);
         }
 
         if (!string.IsNullOrWhiteSpace(auctionSearch.SearchTerm))
@@ -63,18 +63,6 @@ public sealed class SearchRepository : ISearchRepository
                 "endingsoon" => auctions.Where(a => a.AuctionEnd < dateTimeUtcNow.AddHours(6) && a.AuctionEnd > dateTimeUtcNow),
                 _ => auctions.Where(a => a.AuctionEnd > dateTimeUtcNow)
             };
-        }
-
-        if (!string.IsNullOrWhiteSpace(auctionSearch.Seller))
-        {
-            var seller = auctionSearch.Seller;
-            auctions = auctions.Search(a => a.Seller, seller, options: SearchOptions.Or);
-        }
-
-        if (!string.IsNullOrWhiteSpace(auctionSearch.Winner))
-        {
-            var winner = auctionSearch.Seller;
-            auctions = auctions.Search(a => a.Winner, winner, options: SearchOptions.Or);
         }
 
         var items = await auctions

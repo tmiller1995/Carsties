@@ -58,6 +58,20 @@ public static class SeedData
         "MidnightPulse"
     ];
 
+    private static readonly Dictionary<string, List<string>> CarModels = new()
+    {
+        { "Toyota", ["Camry", "RAV4", "Corolla"] },
+        { "Ford", ["F-150", "Mustang", "Escape"] },
+        { "Chevrolet", ["Silverado", "Equinox", "Malibu"] },
+        { "Honda", ["Civic", "CR-V", "Accord"] },
+        { "Nissan", ["Rogue", "Altima", "Sentra"] },
+        { "Jeep", ["Wrangler", "Grand Cherokee", "Cherokee"] },
+        { "Hyundai", ["Elantra", "Sonata", "Santa Fe"] },
+        { "Kia", ["Optima", "Sorento", "Sportage"] },
+        { "Subaru", ["Outback", "Forester", "Crosstrek"] },
+        { "Tesla", ["Model 3", "Model S", "Model X", "Model Y"] }
+    };
+
     public static List<AuctionEntity> GenerateAuctions()
     {
         Randomizer.Seed = new Random(2_145);
@@ -71,17 +85,18 @@ public static class SeedData
             .RuleFor(a => a.Winner, f => f.PickRandom<string>(UserNames).OrNull(f, 0.8f))
             .RuleFor(a => a.ItemEntity, f =>
             {
-                var vehicle = f.Vehicle;
-                return new ItemEntity(vehicle.Manufacturer(),
-                    vehicle.Model(),
-                    f.Random.Int(1900, 2024),
+                var randomManufacturer = f.PickRandom<string>(CarModels.Keys);
+                var randomModel = f.PickRandom<string>(CarModels[randomManufacturer]);
+
+                return new ItemEntity(randomManufacturer,
+                    randomModel,
+                    f.Random.Int(2005, 2024),
                     f.Commerce.Color(),
-                    vehicle.Random.Int(0, 350_001),
+                    f.Random.Int(0, 350_001),
                     f.Image.PlaceholderUrl(150, 150));
             });
 
-        var auctions = auctionFaker.Generate(1_000);
-        auctions.ForEach(a => a.GetCreatedEvent());
+        var auctions = auctionFaker.Generate(1_000_000);
 
         return auctions;
     }

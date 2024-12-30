@@ -49,6 +49,14 @@ public sealed class AuctionsRepository : IAuctionsRepository
         return auctionEntity.Entity;
     }
 
+    public async Task CreateAuctionsAsync(IEnumerable<AuctionEntity> auctionsToCreate, CancellationToken cancellationToken = default)
+    {
+        var auctions = auctionsToCreate.ToList();
+        _auctionDbContext.AddRange(auctions);
+        auctions.ForEach(a => _publishEndpoint.Publish(a.GetCreatedEvent(), cancellationToken));
+        await _auctionDbContext.SaveChangesAsync(cancellationToken);
+    }
+
     public async Task<AuctionEntity> UpdateAuctionByIdAsync(AuctionEntity updatedAuction, CancellationToken cancellationToken = default)
     {
         var auction = _auctionDbContext.Auctions.Update(updatedAuction);
