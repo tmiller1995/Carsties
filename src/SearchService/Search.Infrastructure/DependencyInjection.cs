@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Raven.DependencyInjection;
@@ -23,6 +24,12 @@ public static class DependencyInjection
 
             config.UsingRabbitMq((context, configurator) =>
             {
+                configurator.Host(builder.Configuration.GetValue("RabbitMQ:Host", ""), "/" ,hostConfig =>
+                {
+                    hostConfig.Username(builder.Configuration.GetValue("RabbitMQ:Username", ""));
+                    hostConfig.Password(builder.Configuration.GetValue("RabbitMQ:Password", ""));
+                });
+
                 configurator.ReceiveEndpoint("search-auction-created", endpointConfigurator =>
                 {
                     endpointConfigurator.UseMessageRetry(r => r.Interval(10, 100));

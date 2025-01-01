@@ -96,7 +96,7 @@ public static class SeedData
                     f.Image.PlaceholderUrl(150, 150));
             });
 
-        var auctions = auctionFaker.Generate(1_000_000);
+        var auctions = auctionFaker.Generate(5_000);
 
         return auctions;
     }
