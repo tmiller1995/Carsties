@@ -3,7 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <MicrosoftPackageVersion>9.0.0</MicrosoftPackageVersion>
     <FluentValidationVersion>11.11.0</FluentValidationVersion>
-    <FastEndpointsVersion>5.32.0</FastEndpointsVersion>
+    <FastEndpointsVersion>5.33.0</FastEndpointsVersion>
     <MassTransitVersion>8.3.4</MassTransitVersion>
     <DuendeIdentityVersion>7.0.8</DuendeIdentityVersion>
   </PropertyGroup>
