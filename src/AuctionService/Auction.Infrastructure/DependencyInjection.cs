@@ -23,6 +23,7 @@ public static class DependencyInjection
                 options.Authority = builder.Configuration["IdentityService:Authority"];
                 options.TokenValidationParameters.ValidateAudience = false;
                 options.TokenValidationParameters.NameClaimType = JwtClaimTypes.PreferredUserName;
+                options.RequireHttpsMetadata = false;
             });
         builder.Services.AddAuthorization();
         builder.Services.AddHttpContextAccessor();
