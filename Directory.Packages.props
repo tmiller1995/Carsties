@@ -41,6 +41,7 @@
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
     <PackageVersion Include="IdentityModel" Version="7.0.0" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
+    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
     <PackageVersion Include="RavenDB.Client" Version="6.2.2" />
     <PackageVersion Include="RavenDB.DependencyInjection" Version="5.0.1" />

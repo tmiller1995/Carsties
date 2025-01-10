@@ -5,12 +5,14 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..\..</DockerfileContext>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="FastEndpoints" />
         <PackageReference Include="FastEndpoints.Security" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
         <PackageReference Include="Serilog.AspNetCore" />
     </ItemGroup>
 
@@ -18,12 +20,6 @@
       <ProjectReference Include="..\Search.Application\Search.Application.csproj" />
       <ProjectReference Include="..\Search.Contract\Search.Contract.csproj" />
       <ProjectReference Include="..\Search.Infrastructure\Search.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
     </ItemGroup>
 
 </Project>

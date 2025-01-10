@@ -14,7 +14,7 @@ services:
       - "LANG=en_US.utf8"
       - "PG_MAJOR=17"
     hostname: "postgres"
-    image: "postgres:latest"
+    image: "postgres:17.2-alpine"
     ipc: "private"
     logging:
       driver: "json-file"
@@ -36,7 +36,6 @@ services:
       - "ERLANG_INSTALL_PATH_PREFIX=/opt/erlang"
       - "OPENSSL_INSTALL_PATH_PREFIX=/opt/openssl"
       - "RABBITMQ_DATA_DIR=/var/lib/rabbitmq"
-      - "RABBITMQ_VERSION=3.13.7"
       - "RABBITMQ_PGP_KEY_ID=0x0A9AF2115F4687BD29803A206B73A36E6026DFCA"
       - "RABBITMQ_HOME=/opt/rabbitmq"
       - "HOME=/var/lib/rabbitmq"
@@ -44,8 +43,8 @@ services:
       - "LANGUAGE=C.UTF-8"
       - "LC_ALL=C.UTF-8"
     hostname: "rabbitmq"
-    image: "rabbitmq:3-management-alpine"
-    logging:
+    image: "rabbitmq:4.0.5-management-alpine"
+    logging: 
       driver: "json-file"
       options: {}
     network_mode: "bridge"
@@ -56,11 +55,11 @@ services:
       - "rabbitmq_data:/var/lib/rabbitmq"
     working_dir: "/"
 
-  ravendb_node_a:
+  ravendb:
     command:
       - "/bin/bash"
       - "/usr/lib/ravendb/scripts/run-raven.sh"
-    container_name: "ravendb_node_a"
+    container_name: "ravendb"
     environment:
       - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
       - "APP_UID=1654"
@@ -95,97 +94,11 @@ services:
     user: "ravendb:ravendb"
     volumes:
       - "ravendb_etc:/etc/ravendb"
-      - "ravendb_data_a:/var/lib/ravendb_a/data"
-    working_dir: "/usr/lib/ravendb"
-
-  ravendb_node_b:
-    command:
-      - "/bin/bash"
-      - "/usr/lib/ravendb/scripts/run-raven.sh"
-    container_name: "ravendb_node_b"
-    environment:
-      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-      - "APP_UID=1654"
-      - "ASPNETCORE_HTTP_PORTS=8080"
-      - "DOTNET_RUNNING_IN_CONTAINER=true"
-      - "RAVEN_ARGS="
-      - "RAVEN_SETTINGS="
-      - "RAVEN_IN_DOCKER=true"
-      - "RAVEN_Setup_Mode=Initial"
-      - "RAVEN_ServerUrl_Tcp=38888"
-      - "RAVEN_AUTO_INSTALL_CA=true"
-      - "RAVEN_DataDir=/var/lib/ravendb/data"
-      - "RAVEN_Indexing_NugetPackagesPath=/var/lib/ravendb/nuget"
-      - "RAVEN_Logs_Path=/var/log/ravendb/logs"
-      - "RAVEN_Security_AuditLog_FolderPath=/var/log/ravendb/audit"
-      - "RAVEN_Security_MasterKey_Path=/etc/ravendb/security/master.key"
-      - "RAVEN_Setup_Certificate_Path=/etc/ravendb/security/server.pfx"
-      - "RAVEN_Security_UnsecuredAccessAllowed=PrivateNetwork"
-    hostname: "ravendb_node_b"
-    image: "ravendb/ravendb:latest"
-    ipc: "private"
-    labels:
-      org.opencontainers.image.ref.name: "ubuntu"
-      org.opencontainers.image.version: "22.04"
-    logging:
-      driver: "json-file"
-      options: {}
-    ports:
-      - "162:161/tcp"
-      - "38889:38888/tcp"
-      - "8081:8080/tcp"
-    user: "ravendb:ravendb"
-    volumes:
-      - "ravendb_etc:/etc/ravendb"
-      - "ravendb_data_b:/var/lib/ravendb_b/data"
-    working_dir: "/usr/lib/ravendb"
-
-  ravendb_node_c:
-    command:
-      - "/bin/bash"
-      - "/usr/lib/ravendb/scripts/run-raven.sh"
-    container_name: "ravendb_node_c"
-    environment:
-      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-      - "APP_UID=1654"
-      - "ASPNETCORE_HTTP_PORTS=8080"
-      - "DOTNET_RUNNING_IN_CONTAINER=true"
-      - "RAVEN_ARGS="
-      - "RAVEN_SETTINGS="
-      - "RAVEN_IN_DOCKER=true"
-      - "RAVEN_Setup_Mode=Initial"
-      - "RAVEN_ServerUrl_Tcp=38888"
-      - "RAVEN_AUTO_INSTALL_CA=true"
-      - "RAVEN_DataDir=/var/lib/ravendb/data"
-      - "RAVEN_Indexing_NugetPackagesPath=/var/lib/ravendb/nuget"
-      - "RAVEN_Logs_Path=/var/log/ravendb/logs"
-      - "RAVEN_Security_AuditLog_FolderPath=/var/log/ravendb/audit"
-      - "RAVEN_Security_MasterKey_Path=/etc/ravendb/security/master.key"
-      - "RAVEN_Setup_Certificate_Path=/etc/ravendb/security/server.pfx"
-      - "RAVEN_Security_UnsecuredAccessAllowed=PrivateNetwork"
-    hostname: "ravendb_node_c"
-    image: "ravendb/ravendb:latest"
-    ipc: "private"
-    labels:
-      org.opencontainers.image.ref.name: "ubuntu"
-      org.opencontainers.image.version: "22.04"
-    logging:
-      driver: "json-file"
-      options: {}
-    ports:
-      - "163:161/tcp"
-      - "38890:38888/tcp"
-      - "8082:8080/tcp"
-    user: "ravendb:ravendb"
-    volumes:
-      - "ravendb_etc:/etc/ravendb"
-      - "ravendb_data_c:/var/lib/ravendb_c/data"
+      - "ravendb_data:/var/lib/ravendb/data"
     working_dir: "/usr/lib/ravendb"
 
 volumes:
   ravendb_etc:
   rabbitmq_data:
   postgres_data:
-  ravendb_data_a:
-  ravendb_data_b:
-  ravendb_data_c:
+  ravendb_data:

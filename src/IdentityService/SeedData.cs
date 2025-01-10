@@ -23,7 +23,7 @@ public class SeedData
 
         foreach (var (user, claims) in GetUsersWithClaims())
         {
-            var existingUser = userMgr.FindByNameAsync(user.UserName).Result;
+            var existingUser = userMgr.FindByNameAsync(user.UserName!).Result;
             if (existingUser == null)
             {
                 var result = userMgr.CreateAsync(user, "Pass123$").Result;
@@ -115,12 +115,11 @@ public class SeedData
             var appUserFullName = faker.Name.FullName();
             var appUserFirstName = appUserFullName[..appUserFullName.IndexOf(' ')];
             var appUserLastName = appUserFullName[(appUserFullName.IndexOf(' ') + 1)..];
-            users.Add(appUser, new List<Claim>
-            {
-                new(JwtClaimTypes.Name, appUserFullName),
-                new(JwtClaimTypes.GivenName, appUserFirstName),
-                new(JwtClaimTypes.FamilyName, appUserLastName)
-            });
+            users.Add(appUser, [
+                new Claim(JwtClaimTypes.Name, appUserFullName),
+                new Claim(JwtClaimTypes.GivenName, appUserFirstName),
+                new Claim(JwtClaimTypes.FamilyName, appUserLastName)
+            ]);
         }
 
         return users;
