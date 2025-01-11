@@ -15,11 +15,12 @@ services:
       - "PG_MAJOR=17"
     hostname: "postgres"
     image: "postgres:17.2-alpine"
-    ipc: "private"
     logging:
       driver: "json-file"
       options: {}
-    network_mode: "bridge"
+    networks:
+      carsties:
+        ipv4_address: 10.10.10.2
     ports:
       - "5432:5432/tcp"
     volumes:
@@ -47,7 +48,9 @@ services:
     logging: 
       driver: "json-file"
       options: {}
-    network_mode: "bridge"
+    networks:
+      carsties:
+        ipv4_address: 10.10.10.3
     ports:
       - "15671:15672/tcp"
       - "5672:5672/tcp"
@@ -78,12 +81,14 @@ services:
       - "RAVEN_Security_MasterKey_Path=/etc/ravendb/security/master.key"
       - "RAVEN_Setup_Certificate_Path=/etc/ravendb/security/server.pfx"
       - "RAVEN_Security_UnsecuredAccessAllowed=PrivateNetwork"
-    hostname: "ravendb_node_a"
+    hostname: "ravendb"
     image: "ravendb/ravendb:latest"
-    ipc: "private"
     labels:
       org.opencontainers.image.ref.name: "ubuntu"
       org.opencontainers.image.version: "22.04"
+    networks:
+      carsties:
+        ipv4_address: 10.10.10.4
     logging:
       driver: "json-file"
       options: {}
@@ -96,6 +101,72 @@ services:
       - "ravendb_etc:/etc/ravendb"
       - "ravendb_data:/var/lib/ravendb/data"
     working_dir: "/usr/lib/ravendb"
+    
+  auctions_service_api:
+    build:
+        context: "./src/AuctionService/AuctionService.API"
+        dockerfile: Dockerfile
+    container_name: "auctions_service_api"
+    hostname: "auction_service_api"
+    depends_on:
+        - postgres
+        - rabbitmq_with_management
+    image: "auctionserviceapi:latest"
+    ports:
+        - "7016:8080"
+    networks:
+      carsties:
+        ipv4_address: 10.10.10.5
+
+  search_service_api:
+    build:
+      context: "./src/SearchService/SearchService.API"
+      dockerfile: Dockerfile
+    container_name: "search_service_api"
+    hostname: "search_service_api"
+    depends_on:
+      - ravendb
+      - rabbitmq_with_management
+    image: "searchserviceapi:latest"
+    ports:
+      - "7017:8080"
+    networks:
+      carsties:
+        ipv4_address: 10.10.10.6
+
+  identity_service:
+    build:
+      context: "./src/IdentityService"
+      dockerfile: Dockerfile
+    container_name: "identity_service"
+    hostname: "identity_service"
+    depends_on:
+      - postgres
+    image: "identityservice:latest"
+    ports:
+      - "7018:8080"
+    networks:
+      carsties:
+        ipv4_address: 10.10.10.7
+
+  gateway_service:
+    build:
+      context: "./src/GatewayService"
+      dockerfile: Dockerfile
+    container_name: "gateway_service"
+    hostname: "gateway_service"
+    image: "gatewayservice:latest"
+    ports:
+      - "5050:8080"
+    networks:
+      carsties:
+        ipv4_address: 10.10.10.8
+
+networks:
+  carsties:
+    ipam:
+      config:
+        - subnet: "10.10.10.0/24"
 
 volumes:
   ravendb_etc:
