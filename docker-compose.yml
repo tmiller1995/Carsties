@@ -17,10 +17,9 @@ services:
     image: "postgres:17.2-alpine"
     logging:
       driver: "json-file"
-      options: {}
+      options: { }
     networks:
-      carsties:
-        ipv4_address: 10.10.10.2
+      - carsties
     ports:
       - "5432:5432/tcp"
     volumes:
@@ -45,12 +44,11 @@ services:
       - "LC_ALL=C.UTF-8"
     hostname: "rabbitmq"
     image: "rabbitmq:4.0.5-management-alpine"
-    logging: 
+    logging:
       driver: "json-file"
-      options: {}
+      options: { }
     networks:
-      carsties:
-        ipv4_address: 10.10.10.3
+      - carsties
     ports:
       - "15671:15672/tcp"
       - "5672:5672/tcp"
@@ -87,11 +85,10 @@ services:
       org.opencontainers.image.ref.name: "ubuntu"
       org.opencontainers.image.version: "22.04"
     networks:
-      carsties:
-        ipv4_address: 10.10.10.4
+      - carsties
     logging:
       driver: "json-file"
-      options: {}
+      options: { }
     ports:
       - "161:161/tcp"
       - "38888:38888/tcp"
@@ -101,23 +98,25 @@ services:
       - "ravendb_etc:/etc/ravendb"
       - "ravendb_data:/var/lib/ravendb/data"
     working_dir: "/usr/lib/ravendb"
-    
+
   auctions_service_api:
     build:
-        context: "./src/AuctionService/AuctionService.API"
-        dockerfile: Dockerfile
+      context: "./src/AuctionService/AuctionService.API"
+      dockerfile: Dockerfile
     container_name: "auctions_service_api"
     hostname: "auction_service_api"
+    environment:
+      - "ASPNETCORE_HTTP_PORTS=80"
+      - "ASPNETCORE_ENVIRONMENT=Production"
     depends_on:
-        - postgres
-        - rabbitmq_with_management
-        - identity_service
+      - postgres
+      - rabbitmq_with_management
+      - identity_service
     image: "auctionserviceapi:latest"
     ports:
-        - "7016:8080"
+      - "7016:80"
     networks:
-      carsties:
-        ipv4_address: 10.10.10.5
+      - carsties
 
   search_service_api:
     build:
@@ -125,15 +124,17 @@ services:
       dockerfile: Dockerfile
     container_name: "search_service_api"
     hostname: "search_service_api"
+    environment:
+      - "ASPNETCORE_HTTP_PORTS=80"
+      - "ASPNETCORE_ENVIRONMENT=Production"
     depends_on:
       - ravendb
       - rabbitmq_with_management
     image: "searchserviceapi:latest"
     ports:
-      - "7017:8080"
+      - "7017:80"
     networks:
-      carsties:
-        ipv4_address: 10.10.10.6
+      - carsties
 
   identity_service:
     build:
@@ -141,14 +142,16 @@ services:
       dockerfile: Dockerfile
     container_name: "identity_service"
     hostname: "identity_service"
+    environment:
+      - "ASPNETCORE_HTTP_PORTS=80"
+      - "ASPNETCORE_ENVIRONMENT=Production"
     depends_on:
       - postgres
     image: "identityservice:latest"
     ports:
-      - "7018:8080"
+      - "7018:80"
     networks:
-      carsties:
-        ipv4_address: 10.10.10.7
+      - carsties
 
   gateway_service:
     build:
@@ -156,18 +159,18 @@ services:
       dockerfile: Dockerfile
     container_name: "gateway_service"
     hostname: "gateway_service"
+    environment:
+      - "ASPNETCORE_HTTP_PORTS=80"
+      - "ASPNETCORE_ENVIRONMENT=Production"
     image: "gatewayservice:latest"
     ports:
-      - "5050:8080"
+      - "5050:80"
     networks:
-      carsties:
-        ipv4_address: 10.10.10.8
+      - carsties
 
 networks:
   carsties:
-    ipam:
-      config:
-        - subnet: "10.10.10.0/24"
+    driver: bridge
 
 volumes:
   ravendb_etc:
