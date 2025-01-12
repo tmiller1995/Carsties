@@ -111,6 +111,7 @@ services:
     depends_on:
         - postgres
         - rabbitmq_with_management
+        - identity_service
     image: "auctionserviceapi:latest"
     ports:
         - "7016:8080"
