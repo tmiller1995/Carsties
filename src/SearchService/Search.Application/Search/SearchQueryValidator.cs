@@ -13,14 +13,16 @@ public sealed class SearchQueryValidator : AbstractValidator<SearchQuery>
             .Custom((s, context) =>
             {
                 if (!string.IsNullOrWhiteSpace(s) && !ValidOrderByOptions.Contains(s.ToLower()))
-                    context.AddFailure($"{s} is not a valid order by option. Please specify one of the following: {string.Join(", ", ValidOrderByOptions)}");
+                    context.AddFailure(
+                        $"{s} is not a valid order by option. Please specify one of the following: {string.Join(", ", ValidOrderByOptions)}");
             });
 
         RuleFor(sq => sq.AuctionSearch.FilterBy)
             .Custom((s, context) =>
             {
                 if (!string.IsNullOrWhiteSpace(s) && !ValidFilterByOptions.Contains(s.ToLower()))
-                    context.AddFailure($"{s} is not a valid filter by option. Please specify one of the following: {string.Join(", ", ValidFilterByOptions)}");
+                    context.AddFailure(
+                        $"{s} is not a valid filter by option. Please specify one of the following: {string.Join(", ", ValidFilterByOptions)}");
             });
     }
 }

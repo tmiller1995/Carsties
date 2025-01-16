@@ -35,7 +35,8 @@ public sealed class AuctionsRepository : IAuctionsRepository
         return auction;
     }
 
-    public async Task<AuctionEntity?> CreateAuctionAsync(AuctionEntity auctionToCreate, CancellationToken cancellationToken = default)
+    public async Task<AuctionEntity?> CreateAuctionAsync(AuctionEntity auctionToCreate,
+        CancellationToken cancellationToken = default)
     {
         var existingAuction = await _auctionDbContext.Auctions
             .FindAsync([auctionToCreate.Id], cancellationToken);
@@ -49,7 +50,8 @@ public sealed class AuctionsRepository : IAuctionsRepository
         return auctionEntity.Entity;
     }
 
-    public async Task CreateAuctionsAsync(IEnumerable<AuctionEntity> auctionsToCreate, CancellationToken cancellationToken = default)
+    public async Task CreateAuctionsAsync(IEnumerable<AuctionEntity> auctionsToCreate,
+        CancellationToken cancellationToken = default)
     {
         var auctions = auctionsToCreate.ToList();
         _auctionDbContext.AddRange(auctions);
@@ -57,7 +59,8 @@ public sealed class AuctionsRepository : IAuctionsRepository
         await _auctionDbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<AuctionEntity> UpdateAuctionByIdAsync(AuctionEntity updatedAuction, CancellationToken cancellationToken = default)
+    public async Task<AuctionEntity> UpdateAuctionByIdAsync(AuctionEntity updatedAuction,
+        CancellationToken cancellationToken = default)
     {
         var auction = _auctionDbContext.Auctions.Update(updatedAuction);
         await _publishEndpoint.Publish(auction.Entity.GetUpdatedEvent(), cancellationToken);
@@ -66,7 +69,8 @@ public sealed class AuctionsRepository : IAuctionsRepository
         return auction.Entity;
     }
 
-    public async Task<bool> DeleteAuctionAsync(AuctionEntity auctionToDelete, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteAuctionAsync(AuctionEntity auctionToDelete,
+        CancellationToken cancellationToken = default)
     {
         _auctionDbContext.Auctions.Remove(auctionToDelete);
         await _publishEndpoint.Publish(auctionToDelete.GetDeletedEvent(), cancellationToken);

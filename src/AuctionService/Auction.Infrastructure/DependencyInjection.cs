@@ -45,7 +45,7 @@ public static class DependencyInjection
 
             config.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host(builder.Configuration.GetValue("RabbitMQ:Host", ""), "/" ,hostConfig =>
+                configurator.Host(builder.Configuration.GetValue("RabbitMQ:Host", ""), "/", hostConfig =>
                 {
                     hostConfig.Username(builder.Configuration.GetValue("RabbitMQ:Username", ""));
                     hostConfig.Password(builder.Configuration.GetValue("RabbitMQ:Password", ""));

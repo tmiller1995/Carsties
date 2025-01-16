@@ -23,7 +23,8 @@ public sealed class DeleteAuctionEndpoint : EndpointWithoutRequest
     {
         var auctionId = Route<Guid>("id");
 
-        var deletionResult = await _sender.Send(new DeleteAuctionCommand { Id = auctionId, UserDeleting = User.Identity?.Name! }, ct);
+        var deletionResult =
+            await _sender.Send(new DeleteAuctionCommand { Id = auctionId, UserDeleting = User.Identity?.Name! }, ct);
 
         if (!deletionResult.IsError)
         {

@@ -10,16 +10,17 @@ public sealed class AuctionFinishedEventConsumer : IConsumer<AuctionFinishedEven
     private readonly ILogger<AuctionFinishedEventConsumer> _logger;
     private readonly IAuctionsRepository _auctionsRepository;
 
-    public AuctionFinishedEventConsumer(ILogger<AuctionFinishedEventConsumer> logger, IAuctionsRepository auctionsRepository)
+    public AuctionFinishedEventConsumer(ILogger<AuctionFinishedEventConsumer> logger,
+        IAuctionsRepository auctionsRepository)
     {
         _logger = logger;
         _auctionsRepository = auctionsRepository;
-
     }
 
     public async Task Consume(ConsumeContext<AuctionFinishedEvent> context)
     {
-        var auction = await _auctionsRepository.GetAuctionByIdAsync(context.Message.AuctionId, context.CancellationToken);
+        var auction =
+            await _auctionsRepository.GetAuctionByIdAsync(context.Message.AuctionId, context.CancellationToken);
 
         if (auction is null)
         {

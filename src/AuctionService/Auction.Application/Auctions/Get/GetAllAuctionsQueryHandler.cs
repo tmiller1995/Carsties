@@ -14,7 +14,8 @@ public sealed class GetAllAuctionsQueryHandler : IRequestHandler<GetAllAuctionsQ
         _auctionsRepository = auctionsRepository;
     }
 
-    public async Task<ErrorOr<List<AuctionEntity>>> Handle(GetAllAuctionsQuery request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<List<AuctionEntity>>> Handle(GetAllAuctionsQuery request,
+        CancellationToken cancellationToken)
     {
         var auctions = await _auctionsRepository.GetAuctionsAsync(cancellationToken);
         if (auctions.Count == 0)

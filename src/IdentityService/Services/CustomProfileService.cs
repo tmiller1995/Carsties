@@ -23,8 +23,11 @@ public sealed class CustomProfileService : IProfileService
             return;
 
         var existingClaims = await _userManager.GetClaimsAsync(user);
-        List<Claim> claims = [new(JwtClaimTypes.PreferredUserName, user.UserName),
-            new(JwtClaimTypes.Name, existingClaims.FirstOrDefault(c => c.Type == JwtClaimTypes.Name)?.Value!)];
+        List<Claim> claims =
+        [
+            new(JwtClaimTypes.PreferredUserName, user.UserName),
+            new(JwtClaimTypes.Name, existingClaims.FirstOrDefault(c => c.Type == JwtClaimTypes.Name)?.Value!)
+        ];
 
         context.IssuedClaims.AddRange(claims);
     }

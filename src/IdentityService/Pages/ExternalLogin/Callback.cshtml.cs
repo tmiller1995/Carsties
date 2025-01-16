@@ -65,7 +65,8 @@ public class Callback : PageModel
                           externalUser.FindFirst(ClaimTypes.NameIdentifier) ??
                           throw new InvalidOperationException("Unknown userid");
 
-        var provider = result.Properties.Items["scheme"] ?? throw new InvalidOperationException("Null scheme in authentiation properties");
+        var provider = result.Properties.Items["scheme"] ??
+                       throw new InvalidOperationException("Null scheme in authentiation properties");
         var providerUserId = userIdClaim.Value;
 
         // find external user
@@ -96,7 +97,8 @@ public class Callback : PageModel
 
         // check if external login is in the context of an OIDC request
         var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-        await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id.ToString(), user.UserName, true, context?.Client.ClientId));
+        await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id.ToString(), user.UserName,
+            true, context?.Client.ClientId));
         Telemetry.Metrics.UserLogin(context?.Client.ClientId, provider!);
 
         if (context != null)
@@ -112,16 +114,19 @@ public class Callback : PageModel
         return Redirect(returnUrl);
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1851:Possible multiple enumerations of 'IEnumerable' collection",
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
+        "CA1851:Possible multiple enumerations of 'IEnumerable' collection",
         Justification = "<Pending>")]
-    private async Task<ApplicationUser> AutoProvisionUserAsync(string provider, string providerUserId, IEnumerable<Claim> claims)
+    private async Task<ApplicationUser> AutoProvisionUserAsync(string provider, string providerUserId,
+        IEnumerable<Claim> claims)
     {
         var sub = Guid.CreateVersion7();
 
         var user = new ApplicationUser
         {
             Id = sub,
-            UserName = sub.ToString() // don't need a username, since the user will be using an external provider to login
+            UserName = sub
+                .ToString() // don't need a username, since the user will be using an external provider to login
         };
 
         // email
@@ -168,7 +173,8 @@ public class Callback : PageModel
         if (filtered.Count != 0)
         {
             identityResult = await _userManager.AddClaimsAsync(user, filtered);
-            if (!identityResult.Succeeded) throw new InvalidOperationException(identityResult.Errors.First().Description);
+            if (!identityResult.Succeeded)
+                throw new InvalidOperationException(identityResult.Errors.First().Description);
         }
 
         identityResult = await _userManager.AddLoginAsync(user, new UserLoginInfo(provider, providerUserId, provider));
@@ -186,7 +192,8 @@ public class Callback : PageModel
         ArgumentNullException.ThrowIfNull(externalResult.Principal, nameof(externalResult.Principal));
 
         // capture the idp used to login, so the session knows where the user came from
-        localClaims.Add(new Claim(JwtClaimTypes.IdentityProvider, externalResult.Properties?.Items["scheme"] ?? "unknown identity provider"));
+        localClaims.Add(new Claim(JwtClaimTypes.IdentityProvider,
+            externalResult.Properties?.Items["scheme"] ?? "unknown identity provider"));
 
         // if the external system sent a session id claim, copy it over
         // so we can use it for single sign-out

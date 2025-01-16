@@ -59,7 +59,8 @@ public sealed class AuctionEntity : Entity
     public ErrorOr<bool> UpdateCurrentHighBid(string bidStatus, decimal bidAmount)
     {
         if (CurrentHighBid.HasValue &&
-            (!string.Equals(bidStatus, "Accepted", StringComparison.OrdinalIgnoreCase) || !(bidAmount > CurrentHighBid)))
+            (!string.Equals(bidStatus, "Accepted", StringComparison.OrdinalIgnoreCase) ||
+             !(bidAmount > CurrentHighBid)))
             return Error.Validation("CurrentHighBid", "Bid amount is not higher than current high bid");
 
         CurrentHighBid = bidAmount;

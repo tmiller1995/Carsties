@@ -18,7 +18,8 @@ public sealed class BidPlacedEventConsumer : IConsumer<BidPlacedEvent>
 
     public async Task Consume(ConsumeContext<BidPlacedEvent> context)
     {
-        var auction = await _auctionsRepository.GetAuctionByIdAsync(context.Message.AuctionId, context.CancellationToken);
+        var auction =
+            await _auctionsRepository.GetAuctionByIdAsync(context.Message.AuctionId, context.CancellationToken);
 
         if (auction is null)
         {
@@ -30,7 +31,8 @@ public sealed class BidPlacedEventConsumer : IConsumer<BidPlacedEvent>
 
         if (updatedResult.IsError)
         {
-            _logger.LogError("The following error occurred updating the highest bidder: {ErrorMessage}", updatedResult.Errors.First().Description);
+            _logger.LogError("The following error occurred updating the highest bidder: {ErrorMessage}",
+                updatedResult.Errors.First().Description);
             return;
         }
 

@@ -16,7 +16,8 @@ public sealed class CreateAuctionCommandHandler : IRequestHandler<CreateAuctionC
 
     public async Task<ErrorOr<AuctionEntity>> Handle(CreateAuctionCommand request, CancellationToken cancellationToken)
     {
-        var createdAuction = await _auctionsRepository.CreateAuctionAsync(request.AuctionEntityToCreate, cancellationToken);
+        var createdAuction =
+            await _auctionsRepository.CreateAuctionAsync(request.AuctionEntityToCreate, cancellationToken);
         if (createdAuction is null)
         {
             return Error.Validation("AuctionId", "Auction already exists");

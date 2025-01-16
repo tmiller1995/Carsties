@@ -18,7 +18,8 @@ public sealed class SearchRepository : ISearchRepository
         _documentSession = documentSession;
     }
 
-    public async Task<PaginatedResponse<List<Item>>> SearchItemsAsync(AuctionSearch auctionSearch, CancellationToken cancellationToken = default)
+    public async Task<PaginatedResponse<List<Item>>> SearchItemsAsync(AuctionSearch auctionSearch,
+        CancellationToken cancellationToken = default)
     {
         var auctions = _documentSession.Query<Auction>()
             .Statistics(out var statistics);
@@ -60,7 +61,8 @@ public sealed class SearchRepository : ISearchRepository
             auctions = auctionSearch.FilterBy.ToLower() switch
             {
                 "finished" => auctions.Where(a => a.AuctionEnd < dateTimeUtcNow),
-                "endingsoon" => auctions.Where(a => a.AuctionEnd < dateTimeUtcNow.AddHours(6) && a.AuctionEnd > dateTimeUtcNow),
+                "endingsoon" => auctions.Where(a =>
+                    a.AuctionEnd < dateTimeUtcNow.AddHours(6) && a.AuctionEnd > dateTimeUtcNow),
                 _ => auctions.Where(a => a.AuctionEnd > dateTimeUtcNow)
             };
         }

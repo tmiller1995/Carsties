@@ -12,13 +12,51 @@
     <ItemGroup>
         <PackageReference Include="Bogus" />
         <PackageReference Include="Duende.IdentityServer.AspNetIdentity" />
+        <PackageReference Include="IdentityModel" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
+        <PackageReference Include="Microsoft.AspNetCore.Cryptography.Internal" />
+        <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" />
+        <PackageReference Include="Microsoft.AspNetCore.DataProtection.Abstractions" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
+        <PackageReference Include="Microsoft.Build.Utilities.Core" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
+        <PackageReference Include="Microsoft.IdentityModel.Abstractions" />
+        <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+        <PackageReference Include="Microsoft.IdentityModel.Protocols" />
+        <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+        <PackageReference Include="Microsoft.VisualStudio.Setup.Configuration.Interop" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
         <PackageReference Include="Serilog.AspNetCore" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+        <PackageReference Include="System.Composition.AttributedModel" />
+        <PackageReference Include="System.Composition.Convention" />
+        <PackageReference Include="System.Composition.Hosting" />
+        <PackageReference Include="System.Composition.TypedParts" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.IO.Pipelines" />
+        <PackageReference Include="System.Reflection.Metadata" />
+        <PackageReference Include="System.Reflection.MetadataLoadContext" />
+        <PackageReference Include="System.Resources.Extensions" />
+        <PackageReference Include="System.Security.Cryptography.Pkcs" />
+        <PackageReference Include="System.Security.Cryptography.Xml" />
+        <PackageReference Include="System.Security.Permissions" />
+        <PackageReference Include="System.Text.Encodings.Web" />
+        <PackageReference Include="System.Threading.Channels" />
+        <PackageReference Include="System.Threading.Tasks.Dataflow" />
     </ItemGroup>
 </Project>

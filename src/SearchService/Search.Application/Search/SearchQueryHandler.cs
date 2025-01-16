@@ -15,7 +15,8 @@ public sealed class SearchQueryHandler : IRequestHandler<SearchQuery, ErrorOr<Pa
         _searchRepository = searchRepository;
     }
 
-    public async Task<ErrorOr<PaginatedResponse<List<Item>>>> Handle(SearchQuery request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<PaginatedResponse<List<Item>>>> Handle(SearchQuery request,
+        CancellationToken cancellationToken)
     {
         var paginatedItems = await _searchRepository.SearchItemsAsync(request.AuctionSearch, cancellationToken);
 

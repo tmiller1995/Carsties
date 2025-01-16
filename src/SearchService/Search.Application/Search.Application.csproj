@@ -11,7 +11,11 @@
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
       <PackageReference Include="MassTransit.Abstractions" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" />
+        <PackageReference Include="Nito.Collections.Deque" />
+        <PackageReference Include="Nito.Disposables" />
       <PackageReference Include="RavenDB.Client" />
+      <PackageReference Include="System.Collections.Immutable" />
     </ItemGroup>
 
     <ItemGroup>

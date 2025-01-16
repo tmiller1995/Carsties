@@ -55,7 +55,8 @@ namespace IdentityService.Pages.ServerSideSessions
             {
                 SessionId = SessionId,
             });
-            return RedirectToPage("/ServerSideSessions/Index", new { Token, DisplayNameFilter, SessionIdFilter, SubjectIdFilter, Prev });
+            return RedirectToPage("/ServerSideSessions/Index",
+                new { Token, DisplayNameFilter, SessionIdFilter, SubjectIdFilter, Prev });
         }
     }
 }

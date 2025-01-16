@@ -15,30 +15,33 @@ internal static class Log
         _invalidId(logger, id, null);
     }
 
-    private static readonly Action<ILogger, string?, Exception?> _invalidBackchannelLoginId = LoggerMessage.Define<string?>(
-        LogLevel.Warning,
-        EventIds.InvalidBackchannelLoginId,
-        "Invalid backchannel login id {Id}");
+    private static readonly Action<ILogger, string?, Exception?> _invalidBackchannelLoginId =
+        LoggerMessage.Define<string?>(
+            LogLevel.Warning,
+            EventIds.InvalidBackchannelLoginId,
+            "Invalid backchannel login id {Id}");
 
     public static void InvalidBackchannelLoginId(this ILogger logger, string? id)
     {
         _invalidBackchannelLoginId(logger, id, null);
     }
 
-    private static Action<ILogger, IEnumerable<string>, Exception?> _externalClaims = LoggerMessage.Define<IEnumerable<string>>(
-        LogLevel.Debug,
-        EventIds.ExternalClaims,
-        "External claims: {Claims}");
+    private static Action<ILogger, IEnumerable<string>, Exception?> _externalClaims =
+        LoggerMessage.Define<IEnumerable<string>>(
+            LogLevel.Debug,
+            EventIds.ExternalClaims,
+            "External claims: {Claims}");
 
     public static void ExternalClaims(this ILogger logger, IEnumerable<string> claims)
     {
         _externalClaims(logger, claims, null);
     }
 
-    private static Action<ILogger, string, Exception?> _noMatchingBackchannelLoginRequest = LoggerMessage.Define<string>(
-        LogLevel.Error,
-        EventIds.NoMatchingBackchannelLoginRequest,
-        "No backchannel login request matching id: {Id}");
+    private static Action<ILogger, string, Exception?> _noMatchingBackchannelLoginRequest =
+        LoggerMessage.Define<string>(
+            LogLevel.Error,
+            EventIds.NoMatchingBackchannelLoginRequest,
+            "No backchannel login request matching id: {Id}");
 
     public static void NoMatchingBackchannelLoginRequest(this ILogger logger, string id)
     {

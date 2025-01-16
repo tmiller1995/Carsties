@@ -14,7 +14,6 @@ public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<L
     public SearchEndpoint(ISender sender)
     {
         _sender = sender;
-
     }
 
     public override void Configure()

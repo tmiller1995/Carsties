@@ -92,7 +92,7 @@ services:
     ports:
       - "161:161/tcp"
       - "38888:38888/tcp"
-      - "8080:8080/tcp"
+      - "8081:8080/tcp"
     user: "ravendb:ravendb"
     volumes:
       - "ravendb_etc:/etc/ravendb"

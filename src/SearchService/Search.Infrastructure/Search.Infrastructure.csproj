@@ -11,10 +11,21 @@
       <PackageReference Include="MassTransit.RabbitMQ" />
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
       <PackageReference Include="Microsoft.Extensions.Http.Polly" />
+      <PackageReference Include="Microsoft.IdentityModel.Abstractions" />
+      <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+      <PackageReference Include="Microsoft.IdentityModel.Protocols" />
+      <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" />
+      <PackageReference Include="Nito.Collections.Deque" />
+      <PackageReference Include="Nito.Disposables" />
+      <PackageReference Include="Polly" />
       <PackageReference Include="RavenDB.Client" />
       <PackageReference Include="RavenDB.DependencyInjection" />
+      <PackageReference Include="System.IO.Pipelines" />
+      <PackageReference Include="System.Threading.RateLimiting" />
     </ItemGroup>
 
     <ItemGroup>

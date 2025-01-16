@@ -18,7 +18,8 @@ public class IndexModel : PageModel
     private readonly IBackchannelAuthenticationInteractionService _backchannelAuthenticationInteraction;
     private readonly ILogger<IndexModel> _logger;
 
-    public IndexModel(IBackchannelAuthenticationInteractionService backchannelAuthenticationInteractionService, ILogger<IndexModel> logger)
+    public IndexModel(IBackchannelAuthenticationInteractionService backchannelAuthenticationInteractionService,
+        ILogger<IndexModel> logger)
     {
         _backchannelAuthenticationInteraction = backchannelAuthenticationInteractionService;
         _logger = logger;

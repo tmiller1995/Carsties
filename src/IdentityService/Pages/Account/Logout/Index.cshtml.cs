@@ -24,7 +24,8 @@ public class Index : PageModel
 
     [BindProperty] public string? LogoutId { get; set; }
 
-    public Index(SignInManager<ApplicationUser> signInManager, IIdentityServerInteractionService interaction, IEventService events)
+    public Index(SignInManager<ApplicationUser> signInManager, IIdentityServerInteractionService interaction,
+        IEventService events)
     {
         _signInManager = signInManager;
         _interaction = interaction;
