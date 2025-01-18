@@ -19,6 +19,8 @@
         <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" />
         <PackageReference Include="Microsoft.AspNetCore.DataProtection.Abstractions" />
         <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
+        <PackageReference Include="Microsoft.Build" />
+        <PackageReference Include="Microsoft.Build.Tasks.Core" />
         <PackageReference Include="Microsoft.Build.Utilities.Core" />
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
           <PrivateAssets>all</PrivateAssets>
@@ -42,6 +44,9 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+        <PackageReference Include="System.CodeDom" />
+        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Composition" />
         <PackageReference Include="System.Composition.AttributedModel" />
         <PackageReference Include="System.Composition.Convention" />
         <PackageReference Include="System.Composition.Hosting" />

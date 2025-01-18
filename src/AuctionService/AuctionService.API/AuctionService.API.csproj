@@ -34,6 +34,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
     <PackageReference Include="Serilog.AspNetCore" />
     <PackageReference Include="System.CodeDom" />
+    <PackageReference Include="System.Collections.Immutable" />
     <PackageReference Include="System.Composition" />
     <PackageReference Include="System.Configuration.ConfigurationManager" />
     <PackageReference Include="System.Formats.Asn1" />
