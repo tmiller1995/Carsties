@@ -4,10 +4,11 @@ using MediatR;
 using Search.Application.Search;
 using Search.Contract.Searches;
 using Search.Domain.Items;
+using SearchService.API.Mapper;
 
 namespace SearchService.API.Search;
 
-public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<List<Item>>>
+public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<List<SearchResponse>>>
 {
     private readonly ISender _sender;
 
@@ -29,7 +30,8 @@ public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<L
 
         if (!errorOrItems.IsError)
         {
-            await SendOkAsync(errorOrItems.Value, ct);
+            var result = errorOrItems.Value.ToPaginatedSearchResponse();
+            await SendOkAsync(result, ct);
             return;
         }
 

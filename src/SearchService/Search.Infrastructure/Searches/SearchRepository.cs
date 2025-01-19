@@ -18,7 +18,7 @@ public sealed class SearchRepository : ISearchRepository
         _documentSession = documentSession;
     }
 
-    public async Task<PaginatedResponse<List<Item>>> SearchItemsAsync(AuctionSearch auctionSearch,
+    public async Task<PaginatedResponse<List<Auction>>> SearchItemsAsync(AuctionSearch auctionSearch,
         CancellationToken cancellationToken = default)
     {
         var auctions = _documentSession.Query<Auction>()
@@ -70,12 +70,11 @@ public sealed class SearchRepository : ISearchRepository
         var items = await auctions
             .Skip((auctionSearch.PageNumber - 1) * auctionSearch.PageSize)
             .Take(auctionSearch.PageSize)
-            .Select(a => a.Item)
             .ToListAsync(cancellationToken);
 
         var totalResults = statistics.TotalResults;
 
-        var paginatedResponse = new PaginatedResponse<List<Item>>
+        var paginatedResponse = new PaginatedResponse<List<Auction>>
         {
             Data = items,
             PageNumber = auctionSearch.PageNumber,

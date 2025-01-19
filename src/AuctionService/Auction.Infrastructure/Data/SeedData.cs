@@ -88,17 +88,17 @@ public static class SeedData
             .RuleFor(a => a.ItemEntity, f =>
             {
                 var randomManufacturer = f.PickRandom<string>(CarModels.Keys);
-                var randomModel = f.PickRandom<string>(CarModels[randomManufacturer]);
+                var randomModel = f.PickRandom(CarModels[randomManufacturer]);
 
                 return new ItemEntity(randomManufacturer,
                     randomModel,
                     f.Random.Int(2005, 2024),
                     f.Commerce.Color(),
                     f.Random.Int(0, 350_001),
-                    f.Image.PlaceholderUrl(150, 150));
+                    f.Image.LoremFlickrUrl(150, 150, keywords: $"{randomManufacturer}, {randomModel}"));
             });
 
-        var auctions = auctionFaker.Generate(5_000);
+        var auctions = auctionFaker.Generate(500);
 
         return auctions;
     }
