@@ -1,8 +1,9 @@
 import React from 'react';
 import Image from "next/image";
+import {Auction} from "@/app/auctions/Auction";
 
 type Props = {
-    auction: any
+    auction: Auction
 }
 
 export default function AuctionCard({auction}: Props) {
