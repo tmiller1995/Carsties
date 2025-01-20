@@ -1,5 +1,6 @@
 import React from 'react';
 import AuctionCard from "@/app/auctions/AuctionCard";
+import {Auction} from "@/app/auctions/Auction";
 
 async function getData() {
     const response = await fetch('http://localhost:5050/search?pageSize=10');
@@ -12,7 +13,7 @@ export default async function Listings() {
 
     return (
         <div className={`grid grid-cols-4 gap-6`}>
-            {data.data && Array.isArray(data.data) && data.data.map((auction: any) => (
+            {data.data && Array.isArray(data.data) && data.data.map((auction: Auction) => (
                 <AuctionCard  auction={auction} key={auction.id} />
                 ))}
         </div>
