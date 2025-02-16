@@ -1,4 +1,4 @@
-export interface Auction {
+export type Auction = {
     id: string,
     createdAt: Date,
     updatedAt: Date,
