@@ -14,7 +14,7 @@ const renderer = ({days, hours, minutes, seconds, completed}:
             {completed ? (
                 <span>Auction Finished</span>
             ) : (
-                <span>{zeroPad(days)} : {zeroPad(hours)} : {zeroPad(minutes)} : {zeroPad(seconds)} </span>
+                <span suppressHydrationWarning={true}>{zeroPad(days)} : {zeroPad(hours)} : {zeroPad(minutes)} : {zeroPad(seconds)} </span>
             )}
         </div>
     )

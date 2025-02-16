@@ -10,7 +10,7 @@ type Props = {
 export default function AuctionCard({auction}: Props) {
     return (
         <a href={`#`}>
-            <div className={`relative w-full bg-gray-200 aspect-video rounded-lg overflow-hidden`}>
+            <div className={`relative w-full bg-gray-200 aspect-[16/10] rounded-lg overflow-hidden`}>
                 <Image src={auction.imageUrl}
                        alt={`Image of ${auction.make} ${auction.model} in ${auction.color}`}
                        fill={true}
