@@ -1,13 +1,13 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <MicrosoftBuildVersion>17.12.6</MicrosoftBuildVersion>
+    <MicrosoftBuildVersion>17.13.9</MicrosoftBuildVersion>
     <MicrosoftCodeAnalysisVersion>4.12.0</MicrosoftCodeAnalysisVersion>
-    <MicrosoftIdentityModelVersion>8.3.1</MicrosoftIdentityModelVersion>
-    <MicrosoftPackageVersion>9.0.1</MicrosoftPackageVersion>
+    <MicrosoftIdentityModelVersion>8.5.0</MicrosoftIdentityModelVersion>
+    <MicrosoftPackageVersion>9.0.2</MicrosoftPackageVersion>
     <FluentValidationVersion>11.11.0</FluentValidationVersion>
-    <FastEndpointsVersion>5.33.0</FastEndpointsVersion>
-    <MassTransitVersion>8.3.4</MassTransitVersion>
+    <FastEndpointsVersion>5.34.0</FastEndpointsVersion>
+    <MassTransitVersion>8.3.6</MassTransitVersion>
     <DuendeIdentityVersion>7.1.0</DuendeIdentityVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -97,13 +97,13 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.23" />
-    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
-    <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.12.2149" />
+    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.1" />
+    <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.13.2069" />
     <PackageVersion Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageVersion Include="Nito.Disposables" Version="2.5.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
-    <PackageVersion Include="Polly" Version="8.5.1" />
-    <PackageVersion Include="RavenDB.Client" Version="6.2.2" />
+    <PackageVersion Include="Polly" Version="8.5.2" />
+    <PackageVersion Include="RavenDB.Client" Version="7.0.0" />
     <PackageVersion Include="RavenDB.DependencyInjection" Version="5.0.1" />
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.2.0" />
