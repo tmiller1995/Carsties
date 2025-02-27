@@ -29,4 +29,8 @@
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Carsties.ServiceDefaults\Carsties.ServiceDefaults.csproj" />
+    </ItemGroup>
+
 </Project>

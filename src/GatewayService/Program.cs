@@ -1,3 +1,4 @@
+using Carsties.ServiceDefaults;
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Serilog;
@@ -16,6 +17,9 @@ try
             "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
+
+    builder.AddServiceDefaults()
+        .AddDefaultHealthChecks();
 
     builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>

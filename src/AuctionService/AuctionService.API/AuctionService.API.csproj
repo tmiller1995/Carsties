@@ -50,6 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Carsties.ServiceDefaults\Carsties.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Auction.Application\Auction.Application.csproj" />
     <ProjectReference Include="..\Auction.Contract\Auction.Contract.csproj" />
     <ProjectReference Include="..\Auction.Infrastructure\Auction.Infrastructure.csproj" />

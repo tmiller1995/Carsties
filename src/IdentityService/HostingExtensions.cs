@@ -1,3 +1,4 @@
+using Carsties.ServiceDefaults;
 using Duende.IdentityServer;
 using IdentityService.Data;
 using IdentityService.Models;
@@ -12,6 +13,9 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        builder.AddServiceDefaults()
+            .AddDefaultHealthChecks();
+
         builder.Services.AddRazorPages();
 
         builder.Services.AddNpgsql<ApplicationUserIdentityDbContext>(

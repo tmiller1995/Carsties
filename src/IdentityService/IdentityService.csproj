@@ -64,4 +64,8 @@
         <PackageReference Include="System.Threading.Channels" />
         <PackageReference Include="System.Threading.Tasks.Dataflow" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Carsties.ServiceDefaults\Carsties.ServiceDefaults.csproj" />
+    </ItemGroup>
 </Project>

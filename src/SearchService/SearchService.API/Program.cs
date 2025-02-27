@@ -1,3 +1,4 @@
+using Carsties.ServiceDefaults;
 using FastEndpoints;
 using Search.Application;
 using Search.Infrastructure;
@@ -18,6 +19,9 @@ try
             "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
+
+    builder.AddServiceDefaults()
+        .AddDefaultHealthChecks();
 
     builder.AddPresentation()
         .AddApplication()

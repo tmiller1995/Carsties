@@ -2,8 +2,8 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <MicrosoftBuildVersion>17.13.9</MicrosoftBuildVersion>
-    <MicrosoftCodeAnalysisVersion>4.12.0</MicrosoftCodeAnalysisVersion>
-    <MicrosoftIdentityModelVersion>8.5.0</MicrosoftIdentityModelVersion>
+    <MicrosoftCodeAnalysisVersion>4.13.0</MicrosoftCodeAnalysisVersion>
+    <MicrosoftIdentityModelVersion>8.6.0</MicrosoftIdentityModelVersion>
     <MicrosoftPackageVersion>9.0.2</MicrosoftPackageVersion>
     <FluentValidationVersion>11.11.0</FluentValidationVersion>
     <FastEndpointsVersion>5.34.0</FastEndpointsVersion>
@@ -90,14 +90,14 @@
     <PackageVersion Include="Microsoft.IdentityModel.Protocols" Version="$(MicrosoftIdentityModelVersion)" />
     <PackageVersion Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="$(MicrosoftIdentityModelVersion)" />
     <!--Other Packages-->
-    <PackageVersion Include="Bogus" Version="35.6.1" />
+    <PackageVersion Include="Bogus" Version="35.6.2" />
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
     <PackageVersion Include="IdentityModel" Version="7.0.0" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.23" />
-    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.1" />
+    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
     <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.13.2069" />
     <PackageVersion Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageVersion Include="Nito.Disposables" Version="2.5.0" />

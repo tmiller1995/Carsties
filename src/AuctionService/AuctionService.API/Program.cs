@@ -4,6 +4,7 @@ using Auction.Infrastructure;
 using Auction.Infrastructure.Data;
 using Auction.Infrastructure.Middleware;
 using AuctionService.API;
+using Carsties.ServiceDefaults;
 using FastEndpoints;
 using Serilog;
 
@@ -22,7 +23,9 @@ try
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-    builder.AddPresentation()
+    builder.AddServiceDefaults()
+        .AddDefaultHealthChecks()
+        .AddPresentation()
         .AddApplication()
         .AddInfrastructure();
 

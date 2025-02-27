@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Carsties.ServiceDefaults\Carsties.ServiceDefaults.csproj" />
       <ProjectReference Include="..\Search.Application\Search.Application.csproj" />
       <ProjectReference Include="..\Search.Contract\Search.Contract.csproj" />
       <ProjectReference Include="..\Search.Infrastructure\Search.Infrastructure.csproj" />
