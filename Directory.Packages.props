@@ -12,6 +12,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!--Duende-->
+    <PackageVersion Include="Aspire.Hosting.NodeJs" Version="9.1.0" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.1.0" />
+    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="9.1.0" />
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="9.2.0" />
     <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
     <!--FastEndpoints-->
     <PackageVersion Include="FastEndpoints" Version="$(FastEndpointsVersion)" />

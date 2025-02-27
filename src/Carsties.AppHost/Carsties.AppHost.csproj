@@ -13,6 +13,17 @@
 
     <ItemGroup>
         <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0"/>
+        <PackageReference Include="Aspire.Hosting.NodeJs" />
+        <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+        <PackageReference Include="Aspire.Hosting.RabbitMQ" />
+        <PackageReference Include="CommunityToolkit.Aspire.Hosting.RavenDB" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AuctionService\AuctionService.API\AuctionService.API.csproj" />
+      <ProjectReference Include="..\GatewayService\GatewayService.csproj" />
+      <ProjectReference Include="..\IdentityService\IdentityService.csproj" />
+      <ProjectReference Include="..\SearchService\SearchService.API\SearchService.API.csproj" />
     </ItemGroup>
 
 </Project>
