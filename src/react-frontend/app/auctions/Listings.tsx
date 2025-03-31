@@ -1,9 +1,10 @@
 import React from 'react';
 import AuctionCard from "@/app/auctions/AuctionCard";
 import {Auction} from "@/app/auctions/Auction";
-import {PagedResult} from "@/app/_types/PagedResult";
+import {PaginatedResult} from "@/app/_types/PaginatedResult";
+import AppPagination from "@/app/_components/AppPagination";
 
-async function getData(): Promise<PagedResult<Auction>> {
+async function getData(): Promise<PaginatedResult<Auction>> {
     const response = await fetch('http://localhost:5050/search?pageSize=10');
     if (!response.ok) throw new Error('Failed to fetch data');
     return response.json();
@@ -17,6 +18,7 @@ export default async function Listings() {
             {paginatedAuctionResult.data && paginatedAuctionResult.data.map((auction) => (
                 <AuctionCard auction={auction} key={auction.id}/>
             ))}
+            <AppPagination {...paginatedAuctionResult}/>
         </div>
     );
 }

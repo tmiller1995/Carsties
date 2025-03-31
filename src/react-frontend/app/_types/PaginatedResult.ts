@@ -1,4 +1,4 @@
-export type PagedResult<T> = {
+export type PaginatedResult<T> = {
     data: T[];
     pageNumber: number;
     pageSize: number;

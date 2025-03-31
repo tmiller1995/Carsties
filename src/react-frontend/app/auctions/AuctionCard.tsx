@@ -18,7 +18,6 @@ export default function AuctionCard({auction}: AuctionProps) {
                     {auction.year}
                 </p>
             </div>
-
         </a>
     )
 }
