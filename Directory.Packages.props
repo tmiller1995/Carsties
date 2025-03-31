@@ -1,25 +1,30 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <AspireVersion>9.1.0</AspireVersion>
+    <AspireCommunityVersion>9.3.0</AspireCommunityVersion>
     <MicrosoftBuildVersion>17.13.9</MicrosoftBuildVersion>
     <MicrosoftCodeAnalysisVersion>4.13.0</MicrosoftCodeAnalysisVersion>
-    <MicrosoftIdentityModelVersion>8.6.0</MicrosoftIdentityModelVersion>
-    <MicrosoftPackageVersion>9.0.2</MicrosoftPackageVersion>
+    <MicrosoftIdentityModelVersion>8.7.0</MicrosoftIdentityModelVersion>
+    <MicrosoftPackageVersion>9.0.3</MicrosoftPackageVersion>
     <FluentValidationVersion>11.11.0</FluentValidationVersion>
-    <FastEndpointsVersion>5.34.0</FastEndpointsVersion>
-    <MassTransitVersion>8.3.6</MassTransitVersion>
-    <DuendeIdentityVersion>7.1.0</DuendeIdentityVersion>
+    <FastEndpointsVersion>5.35.0</FastEndpointsVersion>
+    <MassTransitVersion>8.4.0</MassTransitVersion>
+    <DuendeIdentityVersion>7.2.0</DuendeIdentityVersion>
+    <OpenTelemetryVersion>1.11.2</OpenTelemetryVersion>
+    <OpenTelemetryInstrumentationVersion>1.11.1</OpenTelemetryInstrumentationVersion>
   </PropertyGroup>
   <ItemGroup>
+    <!--Aspire Versions-->
+    <PackageVersion Include="Aspire.Hosting.NodeJs" Version="$(AspireVersion)" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="$(AspireVersion)" />
+    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="$(AspireVersion)" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="$(AspireVersion)" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="$(AspireCommunityVersion)" />
+    <PackageVersion Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ" Version="$(AspireCommunityVersion)" />
+    <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="$(AspireCommunityVersion)" />
     <!--Duende-->
-    <PackageVersion Include="Aspire.Hosting.NodeJs" Version="9.1.0" />
-    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.1.0" />
-    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="9.1.0" />
-    <PackageVersion Include="Aspire.Hosting.Redis" Version="9.1.0" />
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0" />
-    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="9.2.0" />
-    <PackageVersion Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ" Version="9.2.0" />
-    <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="9.2.0" />
     <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
     <!--FastEndpoints-->
     <PackageVersion Include="FastEndpoints" Version="$(FastEndpointsVersion)" />
@@ -97,6 +102,12 @@
     <PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="$(MicrosoftIdentityModelVersion)" />
     <PackageVersion Include="Microsoft.IdentityModel.Protocols" Version="$(MicrosoftIdentityModelVersion)" />
     <PackageVersion Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="$(MicrosoftIdentityModelVersion)" />
+    <!--OpenTelemetry-->
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryInstrumentationVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryInstrumentationVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryInstrumentationVersion)" />
     <!--Other Packages-->
     <PackageVersion Include="Bogus" Version="35.6.2" />
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
@@ -104,16 +115,17 @@
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.3.0" />
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.23" />
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
     <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.13.2069" />
     <PackageVersion Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageVersion Include="Nito.Disposables" Version="2.5.0" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     <PackageVersion Include="Polly" Version="8.5.2" />
-    <PackageVersion Include="RavenDB.Client" Version="7.0.0" />
+    <PackageVersion Include="RavenDB.Client" Version="7.0.1" />
     <PackageVersion Include="RavenDB.DependencyInjection" Version="5.0.1" />
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
-    <PackageVersion Include="Yarp.ReverseProxy" Version="2.2.0" />
+    <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
   </ItemGroup>
 </Project>
