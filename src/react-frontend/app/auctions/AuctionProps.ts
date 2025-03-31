@@ -1,5 +1,5 @@
-import {Auction} from "@/app/auctions/Auction";
+import { Auction } from "@/app/auctions/Auction";
 
 export type AuctionProps = {
-    auction: Auction
-}
+  auction: Auction;
+};

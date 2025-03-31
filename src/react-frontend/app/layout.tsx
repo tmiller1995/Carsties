@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/app/nav/Navbar";
 
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-config.autoAddCss = false
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: "Carsties",
@@ -19,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar/>
-        <main className={`container mx-auto px-5 pt-10`}>
-            {children}
-        </main>
+        <Navbar />
+        <main className={`container mx-auto px-5 pt-10`}>{children}</main>
       </body>
     </html>
   );
