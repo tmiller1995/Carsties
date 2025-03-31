@@ -10,7 +10,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
         <PackageReference Include="Bogus" />
+        <PackageReference Include="CommunityToolkit.Aspire.RavenDB.Client" />
         <PackageReference Include="Duende.IdentityServer.AspNetIdentity" />
         <PackageReference Include="IdentityModel" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" />

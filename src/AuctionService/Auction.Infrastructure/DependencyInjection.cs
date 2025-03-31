@@ -27,7 +27,7 @@ public static class DependencyInjection
             });
         builder.Services.AddAuthorization();
         builder.Services.AddHttpContextAccessor();
-        builder.Services.AddNpgsql<AuctionDbContext>(builder.Configuration.GetConnectionString("AuctionDb"));
+        builder.AddNpgsqlDbContext<AuctionDbContext>("auction-db");
         builder.Services.AddMassTransit(config =>
         {
             config.AddEntityFrameworkOutbox<AuctionDbContext>(options =>
@@ -45,10 +45,8 @@ public static class DependencyInjection
 
             config.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host(builder.Configuration.GetValue("RabbitMQ:Host", ""), "/", hostConfig =>
+                configurator.Host("rabbitmq", "/", hostConfig =>
                 {
-                    hostConfig.Username(builder.Configuration.GetValue("RabbitMQ:Username", ""));
-                    hostConfig.Password(builder.Configuration.GetValue("RabbitMQ:Password", ""));
                 });
 
                 configurator.ConfigureEndpoints(context);

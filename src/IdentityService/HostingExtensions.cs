@@ -18,8 +18,7 @@ internal static class HostingExtensions
 
         builder.Services.AddRazorPages();
 
-        builder.Services.AddNpgsql<ApplicationUserIdentityDbContext>(
-            builder.Configuration.GetConnectionString("IdentityDb"));
+        builder.AddNpgsqlDbContext<ApplicationUserIdentityDbContext>("identity-db");
 
         builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
             .AddEntityFrameworkStores<ApplicationUserIdentityDbContext>()

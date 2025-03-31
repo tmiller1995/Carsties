@@ -24,10 +24,8 @@ public static class DependencyInjection
 
             config.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host(builder.Configuration.GetValue("RabbitMQ:Host", ""), "/", hostConfig =>
+                configurator.Host("rabbitmq", "/", hostConfig =>
                 {
-                    hostConfig.Username(builder.Configuration.GetValue("RabbitMQ:Username", ""));
-                    hostConfig.Password(builder.Configuration.GetValue("RabbitMQ:Password", ""));
                 });
 
                 configurator.ReceiveEndpoint("search-auction-created", endpointConfigurator =>
@@ -52,7 +50,7 @@ public static class DependencyInjection
             });
         });
 
-        builder.Services.AddRavenDbDocStore(options => options.SectionName = "RavenDbSettings");
+        builder.Services.AddRavenDbDocStore(options => options.SectionName = "auction-search-db");
         builder.Services.AddRavenDbAsyncSession();
 
         builder.Services.AddScoped<ISearchRepository, SearchRepository>();
