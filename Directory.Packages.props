@@ -5,8 +5,8 @@
     <AspireCommunityVersion>9.3.0</AspireCommunityVersion>
     <MicrosoftBuildVersion>17.13.9</MicrosoftBuildVersion>
     <MicrosoftCodeAnalysisVersion>4.13.0</MicrosoftCodeAnalysisVersion>
-    <MicrosoftIdentityModelVersion>8.7.0</MicrosoftIdentityModelVersion>
-    <MicrosoftPackageVersion>9.0.3</MicrosoftPackageVersion>
+    <MicrosoftIdentityModelVersion>8.8.0</MicrosoftIdentityModelVersion>
+    <MicrosoftPackageVersion>9.0.4</MicrosoftPackageVersion>
     <FluentValidationVersion>11.11.0</FluentValidationVersion>
     <FastEndpointsVersion>5.35.0</FastEndpointsVersion>
     <MassTransitVersion>8.4.0</MassTransitVersion>
@@ -112,11 +112,11 @@
     <PackageVersion Include="Bogus" Version="35.6.2" />
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
     <PackageVersion Include="IdentityModel" Version="7.0.0" />
-    <PackageVersion Include="MediatR" Version="12.4.1" />
+    <PackageVersion Include="MediatR" Version="12.5.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.3.0" />
-    <PackageVersion Include="Microsoft.OpenApi" Version="1.6.23" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.4.0" />
+    <PackageVersion Include="Microsoft.OpenApi" Version="1.6.24" />
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
     <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.13.2069" />
     <PackageVersion Include="Nito.Collections.Deque" Version="1.2.1" />

@@ -6,15 +6,12 @@ services:
     entrypoint:
       - "docker-entrypoint.sh"
     environment:
-      - "PG_VERSION=17.2-1.pgdg120+1"
       - "PGDATA=/var/lib/postgresql/data"
       - "POSTGRES_PASSWORD=St@rCraft#22F0x"
       - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/17/bin"
-      - "GOSU_VERSION=1.17"
-      - "LANG=en_US.utf8"
       - "PG_MAJOR=17"
     hostname: "postgres"
-    image: "postgres:17.2-alpine"
+    image: "postgres:17.4-alpine3.21"
     logging:
       driver: "json-file"
       options: { }
@@ -32,18 +29,12 @@ services:
     entrypoint:
       - "docker-entrypoint.sh"
     environment:
-      - "PATH=/opt/rabbitmq/sbin:/opt/erlang/bin:/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-      - "ERLANG_INSTALL_PATH_PREFIX=/opt/erlang"
-      - "OPENSSL_INSTALL_PATH_PREFIX=/opt/openssl"
       - "RABBITMQ_DATA_DIR=/var/lib/rabbitmq"
       - "RABBITMQ_PGP_KEY_ID=0x0A9AF2115F4687BD29803A206B73A36E6026DFCA"
       - "RABBITMQ_HOME=/opt/rabbitmq"
       - "HOME=/var/lib/rabbitmq"
-      - "LANG=C.UTF-8"
-      - "LANGUAGE=C.UTF-8"
-      - "LC_ALL=C.UTF-8"
     hostname: "rabbitmq"
-    image: "rabbitmq:4.0.5-management-alpine"
+    image: "rabbitmq:4.0.8-management-alpine"
     logging:
       driver: "json-file"
       options: { }
