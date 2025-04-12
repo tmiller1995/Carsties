@@ -11,7 +11,7 @@ export default function AuctionCard({ auction }: AuctionProps) {
       >
         <CarImage auction={auction} />
         <div className={`absolute bottom-2 left-2`}>
-          <CountdownTimer auctionEnd={auction.auctionEnd} />
+          <CountdownTimer auctionEnd={auction.auctionEnd.toString()} />
         </div>
       </div>
       <div className={`mt-4 flex items-center justify-between`}>

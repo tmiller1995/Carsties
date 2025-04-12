@@ -46,10 +46,10 @@ var gatewayService = builder.AddProject<GatewayService>("gateway-service")
     .WithReference(searchServiceApi)
     .WaitFor(searchServiceApi);
 
-builder.AddNpmApp("frontend", @"..\react-frontend")
+builder.AddContainer("frontend", @"..\react-frontend\Dockerfile")
     .WithReference(gatewayService)
     .WaitFor(gatewayService)
     .WithExternalHttpEndpoints()
-    .PublishAsDockerFile();
+    .WithEndpoint(port: 3000, name: "http");
 
 builder.Build().Run();
