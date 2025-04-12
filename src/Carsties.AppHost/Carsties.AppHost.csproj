@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0"/>
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.2.0"/>
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -12,20 +12,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0"/>
-        <PackageReference Include="Aspire.Hosting.NodeJs" />
-        <PackageReference Include="Aspire.Hosting.PostgreSQL" />
-        <PackageReference Include="Aspire.Hosting.RabbitMQ" />
-        <PackageReference Include="Aspire.Hosting.Redis" />
-        <PackageReference Include="CommunityToolkit.Aspire.Hosting.RavenDB" />
-        <PackageReference Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.0"/>
+        <PackageReference Include="Aspire.Hosting.NodeJs"/>
+        <PackageReference Include="Aspire.Hosting.PostgreSQL"/>
+        <PackageReference Include="Aspire.Hosting.RabbitMQ"/>
+        <PackageReference Include="Aspire.Hosting.Redis"/>
+        <PackageReference Include="CommunityToolkit.Aspire.Hosting.RavenDB"/>
+        <PackageReference Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AuctionService\AuctionService.API\AuctionService.API.csproj" />
-      <ProjectReference Include="..\GatewayService\GatewayService.csproj" />
-      <ProjectReference Include="..\IdentityService\IdentityService.csproj" />
-      <ProjectReference Include="..\SearchService\SearchService.API\SearchService.API.csproj" />
+        <ProjectReference Include="..\AuctionService\AuctionService.API\AuctionService.API.csproj"/>
+        <ProjectReference Include="..\GatewayService\GatewayService.csproj"/>
+        <ProjectReference Include="..\IdentityService\IdentityService.csproj"/>
+        <ProjectReference Include="..\SearchService\SearchService.API\SearchService.API.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageVersion Update="Aspire.Hosting.AppHost" Version="9.2.0" />
     </ItemGroup>
 
 </Project>
