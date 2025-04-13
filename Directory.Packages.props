@@ -22,8 +22,7 @@
     <PackageVersion Include="Aspire.Hosting.Redis" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
     <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="$(AspireCommunityVersion)" />
-    <PackageVersion Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ" Version="$(AspireCommunityVersion)" />
-    <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="$(AspireCommunityVersion)" />
+    <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="9.3.0" />
     <!--Duende-->
     <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
     <!--FastEndpoints-->
@@ -116,7 +115,7 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.4.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.2.0"/>
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.2.0" />
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.24" />
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
     <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.13.2069" />

@@ -49,8 +49,7 @@ public static class DependencyInjection
             });
         });
 
-        builder.Services.AddRavenDbDocStore(options => options.SectionName = "auction-search-db");
-        builder.Services.AddRavenDbAsyncSession();
+        builder.AddRavenDBClient("auction-search-db", options => options.CreateDatabase = true);
 
         builder.Services.AddScoped<ISearchRepository, SearchRepository>();
 
