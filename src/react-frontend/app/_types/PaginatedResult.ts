@@ -1,4 +1,4 @@
-export type PaginatedResult<T> = {
+export interface PaginatedResult<T> {
   data: T[];
   pageNumber: number;
   pageSize: number;
@@ -6,4 +6,4 @@ export type PaginatedResult<T> = {
   totalPages: number;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
-};
+}
