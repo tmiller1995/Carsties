@@ -109,7 +109,7 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryInstrumentationVersion)" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryInstrumentationVersion)" />
     <!--Other Packages-->
-    <PackageVersion Include="Bogus" Version="35.6.2" />
+    <PackageVersion Include="Bogus" Version="35.6.3" />
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
     <PackageVersion Include="IdentityModel" Version="7.0.0" />
     <PackageVersion Include="MediatR" Version="12.5.0" />

@@ -18,8 +18,7 @@ try
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-    builder.AddServiceDefaults()
-        .AddDefaultHealthChecks();
+    builder.AddServiceDefaults();
 
     builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>

@@ -1,6 +1,8 @@
+using Microsoft.Extensions.Configuration;
 using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentVariables();
 
 var postgres = builder.AddPostgres("postgres")
     .WithPgAdmin()
@@ -15,9 +17,11 @@ var redis = builder.AddRedis("redis")
     .WithDataVolume()
     .WithRedisCommander();
 
-var rabbitMq = builder.AddRabbitMQ("rabbitmq");
+var rabbitMq = builder.AddRabbitMQ("rabbitmq")
+    .WithLifetime(ContainerLifetime.Persistent);
 
 var ravenDb = builder.AddRavenDB("ravendb")
+    .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume();
 
 var auctionSearchDb = ravenDb.AddDatabase("auction-search-db");
@@ -50,6 +54,7 @@ builder.AddDockerfile("frontend", @"..\react-frontend",@"..\react-frontend\Docke
     .WithReference(gatewayService)
     .WaitFor(gatewayService)
     .WithExternalHttpEndpoints()
-    .WithEndpoint(port: 3000, targetPort: 3000, name: "http");
+    .WithEndpoint(port: 3000, targetPort: 3000, name: "http")
+    .WithBuildArg("FONTAWESOME_PACKAGE_TOKEN", builder.Configuration["FONTAWESOME_PACKAGE_TOKEN"]);
 
 builder.Build().Run();

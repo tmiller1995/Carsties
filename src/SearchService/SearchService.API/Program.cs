@@ -21,9 +21,7 @@ try
         .ReadFrom.Configuration(ctx.Configuration));
 
     builder.AddServiceDefaults()
-        .AddDefaultHealthChecks();
-
-    builder.AddPresentation()
+        .AddPresentation()
         .AddApplication()
         .AddInfrastructure();
 

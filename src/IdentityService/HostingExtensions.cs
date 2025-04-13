@@ -13,8 +13,7 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        builder.AddServiceDefaults()
-            .AddDefaultHealthChecks();
+        builder.AddServiceDefaults();
 
         builder.Services.AddRazorPages();
 

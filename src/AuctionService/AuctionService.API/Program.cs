@@ -24,7 +24,6 @@ try
         .ReadFrom.Configuration(ctx.Configuration));
 
     builder.AddServiceDefaults()
-        .AddDefaultHealthChecks()
         .AddPresentation()
         .AddApplication()
         .AddInfrastructure();
@@ -38,6 +37,7 @@ try
 
         using var serviceScope = app.Services.CreateScope();
         var auctionDbContext = serviceScope.ServiceProvider.GetRequiredService<AuctionDbContext>();
+        await auctionDbContext.Database.EnsureCreatedAsync();
         if (!auctionDbContext.Auctions.Any())
         {
             Log.Information("Seeding database");

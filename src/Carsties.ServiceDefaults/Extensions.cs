@@ -94,8 +94,8 @@ public static class Extensions
     public static TBuilder AddDefaultHealthChecks<TBuilder>(this TBuilder builder)
         where TBuilder : IHostApplicationBuilder
     {
-        builder.Services.AddHealthChecks()
-            // Add a default liveness check to ensure app is responsive
+        builder.Services
+            .AddHealthChecks()
             .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
         return builder;

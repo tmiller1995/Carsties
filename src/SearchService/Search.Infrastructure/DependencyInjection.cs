@@ -24,9 +24,8 @@ public static class DependencyInjection
 
             config.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host("rabbitmq", "/", hostConfig =>
-                {
-                });
+                var configuration = context.GetRequiredService<IConfiguration>();
+                configurator.Host(configuration.GetConnectionString("rabbitmq"));
 
                 configurator.ReceiveEndpoint("search-auction-created", endpointConfigurator =>
                 {
