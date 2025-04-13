@@ -5,7 +5,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
 
 var postgres = builder.AddPostgres("postgres")
-    .WithPgAdmin()
+    .WithImageTag("latest")
+    .WithPgAdmin(configureContainer: config => config.WithImageTag("latest"))
     .WithLifetime(ContainerLifetime.Persistent);
 if (builder.ExecutionContext.IsRunMode)
     postgres.WithDataVolume();
@@ -14,13 +15,16 @@ var auctionDb = postgres.AddDatabase("auction-db");
 var identityDb = postgres.AddDatabase("identity-db");
 
 var redis = builder.AddRedis("redis")
+    .WithImageTag("latest")
     .WithDataVolume()
     .WithRedisCommander();
 
 var rabbitMq = builder.AddRabbitMQ("rabbitmq")
+    .WithImageTag("latest")
     .WithLifetime(ContainerLifetime.Persistent);
 
 var ravenDb = builder.AddRavenDB("ravendb")
+    .WithImageTag("latest")
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume();
 

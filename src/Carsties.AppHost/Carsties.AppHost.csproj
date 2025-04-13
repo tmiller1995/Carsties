@@ -28,8 +28,4 @@
         <ProjectReference Include="..\SearchService\SearchService.API\SearchService.API.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageVersion Update="Aspire.Hosting.AppHost" Version="9.2.0" />
-    </ItemGroup>
-
 </Project>
