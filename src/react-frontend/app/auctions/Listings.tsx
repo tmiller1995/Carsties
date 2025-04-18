@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from "react";
 import AuctionCard from "@/app/auctions/AuctionCard";
 import AppPagination from "@/app/_components/AppPagination";
-import { PaginatedResult } from "@/app/_types/PaginatedResult";
-import { AuctionsApiResponse } from "@/app/auctions/AuctionsApiResponse";
+import { getData } from "@/app/actions/auctionSearchActions";
 import { Auction } from "@/app/auctions/Auction";
 
 export default function Listings() {
@@ -12,25 +11,26 @@ export default function Listings() {
   const [pageCount, setPageCount] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setError(null);
       try {
-        const response = await fetch(
-          `/api/auctions?pageNumber=${pageNumber}&pageSize=10`,
-        );
+        const result = await getData(pageNumber);
+        console.log("Processed result:", result);
 
-        if (!response.ok) {
-          throw new Error(`Error fetching auctions: ${response.status}`);
+        if (result.error) {
+          setError(result.error);
+        } else {
+          setAuctions(result.data);
+          setPageCount(result.totalPages);
         }
-
-        const result: PaginatedResult<AuctionsApiResponse> =
-          await response.json();
-        setAuctions(result.data.auctions);
-        setPageCount(result.totalPages);
-      } catch (error) {
-        console.error("Error loading auctions:", error);
+      } catch (err) {
+        console.error("Error loading auctions:", err);
+        setError("Failed to load auctions. Please try again later.");
+        setAuctions([]);
       } finally {
         setLoading(false);
       }
@@ -49,6 +49,16 @@ export default function Listings() {
       {loading ? (
         <div className="my-10 flex justify-center">
           <div className="h-12 w-12 animate-spin rounded-full border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      ) : error ? (
+        <div className="my-10 text-center text-red-500">
+          <h3 className="text-lg font-semibold">{error}</h3>
+          <button
+            onClick={() => fetchData()}
+            className="mt-4 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+          >
+            Retry
+          </button>
         </div>
       ) : auctions.length === 0 ? (
         <div className="my-10 text-center">
@@ -73,4 +83,27 @@ export default function Listings() {
       )}
     </>
   );
+
+  // Helper function for retrying data fetch
+  function fetchData() {
+    setLoading(true);
+    setError(null);
+    getData(pageNumber)
+      .then((result) => {
+        if (result.error) {
+          setError(result.error);
+        } else {
+          setAuctions(result.data);
+          setPageCount(result.totalPages);
+        }
+      })
+      .catch((err) => {
+        console.error("Error loading auctions:", err);
+        setError("Failed to load auctions. Please try again later.");
+        setAuctions([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 }
