@@ -6,12 +6,12 @@ namespace SearchService.API.Mapper;
 
 public static class SearchMapper
 {
-    public static PaginatedResponse<List<SearchResponse>> ToPaginatedSearchResponse(this PaginatedResponse<List<Auction>> paginatedResponse)
+    public static PaginatedResponse<SearchListResponse> ToPaginatedSearchListResponse(this PaginatedResponse<List<Auction>> paginatedResponse)
     {
         var searchResponses = paginatedResponse.Data.Select(s => s.ToSearchResponse()).ToList();
-        return new PaginatedResponse<List<SearchResponse>>
+        return new PaginatedResponse<SearchListResponse>
         {
-            Data = searchResponses,
+            Data = new SearchListResponse {SearchListResponses = searchResponses},
             PageNumber = paginatedResponse.PageNumber,
             PageSize = paginatedResponse.PageSize,
             TotalCount = paginatedResponse.TotalCount

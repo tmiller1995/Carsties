@@ -8,7 +8,7 @@ using SearchService.API.Mapper;
 
 namespace SearchService.API.Search;
 
-public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<List<SearchResponse>>>
+public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<SearchListResponse>>
 {
     private readonly ISender _sender;
 
@@ -30,7 +30,7 @@ public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<L
 
         if (!errorOrItems.IsError)
         {
-            var result = errorOrItems.Value.ToPaginatedSearchResponse();
+            var result = errorOrItems.Value.ToPaginatedSearchListResponse();
             await SendOkAsync(result, ct);
             return;
         }

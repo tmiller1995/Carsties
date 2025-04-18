@@ -2,7 +2,7 @@
 
 namespace Carsties.Core;
 
-public sealed class PaginatedResponse<T>
+public record PaginatedResponse<T>
 {
     [JsonPropertyName("data")] public T Data { get; init; } = default!;
     [JsonPropertyName("pageNumber")] public int PageNumber { get; init; }
