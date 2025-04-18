@@ -1,9 +1,7 @@
-export interface PaginatedResult<T> {
-  data: T[];
+export type PaginatedResult<T> = {
+  data: T;
   pageNumber: number;
   pageSize: number;
   totalCount: number;
-  totalPages: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-}
+  readonly totalPages: number; // Computed on the server as Math.Ceiling(totalCount / pageSize)
+};
