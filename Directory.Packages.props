@@ -8,21 +8,23 @@
     <MicrosoftIdentityModelVersion>8.8.0</MicrosoftIdentityModelVersion>
     <MicrosoftPackageVersion>9.0.4</MicrosoftPackageVersion>
     <FluentValidationVersion>11.11.0</FluentValidationVersion>
-    <FastEndpointsVersion>5.35.0</FastEndpointsVersion>
+    <FastEndpointsVersion>6.0.0</FastEndpointsVersion>
     <MassTransitVersion>8.4.0</MassTransitVersion>
-    <DuendeIdentityVersion>7.2.0</DuendeIdentityVersion>
+    <DuendeIdentityVersion>7.2.1</DuendeIdentityVersion>
     <OpenTelemetryVersion>1.11.2</OpenTelemetryVersion>
     <OpenTelemetryInstrumentationVersion>1.11.1</OpenTelemetryInstrumentationVersion>
   </PropertyGroup>
   <ItemGroup>
     <!--Aspire Versions-->
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Hosting.NodeJs" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Hosting.Redis" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
     <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="$(AspireCommunityVersion)" />
-    <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="9.3.0" />
+    <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="$(AspireCommunityVersion)" />
+    <PackageVersion Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ" Version="$(AspireCommunityVersion)" />
     <!--Duende-->
     <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
     <!--FastEndpoints-->

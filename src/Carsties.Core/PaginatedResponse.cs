@@ -1,13 +1,12 @@
-﻿namespace Carsties.Core;
+﻿using System.Text.Json.Serialization;
+
+namespace Carsties.Core;
 
 public sealed class PaginatedResponse<T>
 {
-    public T Data { get; init; } = default!;
-    public int PageNumber { get; init; }
-    public double PageSize { get; init; }
-    public double TotalCount { get; init; }
-
-    public int TotalPages => (int)Math.Ceiling(TotalCount / PageSize);
-    public bool HasNextPage => PageNumber < TotalPages;
-    public bool HasPreviousPage => PageNumber > 1;
+    [JsonPropertyName("data")] public T Data { get; init; } = default!;
+    [JsonPropertyName("pageNumber")] public int PageNumber { get; init; }
+    [JsonPropertyName("pageSize")] public double PageSize { get; init; }
+    [JsonPropertyName("totalCount")] public double TotalCount { get; init; }
+    [JsonPropertyName("totalPages")] public int TotalPages => (int)Math.Ceiling(TotalCount / PageSize);
 }

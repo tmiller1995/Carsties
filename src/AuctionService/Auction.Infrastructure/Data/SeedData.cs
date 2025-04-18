@@ -98,7 +98,7 @@ public static class SeedData
                     f.Image.LoremFlickrUrl(150, 150, keywords: $"{randomManufacturer}, {randomModel}"));
             });
 
-        var auctions = auctionFaker.Generate(500);
+        var auctions = auctionFaker.Generate(10_000);
 
         return auctions;
     }
