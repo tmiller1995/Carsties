@@ -19,7 +19,6 @@ export default function Listings() {
       setError(null);
       try {
         const result = await getData(pageNumber);
-        console.log("Processed result:", result);
 
         if (result.error) {
           setError(result.error);
@@ -28,8 +27,9 @@ export default function Listings() {
           setPageCount(result.totalPages);
         }
       } catch (err) {
-        console.error("Error loading auctions:", err);
-        setError("Failed to load auctions. Please try again later.");
+        setError(
+          err.message || "Failed to load auctions. Please try again later.",
+        );
         setAuctions([]);
       } finally {
         setLoading(false);
@@ -41,7 +41,6 @@ export default function Listings() {
 
   const handlePageChange = (page: number) => {
     setPageNumber(page);
-    window.scrollTo(0, 0);
   };
 
   return (
@@ -84,7 +83,6 @@ export default function Listings() {
     </>
   );
 
-  // Helper function for retrying data fetch
   function fetchData() {
     setLoading(true);
     setError(null);

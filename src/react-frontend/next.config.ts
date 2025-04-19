@@ -7,15 +7,6 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "loremflickr.com",
-        pathname: "/**",
-      },
-    ],
-  },
 };
 
 export default withFlowbiteReact(nextConfig);

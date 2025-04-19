@@ -10,22 +10,14 @@ export async function getData(
     const validPageNumber = Math.max(1, pageNumber);
     const validPageSize = Math.max(1, pageSize);
 
-    const baseApiUrl =
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050";
+    const baseApiUrl = process.env.GATEWAY_BASE_URL || "http://localhost:5050";
     const url = new URL(`${baseApiUrl}/search`);
     url.searchParams.set("pageNumber", validPageNumber.toString());
     url.searchParams.set("pageSize", validPageSize.toString());
 
-    console.log(`Fetching data from: ${url}`);
+    console.log(url);
 
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Disable caching
-      cache: "no-store",
-    });
+    const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error(`API error: ${response.status} ${response.statusText}`);
@@ -39,9 +31,6 @@ export async function getData(
       pageNumber: data.pageNumber || validPageNumber,
     };
   } catch (error) {
-    console.error("Error fetching data:", error);
-
-    // Return empty result with error info
     return {
       data: [],
       totalPages: 0,
