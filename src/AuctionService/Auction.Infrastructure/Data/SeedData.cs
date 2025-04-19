@@ -313,7 +313,8 @@ public sealed partial class SeedData
 
     public List<AuctionEntity> GenerateAuctions()
     {
-        Randomizer.Seed = new Random(2_145);
+        var seed = unchecked(2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 * 23 * 29 * 31 * 37 * 41 * 43 * 47 * 53 * 59);
+        Randomizer.Seed = new Random(seed);
 
         var auctionFaker = new Faker<AuctionEntity>("en_US")
             .RuleFor(a => a.Id, f => Guid.CreateVersion7())
@@ -329,7 +330,7 @@ public sealed partial class SeedData
                 var randomManufacturer = f.PickRandom<string>(CarModels.Keys);
                 var randomModel = f.PickRandom<string>(CarModels[randomManufacturer]);
                 var randomColor = f.PickRandom<string>(CarColors);
-                var randomYear = f.Random.Int(2005, 2024);
+                var randomYear = f.Random.Int(2015, 2024);
 
                 var urlErrorOr = _imageService.GetOrCreateAsync(randomYear, randomManufacturer, randomModel, randomColor).GetAwaiter().GetResult();
 
@@ -342,7 +343,7 @@ public sealed partial class SeedData
                 );
             });
 
-        var auctions = auctionFaker.Generate(30);
+        var auctions = auctionFaker.Generate(100);
 
         return auctions;
     }
