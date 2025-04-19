@@ -54,11 +54,20 @@ var gatewayService = builder.AddProject<GatewayService>("gateway-service")
     .WithReference(searchServiceApi)
     .WaitFor(searchServiceApi);
 
-builder.AddDockerfile("frontend", @"..\react-frontend",@"..\react-frontend\Dockerfile")
+builder.AddNpmApp("fontend", @"..\react-frontend", "dev")
     .WithReference(gatewayService)
     .WaitFor(gatewayService)
+    .WithEndpoint(targetPort: 3000, env: "PORT")
     .WithExternalHttpEndpoints()
-    .WithEndpoint(port: 3000, targetPort: 3000, name: "http")
-    .WithBuildArg("FONTAWESOME_PACKAGE_TOKEN", builder.Configuration["FONTAWESOME_PACKAGE_TOKEN"]);
+    .WithEnvironment("GATEWAY_BASE_URL", gatewayService.GetEndpoint("http"))
+    .WaitFor(gatewayService)
+    .WithOtlpExporter();
+
+// builder.AddDockerfile("frontend", @"..\react-frontend",@"..\react-frontend\Dockerfile")
+//     .WithReference(gatewayService)
+//     .WaitFor(gatewayService)
+//     .WithExternalHttpEndpoints()
+//     .WithEndpoint(port: 3000, targetPort: 3000, name: "http")
+//     .WithBuildArg("FONTAWESOME_PACKAGE_TOKEN", builder.Configuration["FONTAWESOME_PACKAGE_TOKEN"]);
 
 builder.Build().Run();

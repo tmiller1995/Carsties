@@ -42,11 +42,9 @@ try
         {
             Log.Information("Seeding database");
             var auctionsRepository = serviceScope.ServiceProvider.GetRequiredService<IAuctionsRepository>();
-            var auctionsToSeed = SeedData.GenerateAuctions();
-            foreach (var auctionBatch in auctionsToSeed.Chunk(5_000))
-            {
-                await auctionsRepository.CreateAuctionsAsync(auctionBatch);
-            }
+            var seeder = serviceScope.ServiceProvider.GetRequiredService<SeedData>();
+            var auctionsToSeed = seeder.GenerateAuctions();
+            await auctionsRepository.CreateAuctionsAsync(auctionsToSeed);
 
             Log.Information("Seeding complete");
         }

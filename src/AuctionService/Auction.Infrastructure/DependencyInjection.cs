@@ -1,9 +1,12 @@
-﻿using Auction.Application.Auctions;
+﻿using System.Net.Http.Headers;
+using Auction.Application.Auctions;
 using Auction.Application.Auctions.Create;
 using Auction.Application.Bids;
 using Auction.Application.Interfaces;
+using Auction.Domain.Interfaces;
 using Auction.Infrastructure.Auctions;
 using Auction.Infrastructure.Data;
+using Auction.Infrastructure.ImageGeneration;
 using IdentityModel;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -27,6 +30,11 @@ public static class DependencyInjection
             });
         builder.Services.AddAuthorization();
         builder.Services.AddHttpContextAccessor();
+        builder.Services.AddHttpClient<IAiImageService, OpenAiImageService>((client) =>
+        {
+            client.BaseAddress = new Uri("https://api.openai.com");
+        });
+        builder.Services.AddSingleton<SeedData>();
         builder.AddNpgsqlDbContext<AuctionDbContext>("auction-db");
         builder.Services.AddMassTransit(config =>
         {
