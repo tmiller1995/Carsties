@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <AspireVersion>9.2.0</AspireVersion>
-    <AspireCommunityVersion>9.3.0</AspireCommunityVersion>
+    <AspireCommunityVersion>9.4.0</AspireCommunityVersion>
     <MicrosoftBuildVersion>17.13.9</MicrosoftBuildVersion>
     <MicrosoftCodeAnalysisVersion>4.13.0</MicrosoftCodeAnalysisVersion>
     <MicrosoftIdentityModelVersion>8.8.0</MicrosoftIdentityModelVersion>
