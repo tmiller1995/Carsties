@@ -28,7 +28,9 @@ export default function Listings() {
         }
       } catch (err) {
         setError(
-          err.message || "Failed to load auctions. Please try again later.",
+          err instanceof Error
+            ? err.message
+            : "Failed to load auctions. Please try again later.",
         );
         setAuctions([]);
       } finally {

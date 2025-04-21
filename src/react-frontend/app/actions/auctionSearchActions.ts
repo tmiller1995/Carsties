@@ -4,7 +4,7 @@ import { AuctionDataResult } from "@/app/actions/AuctionActionResult";
 
 export async function getData(
   pageNumber: number = 1,
-  pageSize: number = 10,
+  pageSize: number = 16,
 ): Promise<AuctionDataResult> {
   try {
     const validPageNumber = Math.max(1, pageNumber);

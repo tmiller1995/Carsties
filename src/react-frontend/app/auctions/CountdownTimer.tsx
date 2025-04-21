@@ -1,6 +1,7 @@
 "use client";
 
 import Countdown, { zeroPad } from "react-countdown";
+import clsx from "clsx";
 
 const renderer = ({
   days,
@@ -17,7 +18,14 @@ const renderer = ({
 }) => {
   return (
     <div
-      className={`flex justify-center rounded-lg border-2 border-white px-2 py-1 text-white ${completed ? "bg-red-600" : days == 0 && hours < 10 ? "bg-amber-600" : "bg-green-600"}`}
+      className={clsx(
+        "flex justify-center rounded-lg border-2 border-white px-2 py-1 text-white",
+        {
+          "bg-red-600": completed,
+          "bg-amber-600": days == 0 && hours < 10,
+          "bg-green-600": days > 0 || hours >= 10,
+        },
+      )}
     >
       {completed ? (
         <span>Auction Finished</span>
@@ -35,9 +43,7 @@ export type CountdownTimerProps = {
   auctionEnd: string;
 };
 
-export default function CountdownTimer({
-  auctionEnd,
-}: CountdownTimerProps) {
+export default function CountdownTimer({ auctionEnd }: CountdownTimerProps) {
   return (
     <div>
       <Countdown date={auctionEnd} renderer={renderer} />
