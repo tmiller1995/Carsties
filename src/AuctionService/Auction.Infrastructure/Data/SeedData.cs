@@ -328,7 +328,7 @@ public sealed partial class SeedData
             .RuleFor(a => a.ItemEntity, f =>
             {
                 var randomManufacturer = f.PickRandom<string>(CarModels.Keys);
-                var randomModel = f.PickRandom<string>(CarModels[randomManufacturer]);
+                var randomModel = f.PickRandom(CarModels[randomManufacturer]);
                 var randomColor = f.PickRandom<string>(CarColors);
                 var randomYear = f.Random.Int(2015, 2024);
 
@@ -343,7 +343,7 @@ public sealed partial class SeedData
                 );
             });
 
-        var auctions = auctionFaker.Generate(100);
+        var auctions = auctionFaker.Generate(25);
 
         return auctions;
     }

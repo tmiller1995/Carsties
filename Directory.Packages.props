@@ -24,7 +24,6 @@
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
     <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="$(AspireCommunityVersion)" />
     <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="$(AspireCommunityVersion)" />
-    <PackageVersion Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ" Version="$(AspireCommunityVersion)" />
     <!--Duende-->
     <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
     <!--FastEndpoints-->

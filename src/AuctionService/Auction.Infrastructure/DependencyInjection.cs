@@ -36,20 +36,29 @@ public static class DependencyInjection
         });
         builder.Services.AddSingleton<SeedData>();
         builder.AddNpgsqlDbContext<AuctionDbContext>("auction-db");
-        builder.AddMassTransitRabbitMq("rabbitmq", massTransitConfiguration: configurator =>
+
+        builder.Services.AddMassTransit(config =>
         {
-            configurator.AddEntityFrameworkOutbox<AuctionDbContext>(options =>
+            config.AddEntityFrameworkOutbox<AuctionDbContext>(options =>
             {
                 options.QueryDelay = TimeSpan.FromSeconds(10);
                 options.UsePostgres();
                 options.UseBusOutbox();
             });
 
-            configurator.AddConsumersFromNamespaceContaining<AuctionCreatedEventFaultConsumer>();
-            configurator.AddConsumersFromNamespaceContaining<AuctionFinishedEventConsumer>();
-            configurator.AddConsumersFromNamespaceContaining<BidPlacedEventConsumer>();
+            config.AddConsumersFromNamespaceContaining<AuctionCreatedEventFaultConsumer>();
+            config.AddConsumersFromNamespaceContaining<AuctionFinishedEventConsumer>();
+            config.AddConsumersFromNamespaceContaining<BidPlacedEventConsumer>();
 
-            configurator.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "auction"));
+            config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "auction"));
+
+            config.UsingRabbitMq((context, configurator) =>
+            {
+                var configuration = context.GetRequiredService<IConfiguration>();
+                configurator.Host(configuration.GetConnectionString("rabbitmq"));
+
+                configurator.ConfigureEndpoints(context);
+            });
         });
 
         builder.Services.AddScoped<IAuctionsRepository, AuctionsRepository>();

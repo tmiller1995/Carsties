@@ -18,7 +18,6 @@
         <PackageReference Include="Aspire.Hosting.RabbitMQ"/>
         <PackageReference Include="Aspire.Hosting.Redis"/>
         <PackageReference Include="CommunityToolkit.Aspire.Hosting.RavenDB"/>
-        <PackageReference Include="CommunityToolkit.Aspire.MassTransit.RabbitMQ"/>
     </ItemGroup>
 
     <ItemGroup>

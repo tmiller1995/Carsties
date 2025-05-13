@@ -63,11 +63,4 @@ builder.AddNpmApp("fontend", @"..\react-frontend", "dev")
     .WaitFor(gatewayService)
     .WithOtlpExporter();
 
-// builder.AddDockerfile("frontend", @"..\react-frontend",@"..\react-frontend\Dockerfile")
-//     .WithReference(gatewayService)
-//     .WaitFor(gatewayService)
-//     .WithExternalHttpEndpoints()
-//     .WithEndpoint(port: 3000, targetPort: 3000, name: "http")
-//     .WithBuildArg("FONTAWESOME_PACKAGE_TOKEN", builder.Configuration["FONTAWESOME_PACKAGE_TOKEN"]);
-
 builder.Build().Run();

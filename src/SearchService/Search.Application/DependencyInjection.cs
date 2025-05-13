@@ -7,7 +7,7 @@ namespace Search.Application;
 
 public static class DependencyInjection
 {
-    public static IHostApplicationBuilder AddApplication(this IHostApplicationBuilder builder)
+    public static TBuilder AddApplication<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
         builder.Services.AddMediatR(options =>
         {
