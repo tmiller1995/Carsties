@@ -18,7 +18,7 @@ namespace Auction.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder)
+    public static TBuilder AddInfrastructure<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -36,28 +36,20 @@ public static class DependencyInjection
         });
         builder.Services.AddSingleton<SeedData>();
         builder.AddNpgsqlDbContext<AuctionDbContext>("auction-db");
-        builder.Services.AddMassTransit(config =>
+        builder.AddMassTransitRabbitMq("rabbitmq", massTransitConfiguration: configurator =>
         {
-            config.AddEntityFrameworkOutbox<AuctionDbContext>(options =>
+            configurator.AddEntityFrameworkOutbox<AuctionDbContext>(options =>
             {
                 options.QueryDelay = TimeSpan.FromSeconds(10);
                 options.UsePostgres();
                 options.UseBusOutbox();
             });
 
-            config.AddConsumersFromNamespaceContaining<AuctionCreatedEventFaultConsumer>();
-            config.AddConsumersFromNamespaceContaining<AuctionFinishedEventConsumer>();
-            config.AddConsumersFromNamespaceContaining<BidPlacedEventConsumer>();
+            configurator.AddConsumersFromNamespaceContaining<AuctionCreatedEventFaultConsumer>();
+            configurator.AddConsumersFromNamespaceContaining<AuctionFinishedEventConsumer>();
+            configurator.AddConsumersFromNamespaceContaining<BidPlacedEventConsumer>();
 
-            config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "auction"));
-
-            config.UsingRabbitMq((context, configurator) =>
-            {
-                var configuration = context.GetRequiredService<IConfiguration>();
-                configurator.Host(configuration.GetConnectionString("rabbitmq"));
-
-                configurator.ConfigureEndpoints(context);
-            });
+            configurator.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "auction"));
         });
 
         builder.Services.AddScoped<IAuctionsRepository, AuctionsRepository>();

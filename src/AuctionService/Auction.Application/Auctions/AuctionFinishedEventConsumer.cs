@@ -19,8 +19,7 @@ public sealed class AuctionFinishedEventConsumer : IConsumer<AuctionFinishedEven
 
     public async Task Consume(ConsumeContext<AuctionFinishedEvent> context)
     {
-        var auction =
-            await _auctionsRepository.GetAuctionByIdAsync(context.Message.AuctionId, context.CancellationToken);
+        var auction = await _auctionsRepository.GetAuctionByIdAsync(context.Message.AuctionId, context.CancellationToken);
 
         if (auction is null)
         {

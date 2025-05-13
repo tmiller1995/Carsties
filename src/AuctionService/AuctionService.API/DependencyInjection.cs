@@ -4,7 +4,7 @@ namespace AuctionService.API;
 
 public static class DependencyInjection
 {
-    public static IHostApplicationBuilder AddPresentation(this IHostApplicationBuilder builder)
+    public static TBuilder AddPresentation<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
         builder.Services.AddFastEndpoints();
         builder.Services.AddOpenApi();
