@@ -5,11 +5,13 @@ import AuctionCard from "@/app/auctions/AuctionCard";
 import AppPagination from "@/app/_components/AppPagination";
 import { getData } from "@/app/actions/auctionSearchActions";
 import { Auction } from "@/app/auctions/Auction";
+import Filters from "@/app/auctions/Filters";
 
 export default function Listings() {
   const [auctions, setAuctions] = useState<Auction[]>([]);
   const [pageCount, setPageCount] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(16);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +20,7 @@ export default function Listings() {
       setLoading(true);
       setError(null);
       try {
-        const result = await getData(pageNumber);
+        const result = await getData(pageNumber, pageSize);
 
         if (result.error) {
           setError(result.error);
@@ -39,7 +41,7 @@ export default function Listings() {
     };
 
     fetchData();
-  }, [pageNumber]);
+  }, [pageNumber, pageSize]);
 
   const handlePageChange = (page: number) => {
     setPageNumber(page);
@@ -47,6 +49,7 @@ export default function Listings() {
 
   return (
     <>
+      <Filters pageSize={pageSize} setPageSize={setPageSize} />
       {loading ? (
         <div className="my-10 flex justify-center">
           <div className="h-12 w-12 animate-spin rounded-full border-t-2 border-b-2 border-blue-500"></div>
