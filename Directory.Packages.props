@@ -22,6 +22,7 @@
     <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Hosting.Redis" Version="$(AspireVersion)" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.Bun" Version="$(AspireCommunityVersion)" />
     <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="$(AspireCommunityVersion)" />
     <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="$(AspireCommunityVersion)" />
     <!--Duende-->

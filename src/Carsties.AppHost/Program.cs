@@ -54,7 +54,7 @@ var gatewayService = builder.AddProject<GatewayService>("gateway-service")
     .WithReference(searchServiceApi)
     .WaitFor(searchServiceApi);
 
-builder.AddNpmApp("fontend", @"..\react-frontend", "dev")
+builder.AddBunApp("fontend", @"..\react-frontend", "dev")
     .WithReference(gatewayService)
     .WaitFor(gatewayService)
     .WithEndpoint(targetPort: 3000, env: "PORT")
