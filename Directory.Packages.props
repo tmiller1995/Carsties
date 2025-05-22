@@ -1,15 +1,15 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <AspireVersion>9.2.1</AspireVersion>
+    <AspireVersion>9.3.0</AspireVersion>
     <AspireCommunityVersion>9.4.0</AspireCommunityVersion>
-    <MicrosoftBuildVersion>17.13.9</MicrosoftBuildVersion>
-    <MicrosoftCodeAnalysisVersion>4.13.0</MicrosoftCodeAnalysisVersion>
-    <MicrosoftIdentityModelVersion>8.9.0</MicrosoftIdentityModelVersion>
-    <MicrosoftPackageVersion>9.0.4</MicrosoftPackageVersion>
+    <MicrosoftBuildVersion>17.14.8</MicrosoftBuildVersion>
+    <MicrosoftCodeAnalysisVersion>4.14.0</MicrosoftCodeAnalysisVersion>
+    <MicrosoftIdentityModelVersion>8.10.0</MicrosoftIdentityModelVersion>
+    <MicrosoftPackageVersion>9.0.5</MicrosoftPackageVersion>
     <FluentValidationVersion>12.0.0</FluentValidationVersion>
     <FastEndpointsVersion>6.1.0</FastEndpointsVersion>
-    <MassTransitVersion>8.4.0</MassTransitVersion>
+    <MassTransitVersion>8.4.1</MassTransitVersion>
     <DuendeIdentityVersion>7.2.3</DuendeIdentityVersion>
     <OpenTelemetryVersion>1.12.0</OpenTelemetryVersion>
     <OpenTelemetryInstrumentationVersion>1.12.0</OpenTelemetryInstrumentationVersion>
@@ -114,13 +114,13 @@
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
     <PackageVersion Include="IdentityModel" Version="7.0.0" />
     <PackageVersion Include="MediatR" Version="12.5.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.4.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.2.1" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.5.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.3.0" />
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.24" />
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
-    <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.13.2069" />
+    <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.14.2075" />
     <PackageVersion Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageVersion Include="Nito.Disposables" Version="2.5.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
