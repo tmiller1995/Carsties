@@ -13,20 +13,20 @@
     "@awesome.me/kit-7f69c3900d": "^1.0.10",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@tailwindcss/postcss": "^4.1.6",
+    "@tailwindcss/postcss": "^4.1.7",
     "@vercel/otel": "^1.12.0",
     "clsx": "^2.1.1",
     "flowbite-react": "^0.11.7",
     "next": "15.3.2",
-    "query-string": "^9.1.2",
+    "query-string": "^9.2.0",
     "react": "^19.1.0",
     "react-countdown": "^2.3.6",
     "react-dom": "^19.1.0",
-    "zustand": "^5.0.4"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/bun": "^1.2.13",
+    "@types/bun": "^1.2.14",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -35,7 +35,7 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^4.1.6",
+    "tailwindcss": "^4.1.7",
     "typescript": "^5"
   }
 }
