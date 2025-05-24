@@ -5,7 +5,7 @@
     <AspireCommunityVersion>9.4.0</AspireCommunityVersion>
     <MicrosoftBuildVersion>17.14.8</MicrosoftBuildVersion>
     <MicrosoftCodeAnalysisVersion>4.14.0</MicrosoftCodeAnalysisVersion>
-    <MicrosoftIdentityModelVersion>8.10.0</MicrosoftIdentityModelVersion>
+    <MicrosoftIdentityModelVersion>8.11.0</MicrosoftIdentityModelVersion>
     <MicrosoftPackageVersion>9.0.5</MicrosoftPackageVersion>
     <FluentValidationVersion>12.0.0</FluentValidationVersion>
     <FastEndpointsVersion>6.1.0</FastEndpointsVersion>
