@@ -18,6 +18,7 @@ export default function Listings() {
       pageSize: state.pageSize,
       pageCount: state.pageCount,
       searchTerm: state.searchTerm,
+      orderBy: state.orderBy,
     })),
   );
   const setParams = useParamsStore((state) => state.setParams);
