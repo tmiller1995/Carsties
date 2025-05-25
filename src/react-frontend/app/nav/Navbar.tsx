@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCarSide } from "@awesome.me/kit-7f69c3900d/icons/sharp/thin";
+import Search from "@/app/nav/Search";
 
 export default function Navbar() {
   return (
@@ -13,7 +14,7 @@ export default function Navbar() {
         <FontAwesomeIcon icon={faCarSide} className={`font-semibold`} />
         <div>Carsties Auctions</div>
       </div>
-      <div>Search</div>
+      <Search />
       <div>Login</div>
     </header>
   );
