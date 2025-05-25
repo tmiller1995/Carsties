@@ -1,12 +1,11 @@
-﻿using System.Text.RegularExpressions;
-using Auction.Domain.Auctions;
+﻿using Auction.Domain.Auctions;
 using Auction.Domain.Interfaces;
 using Auction.Domain.Items;
 using Bogus;
 
 namespace Auction.Infrastructure.Data;
 
-public sealed partial class SeedData
+public sealed class SeedData
 {
     private readonly IAiImageService _imageService;
 
@@ -311,9 +310,9 @@ public sealed partial class SeedData
     ];
 
 
-    public List<AuctionEntity> GenerateAuctions()
+    public List<AuctionEntity> GenerateAuctions(int numberOfAuctions = 20)
     {
-        var seed = unchecked(2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 * 23 * 29 * 31 * 37 * 41 * 43 * 47 * 53 * 59);
+        const int seed = unchecked(2 * 13 * 11 * 23 * 103);
         Randomizer.Seed = new Random(seed);
 
         var auctionFaker = new Faker<AuctionEntity>("en_US")
@@ -324,13 +323,13 @@ public sealed partial class SeedData
             .RuleFor(a => a.AuctionEnd,
                 f => DateTime.SpecifyKind(f.Date.Between(DateTime.UtcNow, DateTime.UtcNow.AddMonths(4)),
                     DateTimeKind.Utc))
-            .RuleFor(a => a.Winner, f => f.PickRandom<string>(UserNames).OrNull(f, 0.8f))
+            .RuleFor(a => a.Winner, f => f.PickRandom<string>(UserNames).OrNull(f, 0.95f))
             .RuleFor(a => a.ItemEntity, f =>
             {
                 var randomManufacturer = f.PickRandom<string>(CarModels.Keys);
                 var randomModel = f.PickRandom(CarModels[randomManufacturer]);
                 var randomColor = f.PickRandom<string>(CarColors);
-                var randomYear = f.Random.Int(2015, 2024);
+                var randomYear = f.Random.Int(2015, 2025);
 
                 var urlErrorOr = _imageService.GetOrCreateAsync(randomYear, randomManufacturer, randomModel, randomColor).GetAwaiter().GetResult();
 
@@ -343,7 +342,7 @@ public sealed partial class SeedData
                 );
             });
 
-        var auctions = auctionFaker.Generate(25);
+        var auctions = auctionFaker.Generate(numberOfAuctions);
 
         return auctions;
     }

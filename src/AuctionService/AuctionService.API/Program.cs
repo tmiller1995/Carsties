@@ -43,7 +43,7 @@ try
             Log.Information("Seeding database");
             var auctionsRepository = serviceScope.ServiceProvider.GetRequiredService<IAuctionsRepository>();
             var seeder = serviceScope.ServiceProvider.GetRequiredService<SeedData>();
-            var auctionsToSeed = seeder.GenerateAuctions();
+            var auctionsToSeed = seeder.GenerateAuctions(10);
             await auctionsRepository.CreateAuctionsAsync(auctionsToSeed);
 
             Log.Information("Seeding complete");
