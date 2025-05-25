@@ -10,7 +10,7 @@
     "postinstall": "flowbite-react patch"
   },
   "dependencies": {
-    "@awesome.me/kit-7f69c3900d": "^1.0.10",
+    "@awesome.me/kit-7f69c3900d": "^1.0.13",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tailwindcss/postcss": "^4.1.7",

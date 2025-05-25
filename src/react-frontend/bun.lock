@@ -4,7 +4,7 @@
     "": {
       "name": "react-frontend",
       "dependencies": {
-        "@awesome.me/kit-7f69c3900d": "^1.0.10",
+        "@awesome.me/kit-7f69c3900d": "^1.0.13",
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
         "@fortawesome/react-fontawesome": "^0.2.2",
         "@tailwindcss/postcss": "^4.1.7",
@@ -39,7 +39,7 @@
 
     "@ampproject/remapping": ["@ampproject/remapping@2.3.0", "", { "dependencies": { "@jridgewell/gen-mapping": "^0.3.5", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw=="],
 
-    "@awesome.me/kit-7f69c3900d": ["@awesome.me/kit-7f69c3900d@1.0.10", "https://npm.fontawesome.com/@awesome.me/kit-7f69c3900d/-/1.0.10/kit-7f69c3900d-1.0.10.tgz", { "dependencies": { "@fortawesome/fontawesome-common-types": "^6.7.2" } }, "sha512-oBGyMaBCXZKlak7mXNBMa+1EF3bhYOWytNsg3fjF6yyV1ELYTZhEbuEJsN2Ib/M7su3twNeAeWfyi0eF+tAKdg=="],
+    "@awesome.me/kit-7f69c3900d": ["@awesome.me/kit-7f69c3900d@1.0.13", "https://npm.fontawesome.com/@awesome.me/kit-7f69c3900d/-/kit-7f69c3900d-1.0.13.tgz", { "dependencies": { "@fortawesome/fontawesome-common-types": "^6.7.2" } }, "sha512-WlLp4JsYpTBYU/jeuaD7wZX7FFrUPwbHR/7Ppp68TFO50qK87VRf2rDodCfVOrYjWL3Vgvvn1BquIyZ3Xu1rLA=="],
 
     "@emnapi/core": ["@emnapi/core@1.4.0", "", { "dependencies": { "@emnapi/wasi-threads": "1.0.1", "tslib": "^2.4.0" } }, "sha512-H+N/FqT07NmLmt6OFFtDfwe8PNygprzBikrEMyQfgqSmT0vzE515Pz7R8izwB9q/zsH/MA64AKoul3sA6/CzVg=="],
 
