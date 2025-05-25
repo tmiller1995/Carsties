@@ -54,13 +54,14 @@ var gatewayService = builder.AddProject<GatewayService>("gateway-service")
     .WithReference(searchServiceApi)
     .WaitFor(searchServiceApi);
 
-builder.AddBunApp("frontend", @"..\react-frontend", "dev")
-    .WithReference(gatewayService)
-    .WaitFor(gatewayService)
-    .WithEndpoint(targetPort: 3000, env: "PORT")
-    .WithExternalHttpEndpoints()
-    .WithEnvironment("GATEWAY_BASE_URL", gatewayService.GetEndpoint("http"))
-    .WaitFor(gatewayService)
-    .WithOtlpExporter();
+// Will uncomment when frontend is ready
+// builder.AddBunApp("frontend", @"..\react-frontend", "dev")
+//     .WithReference(gatewayService)
+//     .WaitFor(gatewayService)
+//     .WithEndpoint(targetPort: 3000, env: "PORT")
+//     .WithExternalHttpEndpoints()
+//     .WithEnvironment("GATEWAY_BASE_URL", gatewayService.GetEndpoint("http"))
+//     .WaitFor(gatewayService)
+//     .WithOtlpExporter();
 
 builder.Build().Run();
