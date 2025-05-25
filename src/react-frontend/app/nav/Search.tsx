@@ -3,11 +3,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@awesome.me/kit-7f69c3900d/icons/sharp/solid";
 import { useParamsStore } from "@/app/hooks/useParamsStore";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 
 export default function Search() {
   const setParams = useParamsStore((state) => state.setParams);
+  const searchTerm = useParamsStore((state) => state.searchTerm);
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (searchTerm === "") setValue("");
+  }, [searchTerm]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
