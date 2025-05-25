@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCarSide } from "@awesome.me/kit-7f69c3900d/icons/sharp/thin";
+import { faCar } from "@awesome.me/kit-7f69c3900d/icons/sharp/thin";
 import Search from "@/app/nav/Search";
 
 export default function Navbar() {
@@ -11,7 +11,7 @@ export default function Navbar() {
       <div
         className={`flex items-center gap-2 text-3xl font-semibold text-red-500`}
       >
-        <FontAwesomeIcon icon={faCarSide} className={`font-semibold`} />
+        <FontAwesomeIcon icon={faCar} size="lg" />
         <div>Carsties Auctions</div>
       </div>
       <Search />

@@ -1,3 +1,5 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@awesome.me/kit-7f69c3900d/icons/sharp/thin";
 
@@ -13,7 +15,7 @@ export default function Search() {
         <FontAwesomeIcon
           icon={faSearch}
           size="lg"
-          className="mx-2 cursor-pointer rounded-full bg-red-400 p-2 text-white"
+          className="mx-2 cursor-pointer rounded-full bg-red-500 p-2 text-white"
         />
       </button>
     </div>
