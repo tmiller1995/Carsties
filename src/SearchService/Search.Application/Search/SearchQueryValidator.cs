@@ -4,8 +4,8 @@ namespace Search.Application.Search;
 
 public sealed class SearchQueryValidator : AbstractValidator<SearchQuery>
 {
-    private static readonly HashSet<string> ValidOrderByOptions = ["make", "new"];
-    private static readonly HashSet<string> ValidFilterByOptions = ["finished", "endingsoon"];
+    private static readonly HashSet<string> ValidOrderByOptions = ["make", "new", "endingsoon"];
+    private static readonly HashSet<string> ValidFilterByOptions = ["finished", "live", "endingsoon"];
 
     public SearchQueryValidator()
     {
