@@ -4,6 +4,9 @@ import {
   faArrowDownAZ,
   faClock,
   faCircleStop,
+  faFireFlame,
+  faFlagCheckered,
+  faHourglassEnd,
 } from "@awesome.me/kit-7f69c3900d/icons/sharp/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -13,14 +16,36 @@ const orderButtons = [
   { label: "End Date", icon: faClock, value: "endingsoon" },
   { label: "Recently Added", icon: faCircleStop, value: "new" },
 ];
+const filterButtons = [
+  { label: "Live Auctions", icon: faFireFlame, value: "live" },
+  { label: "Ending Soon", icon: faHourglassEnd, value: "endingsoon" },
+  { label: "Completed", icon: faFlagCheckered, value: "finished" },
+];
 
 export default function Filters() {
   const pageSize = useParamsStore((state) => state.pageSize);
   const setParams = useParamsStore((state) => state.setParams);
   const orderBy = useParamsStore((state) => state.orderBy);
+  const filterBy = useParamsStore((state) => state.filterBy);
 
   return (
     <div className="mb-4 flex items-center justify-between">
+      <div>
+        <span className="mr-2 text-sm text-gray-500 uppercase">Filter By</span>
+        <ButtonGroup>
+          {filterButtons.map(({ label, icon: Icon, value }) => (
+            <Button
+              key={value}
+              onClick={() => setParams({ filterBy: value })}
+              color={`${filterBy === value ? "red" : "gray"}`}
+              className="focus:ring-0"
+            >
+              <FontAwesomeIcon icon={Icon} className="mr-3 h-4 w-4" />
+              {label}
+            </Button>
+          ))}
+        </ButtonGroup>
+      </div>
       <div>
         <span className="mr-2 text-sm text-gray-500 uppercase">Order By</span>
         <ButtonGroup>
