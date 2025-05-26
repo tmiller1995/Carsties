@@ -49,7 +49,7 @@ public sealed class SearchRepository : ISearchRepository
         {
             auctions = auctionSearch.OrderBy.ToLower() switch
             {
-                "make" => auctions.OrderBy(a => a.Item.Make).ThenBy(a => a.Item.Model),
+                "make" => auctions.OrderBy(a => a.Item.Make),
                 "new" => auctions.OrderByDescending(a => a.CreatedAt),
                 _ => auctions.OrderBy(a => a.AuctionEnd)
             };
