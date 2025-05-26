@@ -17,7 +17,7 @@ var identityDb = postgres.AddDatabase("identity-db");
 var redis = builder.AddRedis("redis")
     .WithImageTag("latest")
     .WithDataVolume()
-    .WithRedisCommander();
+    .WithRedisCommander(config => config.WithImageTag("latest"));
 
 var rabbitMq = builder.AddRabbitMQ("rabbitmq")
     .WithImageTag("latest")
@@ -31,28 +31,20 @@ var ravenDb = builder.AddRavenDB("ravendb")
 var auctionSearchDb = ravenDb.AddDatabase("auction-search-db");
 
 var auctionServiceApi = builder.AddProject<AuctionService_API>("auction-service")
-    .WithReference(auctionDb)
-    .WaitFor(auctionDb)
-    .WithReference(rabbitMq)
-    .WaitFor(rabbitMq);
+    .WithReference(auctionDb).WaitFor(auctionDb)
+    .WithReference(rabbitMq).WaitFor(rabbitMq);
 
 var searchServiceApi = builder.AddProject<SearchService_API>("search-service")
-    .WithReference(auctionSearchDb)
-    .WaitFor(auctionSearchDb)
-    .WithReference(rabbitMq)
-    .WaitFor(rabbitMq);
+    .WithReference(auctionSearchDb).WaitFor(auctionSearchDb)
+    .WithReference(rabbitMq).WaitFor(rabbitMq);
 
 var identityService = builder.AddProject<IdentityService>("identity-service")
-    .WithReference(identityDb)
-    .WaitFor(identityDb);
+    .WithReference(identityDb).WaitFor(identityDb);
 
 var gatewayService = builder.AddProject<GatewayService>("gateway-service")
-    .WithReference(identityService)
-    .WaitFor(identityService)
-    .WithReference(auctionServiceApi)
-    .WaitFor(auctionServiceApi)
-    .WithReference(searchServiceApi)
-    .WaitFor(searchServiceApi);
+    .WithReference(identityService).WaitFor(identityService)
+    .WithReference(auctionServiceApi).WaitFor(auctionServiceApi)
+    .WithReference(searchServiceApi).WaitFor(searchServiceApi);
 
 // Will uncomment when frontend is ready
 // builder.AddBunApp("frontend", @"..\react-frontend", "dev")
