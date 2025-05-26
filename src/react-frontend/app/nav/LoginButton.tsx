@@ -8,7 +8,7 @@ export default function LoginButton() {
     <Button
       className="cursor-pointer"
       outline
-      onClick={() => signIn("id-server")}
+      onClick={() => signIn("id-server", { redirectTo: "/" })}
     >
       Login
     </Button>
