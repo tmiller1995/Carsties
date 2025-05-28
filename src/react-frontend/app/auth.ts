@@ -3,6 +3,7 @@ import DuendeIDS6Provider from "next-auth/providers/duende-identity-server6";
 import { OIDCConfig } from "@auth/core/providers";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  debug: true,
   providers: [
     DuendeIDS6Provider({
       id: "id-server",
