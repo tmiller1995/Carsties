@@ -31,7 +31,7 @@ public static class Config
             ClientId = "frontend",
             ClientName = "Carsties Frontend",
             ClientSecrets = [new Secret("SuperSecretDooDooDoo".Sha256())],
-            AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
+            AllowedGrantTypes = GrantTypes.Code,
             RequirePkce = false,
             RedirectUris = ["http://localhost:3000/api/auth/callback/id-server"],
             AllowOfflineAccess = true,
