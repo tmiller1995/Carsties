@@ -36,7 +36,7 @@ public static class Config
             RedirectUris = ["http://localhost:3000/api/auth/callback/id-server"],
             AllowOfflineAccess = true,
             AllowedScopes = ["openid", "profile", "auctionApp"],
-            AccessTokenLifetime = TimeSpan.FromDays(30).Seconds,
+            AccessTokenLifetime = 3_600 * 24 * 30,
             AlwaysIncludeUserClaimsInIdToken = true,
             AllowedCorsOrigins = { "http://localhost:3000" }
         }
