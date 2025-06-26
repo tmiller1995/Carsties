@@ -10,7 +10,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId: "frontend",
       clientSecret: "SuperSecretDooDooDoo",
       issuer: "http://localhost:7018",
-      authorization: { params: { scope: "openid profile auctionApp" } },
+      authorization: {
+        url: "http://localhost:7018/connect/authorize",
+        params: { scope: "openid profile auctionApp" },
+      },
       idToken: true,
     } as OIDCConfig<Profile>),
   ],
