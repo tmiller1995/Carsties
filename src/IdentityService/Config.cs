@@ -32,7 +32,7 @@ public static class Config
             ClientName = "Carsties Frontend",
             ClientSecrets = [new Secret("SuperSecretDooDooDoo".Sha256())],
             AllowedGrantTypes = GrantTypes.Code,
-            RequirePkce = false,
+            RequirePkce = true,
             RedirectUris = ["http://localhost:3000/api/auth/callback/id-server"],
             AllowOfflineAccess = true,
             AllowedScopes = ["openid", "profile", "auctionApp"],
