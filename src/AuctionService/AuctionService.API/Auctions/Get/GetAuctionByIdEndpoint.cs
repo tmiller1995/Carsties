@@ -29,11 +29,11 @@ public sealed class GetAuctionByIdEndpoint : EndpointWithoutRequest<AuctionDto>
 
         if (auction.Errors.Exists(e => e.Type == ErrorType.NotFound))
         {
-            await SendNotFoundAsync(ct);
+            await Send.NotFoundAsync(ct);
             return;
         }
 
         var auctionDto = auction.Value.ToAuctionDto();
-        await SendOkAsync(auctionDto, ct);
+        await Send.OkAsync(auctionDto, ct);
     }
 }

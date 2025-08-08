@@ -28,22 +28,32 @@ public sealed class DeleteAuctionEndpoint : EndpointWithoutRequest
 
         if (!deletionResult.IsError)
         {
-            await SendNoContentAsync(ct);
+            await Send.NoContentAsync(ct);
             return;
         }
 
         if (deletionResult.Errors.Exists(e => e.Type == ErrorType.NotFound))
         {
-            await SendAsync(deletionResult.Errors, StatusCodes.Status404NotFound, ct);
+            foreach (var error in deletionResult.Errors)
+            {
+                AddError(error.Description);
+            }
+
+            await Send.ErrorsAsync(StatusCodes.Status404NotFound, ct);
             return;
         }
 
         if (deletionResult.Errors.Exists(e => e.Type == ErrorType.Forbidden))
         {
-            await SendForbiddenAsync(ct);
+            await Send.ForbiddenAsync(ct);
             return;
         }
 
-        await SendAsync(deletionResult.Errors, StatusCodes.Status400BadRequest, ct);
+        foreach (var error in deletionResult.Errors)
+        {
+            AddError(error.Description);
+        }
+
+        await Send.ErrorsAsync(StatusCodes.Status400BadRequest, ct);
     }
 }

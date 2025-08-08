@@ -7,5 +7,6 @@ namespace Search.Application.Interfaces;
 
 public interface ISearchRepository
 {
-    Task<PaginatedResponse<List<Auction>>> SearchItemsAsync(AuctionSearch auctionSearch, CancellationToken cancellationToken = default);
+    Task<PaginatedResponse<List<Auction>>> SearchItemsAsync(AuctionSearch auctionSearch,
+        CancellationToken cancellationToken = default);
 }

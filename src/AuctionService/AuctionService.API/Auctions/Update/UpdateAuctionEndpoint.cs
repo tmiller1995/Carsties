@@ -38,22 +38,32 @@ public sealed class UpdateAuctionEndpoint : Endpoint<UpdateAuctionDto>
 
         if (!updatedAuction.IsError)
         {
-            await SendNoContentAsync(ct);
+            await Send.NoContentAsync(ct);
             return;
         }
 
         if (updatedAuction.Errors.Exists(e => e.Type == ErrorType.NotFound))
         {
-            await SendAsync(updatedAuction.Errors, StatusCodes.Status404NotFound, ct);
+            foreach (var error in updatedAuction.Errors)
+            {
+                AddError(error.Description);
+            }
+
+            await Send.ErrorsAsync(StatusCodes.Status404NotFound, ct);
             return;
         }
 
         if (updatedAuction.Errors.Exists(e => e.Type == ErrorType.Forbidden))
         {
-            await SendForbiddenAsync(ct);
+            await Send.ForbiddenAsync(ct);
             return;
         }
 
-        await SendAsync(updatedAuction.Errors, StatusCodes.Status400BadRequest, ct);
+        foreach (var error in updatedAuction.Errors)
+        {
+            AddError(error.Description);
+        }
+
+        await Send.ErrorsAsync(StatusCodes.Status400BadRequest, ct);
     }
 }

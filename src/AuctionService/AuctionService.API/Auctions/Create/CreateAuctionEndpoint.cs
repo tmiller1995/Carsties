@@ -29,11 +29,16 @@ public sealed class CreateAuctionEndpoint : Endpoint<CreateAuctionDto>
 
         if (createdAuction.IsError)
         {
-            await SendAsync(createdAuction.Errors, StatusCodes.Status400BadRequest, ct);
+            foreach (var error in createdAuction.Errors)
+            {
+                AddError(error.Description);
+            }
+
+            await Send.ErrorsAsync(StatusCodes.Status400BadRequest, ct);
             return;
         }
 
-        await SendCreatedAtAsync(endpointName: nameof(GetAuctionByIdEndpoint),
+        await Send.CreatedAtAsync(endpointName: nameof(GetAuctionByIdEndpoint),
             new { id = createdAuction.Value.Id },
             createdAuction.Value.ToAuctionDto(),
             cancellation: ct);

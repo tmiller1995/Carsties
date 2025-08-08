@@ -1,133 +1,140 @@
 <Project>
-  <PropertyGroup>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <AspireVersion>9.3.1</AspireVersion>
-    <AspireCommunityVersion>9.5.0</AspireCommunityVersion>
-    <MicrosoftBuildVersion>17.14.8</MicrosoftBuildVersion>
-    <MicrosoftCodeAnalysisVersion>4.14.0</MicrosoftCodeAnalysisVersion>
-    <MicrosoftIdentityModelVersion>8.12.1</MicrosoftIdentityModelVersion>
-    <MicrosoftPackageVersion>9.0.6</MicrosoftPackageVersion>
-    <FluentValidationVersion>12.0.0</FluentValidationVersion>
-    <FastEndpointsVersion>6.2.0</FastEndpointsVersion>
-    <MassTransitVersion>8.5.0</MassTransitVersion>
-    <DuendeIdentityVersion>7.2.4</DuendeIdentityVersion>
-    <OpenTelemetryVersion>1.12.0</OpenTelemetryVersion>
-    <OpenTelemetryInstrumentationVersion>1.12.0</OpenTelemetryInstrumentationVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <!--Aspire Versions-->
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
-    <PackageVersion Include="Aspire.Hosting.NodeJs" Version="$(AspireVersion)" />
-    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="$(AspireVersion)" />
-    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="$(AspireVersion)" />
-    <PackageVersion Include="Aspire.Hosting.Redis" Version="$(AspireVersion)" />
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
-    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.Bun" Version="$(AspireCommunityVersion)" />
-    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="$(AspireCommunityVersion)" />
-    <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="$(AspireCommunityVersion)" />
-    <!--Duende-->
-    <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
-    <!--FastEndpoints-->
-    <PackageVersion Include="FastEndpoints" Version="$(FastEndpointsVersion)" />
-    <PackageVersion Include="FastEndpoints.Security" Version="$(FastEndpointsVersion)" />
-    <PackageVersion Include="FastEndpoints.Attributes" Version="$(FastEndpointsVersion)" />
-    <!--Fluent Validation-->
-    <PackageVersion Include="FluentValidation" Version="$(FluentValidationVersion)" />
-    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="$(FluentValidationVersion)" />
-    <!--MassTransit-->
-    <PackageVersion Include="MassTransit" Version="$(MassTransitVersion)" />
-    <PackageVersion Include="MassTransit.Abstractions" Version="$(MassTransitVersion)" />
-    <PackageVersion Include="MassTransit.EntityFrameworkCore" Version="$(MassTransitVersion)" />
-    <PackageVersion Include="MassTransit.RabbitMQ" Version="$(MassTransitVersion)" />
-    <!--Microsoft Extensions-->
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Cryptography.Internal" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.DataProtection.Abstractions" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.JsonPatch" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.CodeDom" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Collections.Immutable" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Composition" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Composition.AttributedModel" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Composition.Convention" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Composition.Hosting" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Composition.TypedParts" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Configuration.ConfigurationManager" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Formats.Asn1" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.IO.Hashing" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.IO.Pipelines" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Reflection.Metadata" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Reflection.MetadataLoadContext" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Resources.Extensions" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Security.Cryptography.Xml" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Security.Permissions" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Text.Encodings.Web" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Threading.Channels" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Threading.RateLimiting" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="System.Threading.Tasks.Dataflow" Version="$(MicrosoftPackageVersion)" />
-    <!--Microsoft Build-->
-    <PackageVersion Include="Microsoft.Build" Version="$(MicrosoftBuildVersion)" />
-    <PackageVersion Include="Microsoft.Build.Tasks.Core" Version="$(MicrosoftBuildVersion)" />
-    <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="$(MicrosoftBuildVersion)" />
-    <!--Microsoft Code Analysis-->
-    <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="$(MicrosoftCodeAnalysisVersion)" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisVersion)" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(MicrosoftCodeAnalysisVersion)" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="$(MicrosoftCodeAnalysisVersion)" />
-    <!--Microsoft IdentityModel-->
-    <PackageVersion Include="Microsoft.IdentityModel.Abstractions" Version="$(MicrosoftIdentityModelVersion)" />
-    <PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="$(MicrosoftIdentityModelVersion)" />
-    <PackageVersion Include="Microsoft.IdentityModel.Protocols" Version="$(MicrosoftIdentityModelVersion)" />
-    <PackageVersion Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="$(MicrosoftIdentityModelVersion)" />
-    <!--OpenTelemetry-->
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OpenTelemetryVersion)" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryInstrumentationVersion)" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryInstrumentationVersion)" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryInstrumentationVersion)" />
-    <!--Other Packages-->
-    <PackageVersion Include="Bogus" Version="35.6.3" />
-    <PackageVersion Include="ErrorOr" Version="2.0.1" />
-    <PackageVersion Include="IdentityModel" Version="7.0.0" />
-    <PackageVersion Include="MediatR" Version="12.5.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.6.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.3.1" />
-    <PackageVersion Include="Microsoft.OpenApi" Version="1.6.24" />
-    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
-    <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.14.2075" />
-    <PackageVersion Include="Nito.Collections.Deque" Version="1.2.1" />
-    <PackageVersion Include="Nito.Disposables" Version="2.5.0" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
-    <PackageVersion Include="Polly" Version="8.6.1" />
-    <PackageVersion Include="RavenDB.Client" Version="7.0.4" />
-    <PackageVersion Include="RavenDB.DependencyInjection" Version="5.0.1" />
-    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
-    <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
-  </ItemGroup>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <AspireVersion>9.4.0</AspireVersion>
+        <AspireCommunityVersion>9.7.0</AspireCommunityVersion>
+        <MicrosoftBuildVersion>17.14.8</MicrosoftBuildVersion>
+        <MicrosoftCodeAnalysisVersion>4.14.0</MicrosoftCodeAnalysisVersion>
+        <MicrosoftIdentityModelVersion>8.13.0</MicrosoftIdentityModelVersion>
+        <MicrosoftPackageVersion>9.0.8</MicrosoftPackageVersion>
+        <FluentValidationVersion>12.0.0</FluentValidationVersion>
+        <FastEndpointsVersion>7.0.1</FastEndpointsVersion>
+        <MassTransitVersion>8.5.2</MassTransitVersion>
+        <DuendeIdentityVersion>7.2.4</DuendeIdentityVersion>
+        <OpenTelemetryVersion>1.12.0</OpenTelemetryVersion>
+        <OpenTelemetryInstrumentationVersion>1.12.0</OpenTelemetryInstrumentationVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <!--Aspire Versions-->
+        <PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
+        <PackageVersion Include="Aspire.Hosting.NodeJs" Version="$(AspireVersion)" />
+        <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="$(AspireVersion)" />
+        <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="$(AspireVersion)" />
+        <PackageVersion Include="Aspire.Hosting.Redis" Version="$(AspireVersion)" />
+        <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
+        <PackageVersion Include="CommunityToolkit.Aspire.Hosting.Bun" Version="$(AspireCommunityVersion)" />
+        <PackageVersion Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="$(AspireCommunityVersion)" />
+        <PackageVersion Include="CommunityToolkit.Aspire.RavenDB.Client" Version="$(AspireCommunityVersion)" />
+        <!--Duende-->
+        <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="$(DuendeIdentityVersion)" />
+        <!--FastEndpoints-->
+        <PackageVersion Include="FastEndpoints" Version="$(FastEndpointsVersion)" />
+        <PackageVersion Include="FastEndpoints.Security" Version="$(FastEndpointsVersion)" />
+        <PackageVersion Include="FastEndpoints.Attributes" Version="$(FastEndpointsVersion)" />
+        <!--Fluent Validation-->
+        <PackageVersion Include="FluentValidation" Version="$(FluentValidationVersion)" />
+        <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="$(FluentValidationVersion)" />
+        <!--MassTransit-->
+        <PackageVersion Include="MassTransit" Version="$(MassTransitVersion)" />
+        <PackageVersion Include="MassTransit.Abstractions" Version="$(MassTransitVersion)" />
+        <PackageVersion Include="MassTransit.EntityFrameworkCore" Version="$(MassTransitVersion)" />
+        <PackageVersion Include="MassTransit.RabbitMQ" Version="$(MassTransitVersion)" />
+        <!--Microsoft Extensions-->
+        <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect"
+                        Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.Cryptography.Internal" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.DataProtection.Abstractions" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore"
+                        Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore"
+                        Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.JsonPatch" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageVersion>
+        <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions"
+                        Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.CodeDom" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Collections.Immutable" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Composition" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Composition.AttributedModel" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Composition.Convention" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Composition.Hosting" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Composition.TypedParts" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Configuration.ConfigurationManager" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Formats.Asn1" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.IO.Hashing" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.IO.Pipelines" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Reflection.Metadata" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Reflection.MetadataLoadContext" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Resources.Extensions" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Security.Cryptography.Xml" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Security.Permissions" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Text.Encodings.Web" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Threading.Channels" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Threading.RateLimiting" Version="$(MicrosoftPackageVersion)" />
+        <PackageVersion Include="System.Threading.Tasks.Dataflow" Version="$(MicrosoftPackageVersion)" />
+        <!--Microsoft Build-->
+        <PackageVersion Include="Microsoft.Build" Version="$(MicrosoftBuildVersion)" />
+        <PackageVersion Include="Microsoft.Build.Tasks.Core" Version="$(MicrosoftBuildVersion)" />
+        <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="$(MicrosoftBuildVersion)" />
+        <!--Microsoft Code Analysis-->
+        <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="$(MicrosoftCodeAnalysisVersion)" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisVersion)" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(MicrosoftCodeAnalysisVersion)" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="$(MicrosoftCodeAnalysisVersion)" />
+        <!--Microsoft IdentityModel-->
+        <PackageVersion Include="Microsoft.IdentityModel.Abstractions" Version="$(MicrosoftIdentityModelVersion)" />
+        <PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="$(MicrosoftIdentityModelVersion)" />
+        <PackageVersion Include="Microsoft.IdentityModel.Protocols" Version="$(MicrosoftIdentityModelVersion)" />
+        <PackageVersion Include="Microsoft.IdentityModel.Protocols.OpenIdConnect"
+                        Version="$(MicrosoftIdentityModelVersion)" />
+        <!--OpenTelemetry-->
+        <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
+        <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OpenTelemetryVersion)" />
+        <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore"
+                        Version="$(OpenTelemetryInstrumentationVersion)" />
+        <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryInstrumentationVersion)" />
+        <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime"
+                        Version="$(OpenTelemetryInstrumentationVersion)" />
+        <!--Other Packages-->
+        <PackageVersion Include="Bogus" Version="35.6.3" />
+        <PackageVersion Include="ErrorOr" Version="2.0.1" />
+        <PackageVersion Include="IdentityModel" Version="7.0.0" />
+        <PackageVersion Include="MediatR" Version="13.0.0" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
+        <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.7.0" />
+        <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.4.0" />
+        <PackageVersion Include="Microsoft.OpenApi" Version="2.0.0" />
+        <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+        <PackageVersion Include="Microsoft.VisualStudio.Setup.Configuration.Interop" Version="3.14.2075" />
+        <PackageVersion Include="Nito.Collections.Deque" Version="1.2.1" />
+        <PackageVersion Include="Nito.Disposables" Version="2.5.0" />
+        <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageVersion Include="Polly" Version="8.6.2" />
+        <PackageVersion Include="RavenDB.Client" Version="7.1.1" />
+        <PackageVersion Include="RavenDB.DependencyInjection" Version="5.0.1" />
+        <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
+        <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
+    </ItemGroup>
 </Project>

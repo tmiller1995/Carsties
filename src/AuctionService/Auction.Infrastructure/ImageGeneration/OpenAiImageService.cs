@@ -23,11 +23,13 @@ public sealed partial class OpenAiImageService : IAiImageService
         HttpClient client)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger), "ILogger<T> must be provided");
-        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration), "IConfiguration must be provided");
+        _configuration = configuration ??
+                         throw new ArgumentNullException(nameof(configuration), "IConfiguration must be provided");
         _client = client ?? throw new ArgumentNullException(nameof(client), "HttpClient must be provided");
     }
 
-    public async Task<ErrorOr<string>> GetOrCreateAsync(int year, string make, string model, string color, CancellationToken ct = default)
+    public async Task<ErrorOr<string>> GetOrCreateAsync(int year, string make, string model, string color,
+        CancellationToken ct = default)
     {
         var cleanedMake = WhiteSpaceCleaner(make);
         var cleanedModel = WhiteSpaceCleaner(model);
@@ -59,7 +61,8 @@ public sealed partial class OpenAiImageService : IAiImageService
         return await GetImageFromOpenAiAsync(tmpUrl, year, cleanedMake, cleanedModel, cleanedColor, ct);
     }
 
-    private async Task<ErrorOr<string>> GetImageFromOpenAiAsync(string url, int year, string cleanedMake, string cleanedModel, string cleanedColor, CancellationToken ct)
+    private async Task<ErrorOr<string>> GetImageFromOpenAiAsync(string url, int year, string cleanedMake,
+        string cleanedModel, string cleanedColor, CancellationToken ct)
     {
         try
         {
@@ -73,7 +76,8 @@ public sealed partial class OpenAiImageService : IAiImageService
             await using var fileWriter = File.Create(fullPath);
             await remoteImage.CopyToAsync(fileWriter, ct);
 
-            return Path.Join("images", "vehicles", year.ToString(), cleanedMake, cleanedModel, cleanedColor, imageSlugName);
+            return Path.Join("images", "vehicles", year.ToString(), cleanedMake, cleanedModel, cleanedColor,
+                imageSlugName);
         }
         catch (Exception ex)
         {

@@ -31,10 +31,10 @@ public sealed class SearchEndpoint : Endpoint<SearchRequest, PaginatedResponse<S
         if (!errorOrItems.IsError)
         {
             var result = errorOrItems.Value.ToPaginatedSearchListResponse();
-            await SendOkAsync(result, ct);
+            await Send.OkAsync(result, ct);
             return;
         }
 
-        await SendErrorsAsync(StatusCodes.Status400BadRequest, ct);
+        await Send.ErrorsAsync(StatusCodes.Status400BadRequest, ct);
     }
 }

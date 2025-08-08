@@ -331,7 +331,9 @@ public sealed class SeedData
                 var randomColor = f.PickRandom<string>(CarColors);
                 var randomYear = f.Random.Int(2015, 2025);
 
-                var urlErrorOr = _imageService.GetOrCreateAsync(randomYear, randomManufacturer, randomModel, randomColor).GetAwaiter().GetResult();
+                var urlErrorOr = _imageService
+                    .GetOrCreateAsync(randomYear, randomManufacturer, randomModel, randomColor).GetAwaiter()
+                    .GetResult();
 
                 return new ItemEntity(randomManufacturer,
                     randomModel,

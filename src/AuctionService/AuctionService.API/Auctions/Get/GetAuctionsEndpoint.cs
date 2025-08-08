@@ -26,18 +26,18 @@ public sealed class GetAuctionsEndpoint : EndpointWithoutRequest<List<AuctionDto
         var auctions = await _sender.Send(new GetAllAuctionsQuery(), ct);
         if (auctions.IsError)
         {
-            await SendErrorsAsync(StatusCodes.Status400BadRequest, ct);
+            await Send.ErrorsAsync(StatusCodes.Status400BadRequest, ct);
             return;
         }
 
         if (auctions.Value.Count == 0)
         {
-            await SendNotFoundAsync(ct);
+            await Send.NotFoundAsync(ct);
         }
 
         var auctionDtos = auctions.Value
             .Select(a => a.ToAuctionDto())
             .ToList();
-        await SendOkAsync(auctionDtos, ct);
+        await Send.OkAsync(auctionDtos, ct);
     }
 }
